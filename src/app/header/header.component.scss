@@ -1,0 +1,152 @@
+.navbar-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  height: 70px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: white;
+  padding: 16px 0;
+}
+
+.btn {
+  font-size: 13px;
+  line-height: 32px;
+  transition: color 0.2s 0s;
+  -webkit-transition: color 0.2s 0s;
+  -moz-transition: color 0.2s 0s;
+  -ms-transition: color 0.2s 0s;
+  color: white;
+  border-radius: 30px;
+  padding: 0 1rem;
+  border: 2px solid #37b34a;
+  font-weight: 700;
+}
+
+.left-nav-btn-two {
+  color: #37b34a;
+  background-color: white;
+  &:hover {
+    background-color: #37b34a;
+    color: white;
+  }
+}
+.left-nav-btn-one {
+  color: white;
+  background-color: #37b34a;
+  transition: background-color 0.2s 0s;
+  -webkit-transition: background-color 0.2s 0s;
+  -moz-transition: background-color 0.2s 0s;
+  -ms-transition: background-color 0.2s 0s;
+  position: relative;
+  margin-right: 1rem;
+}
+
+.dropdown-menu {
+  width: 135px;
+  background-color: white;
+  text-align: center;
+  padding: 5px;
+  display: none;
+  position: absolute;
+  left: -21px;
+  z-index: 1;
+
+  a {
+    display: block;
+    text-decoration: none;
+    color: #757575;
+    font-size: 14px;
+    &:hover {
+      color: black;
+    }
+  }
+  &::before {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: -5px;
+    left: 64px;
+    border: 9px solid transparent;
+    border-top: 0;
+    border-bottom: 7px solid white;
+  }
+}
+
+button:hover .dropdown-menu {
+  display: block;
+}
+
+.left-nav {
+  padding-left: 2.5rem;
+}
+
+.right-nav {
+  top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  order: -1;
+  padding-right: 2.5rem;
+
+  & > * {
+    margin-right: 20px;
+  }
+
+  .logo {
+    margin: 0;
+  }
+}
+
+.logo {
+  img {
+    width: 70px;
+    height: auto;
+    padding: 0px;
+    padding-left: 20px;
+    border-left: 1px solid #bdbdbd;
+  }
+}
+
+.search-bar {
+  position: relative;
+  input {
+    border: 1px solid #bdbdbd;
+    border-radius: 45px;
+    width: 30vw;
+    height: 40px;
+    font-size: 14px;
+    max-width: 460px;
+    padding: 0 40px;
+    outline: none;
+    &::placeholder {
+      font-weight: 400;
+      color: #bdbdbd;
+    }
+  }
+
+  .fa-search {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    transform: rotateY(180deg);
+    color: #37b34a;
+  }
+}
+
+.categories,
+.guide {
+  color: #757575;
+  text-decoration: none;
+}
+
+.right {
+  margin: 0 5px;
+}
