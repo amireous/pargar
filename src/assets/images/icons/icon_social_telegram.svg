@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_social_telegram</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="8.78314544%" y1="-3.50838151%" x2="140.57352%" y2="124.804236%" id="linearGradient-1">
+            <stop stop-color="#EFF7FC" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="[Icon-Base]" transform="translate(-160.000000, -88.000000)">
+            <g id="icon_ic_social_telegram" transform="translate(160.000000, 88.000000)">
+                <path d="M0,9.99050677 L0,30.0094932 C0,35.5279241 4.47290224,40 9.99050677,40 L30.0094932,40 C35.5279241,40 40,35.5270978 40,30.0094932 L40,9.99050677 C40,4.47207592 35.5270978,0 30.0094932,0 L9.99050677,0 C4.47207592,0 0,4.47290224 0,9.99050677 Z" id="Rectangle" fill="#2CA5E0"></path>
+                <g id="Telegram" stroke-width="1" transform="translate(8.000000, 12.000000)">
+                    <path d="M8.33333333,17.1666667 C7.68533333,17.1666667 7.7955,16.922 7.572,16.3051667 L5.66666667,10.0343333 L20.3333333,1.33333333 L8.33333333,17.1666667 Z" id="Shape" fill="#C8DAEA"></path>
+                    <path d="M8.33333333,17.1666667 C8.83333333,17.1666667 9.05433333,16.938 9.33333333,16.6666667 L12,14.0736667 L8.67366667,12.0678333 L8.33333333,17.1666667 Z" id="Shape" fill="#A9C9DD"></path>
+                    <path d="M8.67333333,12.0683333 L16.7333333,18.0231667 C17.6531667,18.5306667 18.3168333,18.2678333 18.546,17.1693333 L21.8268333,1.70883333 C22.1626667,0.362 21.3135,-0.248666667 20.4336667,0.150666667 L1.16866667,7.57916667 C-0.146333333,8.10666667 -0.138666667,8.84033333 0.928833333,9.16716667 L5.87266667,10.7103333 L17.3181667,3.4895 C17.8585,3.16183333 18.3545,3.338 17.9475,3.69916667 L8.67333333,12.0683333 Z" id="Shape" fill="url(#linearGradient-1)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

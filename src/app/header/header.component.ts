@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { of } from 'rxjs';
 import { ApiService } from '../services/api.service';
+import { TokenService } from '../services/token.service';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +17,10 @@ export class HeaderComponent implements OnInit {
   currentMode: string = 'login';
   codeValidation: boolean = true;
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    private tokenService: TokenService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -26,46 +29,35 @@ export class HeaderComponent implements OnInit {
   }
 
   onSignup(phoneNumber: string) {
-    if (phoneNumber.length === 11 && phoneNumber.startsWith('0')) {
-      this.apiService.signUp(phoneNumber).subscribe((response) => {
-        console.log(response);
+    this.apiService.signUp(phoneNumber).subscribe(
+      (response) => {
         this.haveError = false;
+        console.log(response);
         this.currentMode = 'verify';
         console.log(this.currentMode);
         this.verifyMode = true;
         this.userNumber = phoneNumber;
-      });
-    }
-
-    if (phoneNumber.startsWith('') && phoneNumber.length === 0) {
-      console.log('empty');
-      this.haveError = true;
-      this.errorMessage = 'پر کردن تمامی قسمت ها الزامی است.';
-    } else if (
-      phoneNumber.length < 11 ||
-      (phoneNumber.length > 11 && !phoneNumber.startsWith(''))
-    ) {
-      console.log('too low');
-      this.errorMessage = 'لطفا شماره موبایل خود را با فرمت صحیح وارد نمایید.';
-    }
+      },
+      (errorMsg) => {
+        this.errorMessage = errorMsg;
+        this.haveError = true;
+      }
+    );
   }
 
   onResendCode() {
     this.currentMode = 'login';
-    this.codeValidation = false;
+    this.codeValidation = true;
   }
 
   onVerifyCode(code: string, username: string) {
     this.apiService.verifyLoginCode(code, username, this.userNumber).subscribe(
       (response) => {
-        console.log(response);
+        this.tokenService.setToken(response.token);
       },
       (error) => {
         console.log(error);
-        this.codeValidation = false;
       }
     );
-
-    console.log(username, code);
   }
 }

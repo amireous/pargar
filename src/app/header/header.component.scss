@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 100;
+  z-index: 10;
   height: 70px;
 }
 
@@ -19,9 +19,7 @@
     background-color: transparent;
     font-weight: bold;
     color: #757575;
-    &:hover {
-      color: black;
-    }
+    cursor: pointer;
   }
 }
 
@@ -73,9 +71,6 @@
     text-decoration: none;
     color: #757575;
     font-size: 14px;
-    &:hover {
-      color: black;
-    }
   }
   &::before {
     content: "";
@@ -212,10 +207,14 @@ button:hover .dropdown-menu {
       }
     }
 
+    .login-form {
+      text-align: center;
+    }
+
     .error-text {
       font-size: 18px;
       color: red;
-      align-self: flex-start;
+      text-align: right;
       padding: 16px 0;
     }
 
@@ -228,7 +227,9 @@ button:hover .dropdown-menu {
       width: 50%;
       color: white;
       font-size: 16px;
-      &:focus {
+      padding: 5px 0;
+      &:focus,
+      &:hover {
         background-color: white;
         color: #37b34a;
       }
@@ -239,6 +240,6 @@ button:hover .dropdown-menu {
 .login-view {
   width: 400px;
   input {
-    margin: 1rem 0.5rem;
+    margin: 1rem 0;
   }
 }
