@@ -12,8 +12,8 @@ export interface UserResponseData {
 }
 
 export interface UserVerifyCodePost {
-  mobile: number;
-  device_id: number;
-  verification_code: number;
-  nickname: number;
+  mobile: string;
+  device_id: string;
+  verification_code: string;
+  nickname: string;
 }

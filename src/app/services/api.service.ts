@@ -15,8 +15,6 @@ const baseUrl: string = environment.baseUrl;
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  token: string | undefined;
-
   getHomeScreenData(): Observable<RootObject> {
     return this.http.get<RootObject>(`${baseUrl}/store/7`);
   }
@@ -51,6 +49,7 @@ export class ApiService {
         })
       );
   }
+  totem: string | undefined;
 
   verifyLoginCode(
     code: string,
@@ -62,14 +61,23 @@ export class ApiService {
         mobile: phoneNumber,
         device_id: 'Desktop',
         verification_code: code,
-        nickname: '',
+        nickname: username,
       })
       .pipe(
-        tap((res: any) => {
-          console.log(res);
-          localStorage.getItem('token');
+        tap((eve) => {
+          this.loginProfile();
         })
       );
+  }
+
+  loginProfile() {
+    this.http.get(`${baseUrl}/profile`).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (error) => [console.log(error)]
+    );
+    window.location.reload();
   }
 
   // userAuthenticate(token: string) {

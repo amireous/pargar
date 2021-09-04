@@ -243,3 +243,17 @@ button:hover .dropdown-menu {
     margin: 1rem 0;
   }
 }
+
+.login-btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .resend-btn {
+    background-color: transparent;
+    color: #37b34a;
+    border: none;
+    cursor: pointer;
+  }
+}

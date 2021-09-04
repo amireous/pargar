@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { TokenService } from '../services/token.service';
 
@@ -19,7 +20,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -27,6 +29,8 @@ export class HeaderComponent implements OnInit {
   onLoginDropdown() {
     this.isLoginDropdown = true;
   }
+
+  tokenH: any;
 
   onSignup(phoneNumber: string) {
     this.apiService.signUp(phoneNumber).subscribe(
@@ -51,13 +55,14 @@ export class HeaderComponent implements OnInit {
   }
 
   onVerifyCode(code: string, username: string) {
-    this.apiService.verifyLoginCode(code, username, this.userNumber).subscribe(
-      (response) => {
-        this.tokenService.setToken(response.token);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.apiService
+      .verifyLoginCode(code, username, this.userNumber)
+      .subscribe((res: any) => {
+        this.tokenService.setToken(res.token);
+      });
+  }
+
+  refreshPage() {
+    window.location.reload();
   }
 }

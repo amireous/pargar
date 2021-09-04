@@ -4,7 +4,7 @@ import {
   HttpRequest,
   HttpEvent,
 } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 
 import { ApiService } from './api.service';
 
@@ -14,38 +14,23 @@ import { TokenService } from './token.service';
 
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor {
-  constructor(
-    private tokenService: TokenService,
-    private apiService: ApiService
-  ) {}
+  constructor(private tokenService: TokenService) {}
 
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const token11 = this.tokenService.getToken();
+    const token = this.tokenService.getToken();
 
-    this.apiService.getHomeScreenData();
-
-    return next.handle(
-      req.clone({
+    if (token) {
+      console.log(token);
+      req = req.clone({
         setHeaders: {
-          Authorization: `Bearer ${this.tokenService.getToken()}`,
-          'Accept-Language': 'fa-IR',
+          Authorization: `Token ${token}`,
         },
-      })
-    );
-    // .pipe(
-    // tap(
-    //   (event) => {
-    //     console.log(event);
+      });
+    }
 
-    //     console.log(token);
-    //   },
-    //   (error) => {
-    //     console.log(error);
-    //   }
-    // )
-    // );
+    return next.handle(req);
   }
 }

@@ -1,4 +1,5 @@
 <div class="navbar-container">
+  <a [routerLink]="['/profile']">profile</a>
   <nav class="navbar">
     <div class="left-nav">
       <button class="left-nav-btn-two btn">در پرگار درس بدهید</button>
@@ -50,11 +51,20 @@
     <div class="login verify-login-form">
       <input type="text" placeholder="کد تاییدیه" #verCode />
       <input type="text" placeholder="نام نمایشی شما" #username />
-      <button (click)="onVerifyCode(verCode.value, username.value)">
-        ورود به پرگار
-      </button>
-      <p class="error-text" *ngIf="!codeValidation">کد نادرست است</p>
-      <button (click)="onResendCode()">ارسال مجدد کد تایید</button>
+      <div class="login-btns">
+        <button
+          class="login-btn"
+          (click)="onVerifyCode(verCode.value, username.value)"
+        >
+          ورود به پرگار
+        </button>
+        <p class="error-text" *ngIf="!codeValidation">کد نادرست است</p>
+        <button class="resend-btn" (click)="onResendCode()">
+          ارسال مجدد کد تایید
+        </button>
+        refreshPage()
+        <button (click)="refreshPage()">refresh</button>
+      </div>
     </div>
   </div>
 </div>
