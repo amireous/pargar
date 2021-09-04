@@ -12,8 +12,6 @@ export class HomeScreenComponent implements OnInit {
   headerItemList: Headeritem[] = [];
   homeItemList: Homeitem[] = [];
 
-  navbarFixed: boolean = false;
-
   navbarfixed: boolean = false;
 
   @HostListener('window:scroll', ['$event']) onscroll() {
@@ -39,10 +37,6 @@ export class HomeScreenComponent implements OnInit {
         );
 
         this.homeItemList.filter((item) => item.products);
-
-        console.log(this.homeItemList);
-        console.log(this.parentItemList);
-        console.log(this.headerItemList);
       },
       (err) => {
         console.log(err);

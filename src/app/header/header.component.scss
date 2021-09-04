@@ -13,6 +13,16 @@
   width: 100%;
   background-color: white;
   padding: 16px 0;
+
+  .dropdown-login-btn {
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+    color: #757575;
+    &:hover {
+      color: black;
+    }
+  }
 }
 
 .btn {
@@ -149,4 +159,86 @@ button:hover .dropdown-menu {
 
 .right {
   margin: 0 5px;
+}
+
+.login-view-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    animation: ngdialog-fadein 0.5s;
+    z-index: -1;
+  }
+
+  .login-view {
+    background-color: #fff;
+    width: 450px;
+    padding: 22px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+
+    .login-title {
+      font-size: 18px;
+      color: black;
+      margin-bottom: 1rem;
+    }
+    form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid #37b34a;
+      outline: none;
+      box-sizing: border-box;
+      &::placeholder {
+        font-weight: 500;
+        font-size: 16px;
+        color: #acacac;
+      }
+    }
+
+    .error-text {
+      font-size: 18px;
+      color: red;
+      align-self: flex-start;
+      padding: 16px 0;
+    }
+
+    .login-btn {
+      margin: 1rem 0;
+      border-radius: 20px;
+      background: #37b34a;
+      border: 2px solid #37b34a;
+      transition: background-color 0.2s 0s;
+      width: 50%;
+      color: white;
+      font-size: 16px;
+      &:focus {
+        background-color: white;
+        color: #37b34a;
+      }
+    }
+  }
+}
+
+.login-view {
+  width: 400px;
+  input {
+    margin: 1rem 0.5rem;
+  }
 }

@@ -5,7 +5,9 @@
       <button class="left-nav-btn-one btn">
         حساب من <i class="fas fa-chevron-down"></i>
         <div class="dropdown-menu">
-          <a href="">ورود/ثبت نام رایگان</a>
+          <button class="dropdown-login-btn" (click)="onLoginDropdown()">
+            ورود/ثبت نام رایگان
+          </button>
           <a href="#">کد هدیه</a>
         </div>
       </button>
@@ -24,4 +26,35 @@
       <a href="" class="guide">راهنمای پرگار</a>
     </div>
   </nav>
+</div>
+
+<div class="form login-view-container" *ngIf="isLoginDropdown">
+  <div class="overlay"></div>
+  <div class="login-view" *ngIf="currentMode === 'login'">
+    <p class="login-title">ورود و ثبت نام</p>
+    <div class="login login-form">
+      <input type="text" placeholder="شماره تلفن همراه" #phoneNumber />
+      <p class="error-text" *ngIf="haveError">
+        {{ errorMessage }}
+      </p>
+      <button class="login-btn" (click)="onSignup(phoneNumber.value)">
+        دریافت کد تایید
+      </button>
+    </div>
+  </div>
+  <div
+    class="form login-view verify-login"
+    *ngIf="verifyMode && currentMode === 'verify'"
+  >
+    <p class="login-title">ورود کد تایید</p>
+    <div class="login verify-login-form">
+      <input type="text" placeholder="کد تاییدیه" #verCode />
+      <input type="text" placeholder="نام نمایشی شما" #username />
+      <button (click)="onVerifyCode(verCode.value, username.value)">
+        ورود به پرگار
+      </button>
+      <p class="error-text" *ngIf="!codeValidation">کد نادرست است</p>
+      <button (click)="onResendCode()">ارسال مجدد کد تایید</button>
+    </div>
+  </div>
 </div>
