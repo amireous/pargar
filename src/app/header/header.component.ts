@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RootObjectProfile } from '../models/user.model';
 import { ApiService } from '../services/api.service';
 import { TokenService } from '../services/token.service';
 
@@ -11,8 +10,6 @@ import { TokenService } from '../services/token.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  userNumber: string | undefined;
-  verificationCode: string | undefined;
   isLoginDropdown: boolean = false;
   haveError: boolean = false;
   errorMessage: string | undefined;
@@ -25,8 +22,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
-    private tokenService: TokenService,
-    private router: Router
+    private tokenService: TokenService
   ) {}
 
   ngOnInit(): void {
@@ -35,7 +31,6 @@ export class HeaderComponent implements OnInit {
 
   onLoginDropdown() {
     this.isLoginDropdown = true;
-    this.apiService.disableScrolling();
   }
 
   signupForm: FormGroup = new FormGroup({});
@@ -74,28 +69,26 @@ export class HeaderComponent implements OnInit {
   onVerifyCode() {
     let phoneNumber: string = this.signupForm.value.phoneNumber;
     let code: string = this.verificationForm.value.verification;
+
     let username: string | '' = this.verificationForm.value.username;
 
     if (phoneNumber) {
-      this.apiService.verifyLoginCode(code, username, phoneNumber).subscribe(
-        (res: any) => {
-          this.tokenService.token = res.token;
-          this.getProfileData();
-        },
-        () => {
-          this.codeValidation = false;
-        }
-      );
+      this.apiService
+        .verifyLoginCode(code, username || '', phoneNumber)
+        .subscribe(
+          (res: any) => {
+            this.tokenService.token = res.token;
+            this.getProfileData();
+          },
+          () => {
+            this.codeValidation = false;
+          }
+        );
     }
-  }
-
-  refreshPage() {
-    window.location.reload();
   }
 
   getProfileData() {
     this.apiService.getUserProfile().subscribe((data) => {
-      console.log(data);
       this.userAvatar = data.avatar;
       this.isLoginDropdown = false;
     });
@@ -107,5 +100,6 @@ export class HeaderComponent implements OnInit {
 
   onProfile() {
     this.apiService.toProfileComponent();
+    this.getProfileData();
   }
 }

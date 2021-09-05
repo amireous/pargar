@@ -50,11 +50,10 @@ export class ApiService {
         })
       );
   }
-  totem: string | undefined;
 
   verifyLoginCode(
     code: string,
-    username: string,
+    username: string | '',
     phoneNumber: string | undefined
   ) {
     return this.http
@@ -66,16 +65,6 @@ export class ApiService {
       })
       .pipe(tap((eve) => {}));
   }
-
-  // loginProfile() {
-  //   this.http.get(`${baseUrl}/profile`).subscribe(
-  //     (res) => {
-  //       console.log(res);
-  //     },
-  //     (error) => [console.log(error)]
-  //   );
-  //   window.location.reload();
-  // }
 
   getUserProfile(): Observable<any> {
     return this.http.get(`${baseUrl}/profile`);
@@ -93,12 +82,12 @@ export class ApiService {
 
   logout() {
     localStorage.clear();
-    window.location.reload();
+    this.router.navigate(['/']).then(() => {
+      window.location.reload();
+    });
   }
 
   toProfileComponent() {
-    this.router.navigate(['/profile']).then(() => {
-      window.location.reload();
-    });
+    this.router.navigate(['/profile']).then(() => {});
   }
 }
