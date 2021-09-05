@@ -41,6 +41,7 @@ export class ApiService {
             case 'incomplete parameters':
               errorMessage = 'پر کردن تمامی قسمت ها الزامی است.';
               break;
+
             case 'Mobile is not valid':
               errorMessage =
                 'لطفا شماره موبایل خود را با فرمت صحیح وارد نمایید.';
