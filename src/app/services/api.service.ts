@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpEvent } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { RootObject, RootObjectChild } from '../models/api-data.model';
 import { environment } from 'src/environments/environment';
 import { UserDataPostService, UserVerifyCodePost } from '../models/user.model';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 const baseUrl: string = environment.baseUrl;
 
@@ -13,7 +14,7 @@ const baseUrl: string = environment.baseUrl;
   providedIn: 'root',
 })
 export class ApiService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   getHomeScreenData(): Observable<RootObject> {
     return this.http.get<RootObject>(`${baseUrl}/store/7`);
@@ -63,37 +64,41 @@ export class ApiService {
         verification_code: code,
         nickname: username,
       })
-      .pipe(
-        tap((eve) => {
-          this.loginProfile();
-        })
-      );
+      .pipe(tap((eve) => {}));
   }
 
-  loginProfile() {
-    this.http.get(`${baseUrl}/profile`).subscribe(
-      (res) => {
-        console.log(res);
-      },
-      (error) => [console.log(error)]
-    );
+  // loginProfile() {
+  //   this.http.get(`${baseUrl}/profile`).subscribe(
+  //     (res) => {
+  //       console.log(res);
+  //     },
+  //     (error) => [console.log(error)]
+  //   );
+  //   window.location.reload();
+  // }
+
+  getUserProfile(): Observable<any> {
+    return this.http.get(`${baseUrl}/profile`);
+  }
+
+  disableScrolling() {
+    let x = window.scrollX;
+    let y = window.scrollY;
+    window.onscroll = () => window.scrollTo(x, y);
+  }
+
+  enableScrolling() {
+    window.onscroll = function () {};
+  }
+
+  logout() {
+    localStorage.clear();
     window.location.reload();
   }
 
-  // userAuthenticate(token: string) {
-  //   if (token) {
-  //     this.http.post('https:api.vasapi.click/profile', token).subscribe(
-  //       (data) => {
-  //         console.log(data);
-  //       },
-  //       (error) => {
-  //         console.log(error);
-  //       }
-  //     );
-  //   } else return;
-  // }
-
-  // getHeaderItemChilds(): Observable<RootObjectChild> {
-  //   return this.http.get<RootObjectChild>(`${baseUrl}/category/7/0`);
-  // }
+  toProfileComponent() {
+    this.router.navigate(['/profile']).then(() => {
+      window.location.reload();
+    });
+  }
 }

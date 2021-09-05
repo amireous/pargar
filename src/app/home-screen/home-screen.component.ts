@@ -28,23 +28,20 @@ export class HomeScreenComponent implements OnInit {
     this.apiService.getHomeScreenData().subscribe(
       (data) => {
         this.parentItemList = data.parent_categories.filter(
-          (item) => item.is_visible === true
+          (item: any) => item.is_visible === true
         );
-
         this.headerItemList = data.headeritem;
         this.homeItemList = data.homeitem.filter(
-          (item) => item.products.length > 0
+          (item: any) => item.products.length > 0
         );
-
         this.homeItemList.filter((item) => item.products);
       },
       (err) => {
         console.log(err);
       }
     );
-
-    // this.apiService.getHeaderItemChilds().subscribe((childData) => {
-    //   console.log(childData);
-    // });
+    //  this.apiService.getHeaderItemChilds().subscribe((childData) => {
+    //    console.log(childData);
+    //  });
   }
 }

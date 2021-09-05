@@ -10,16 +10,30 @@ a {
 }
 
 .container {
+  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: hidden;
   padding: 1.5rem 0;
   margin-top: 5rem;
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge add Firefox */
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none; /* Firefox */
+  }
 
   .header {
+    overflow: hidden;
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin-bottom: 1.5rem;
 
     .header-item {
+      overflow: hidden;
       direction: ltr;
       width: 443.25px;
       margin: 0 0.5rem;
@@ -102,6 +116,7 @@ a {
       color: #37b34a;
       font-weight: bold;
       font-size: 15px;
+      cursor: pointer;
     }
   }
 

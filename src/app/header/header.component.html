@@ -1,14 +1,30 @@
 <div class="navbar-container">
-  <a [routerLink]="['/profile']">profile</a>
+  <!-- <a [routerLink]="['/profile']">profile</a> -->
   <nav class="navbar">
     <div class="left-nav">
       <button class="left-nav-btn-two btn">در پرگار درس بدهید</button>
-      <button class="left-nav-btn-one btn">
+      <div class="user-profile" *ngIf="userAvatar">
+        <img class="user-avatar" [src]="userAvatar" alt="" />
+        <div class="dropdown-menu">
+          <ul>
+            <li><a class="profile-router" (click)="onProfile()">پروفایل</a></li>
+            <li><a href="#">کد هدیه</a></li>
+            <li><a href="#">راهنما</a></li>
+            <li>
+              <a class="dropdown-login-link" (click)="onLogout()">
+                خروج از پرگار
+              </a>
+            </li>
+          </ul>
+        </div>
+        <button class="pluse-btn btn">کاربر اشتراکی شوید</button>
+      </div>
+      <button class="left-nav-btn-one btn" *ngIf="!userAvatar">
         حساب من <i class="fas fa-chevron-down"></i>
         <div class="dropdown-menu">
-          <button class="dropdown-login-btn" (click)="onLoginDropdown()">
+          <a class="dropdown-login-link" (click)="onLoginDropdown()">
             ورود/ثبت نام رایگان
-          </button>
+          </a>
           <a href="#">کد هدیه</a>
         </div>
       </button>
@@ -31,40 +47,58 @@
 
 <div class="form login-view-container" *ngIf="isLoginDropdown">
   <div class="overlay" id="over"></div>
-  <div class="login-view" *ngIf="currentMode === 'login'">
+  <form
+    class="login-view"
+    [formGroup]="signupForm"
+    (ngSubmit)="onSignup()"
+    *ngIf="currentMode === 'login'"
+  >
     <p class="login-title">ورود و ثبت نام</p>
     <div class="login login-form">
-      <input type="text" placeholder="شماره تلفن همراه" #phoneNumber />
+      <input
+        type="text"
+        formControlName="phoneNumber"
+        placeholder="شماره تلفن همراه"
+        #phoneNumber
+      />
       <p class="error-text" *ngIf="haveError">
         {{ errorMessage }}
       </p>
-      <button class="login-btn" (click)="onSignup(phoneNumber.value)">
-        دریافت کد تایید
-      </button>
+      <button type="submit" class="login-btn">دریافت کد تایید</button>
     </div>
-  </div>
-  <div
+  </form>
+  <form
     class="form login-view verify-login"
-    *ngIf="verifyMode && currentMode === 'verify'"
+    *ngIf="currentMode === 'verify'"
+    [formGroup]="verificationForm"
   >
     <p class="login-title">ورود کد تایید</p>
     <div class="login verify-login-form">
-      <input type="text" placeholder="کد تاییدیه" #verCode />
-      <input type="text" placeholder="نام نمایشی شما" #username />
+      <input
+        type="text"
+        formControlName="verification"
+        placeholder="کد تاییدیه"
+      />
+      <input
+        type="text"
+        formControlName="username"
+        placeholder="نام نمایشی شما"
+        #username
+      />
       <div class="login-btns">
+        <p class="error-text" *ngIf="!codeValidation">کد نادرست است</p>
+
         <button
           class="login-btn"
-          (click)="onVerifyCode(verCode.value, username.value)"
+          (click)="onVerifyCode()"
+          [disabled]="verificationForm.invalid"
         >
           ورود به پرگار
         </button>
-        <p class="error-text" *ngIf="!codeValidation">کد نادرست است</p>
         <button class="resend-btn" (click)="onResendCode()">
           ارسال مجدد کد تایید
         </button>
-        refreshPage()
-        <button (click)="refreshPage()">refresh</button>
       </div>
     </div>
-  </div>
+  </form>
 </div>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RootObjectProfile } from '../models/user.model';
 import { ApiService } from '../services/api.service';
 import { TokenService } from '../services/token.service';
 
@@ -14,7 +16,10 @@ export class HeaderComponent implements OnInit {
   isLoginDropdown: boolean = false;
   haveError: boolean = false;
   errorMessage: string | undefined;
-  verifyMode = false;
+
+  userAvatar: string | undefined;
+  profileValid: boolean = false;
+
   currentMode: string = 'login';
   codeValidation: boolean = true;
 
@@ -24,23 +29,35 @@ export class HeaderComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.initForms();
+  }
 
   onLoginDropdown() {
     this.isLoginDropdown = true;
+    this.apiService.disableScrolling();
   }
 
-  tokenH: any;
+  signupForm: FormGroup = new FormGroup({});
+  verificationForm: FormGroup = new FormGroup({});
 
-  onSignup(phoneNumber: string) {
-    this.apiService.signUp(phoneNumber).subscribe(
+  initForms() {
+    this.signupForm = new FormGroup({
+      phoneNumber: new FormControl('', Validators.required),
+    });
+
+    this.verificationForm = new FormGroup({
+      verification: new FormControl(''),
+      username: new FormControl(''),
+    });
+  }
+
+  onSignup() {
+    this.apiService.signUp(this.signupForm.value.phoneNumber).subscribe(
       (response) => {
-        this.haveError = false;
         console.log(response);
         this.currentMode = 'verify';
         console.log(this.currentMode);
-        this.verifyMode = true;
-        this.userNumber = phoneNumber;
       },
       (errorMsg) => {
         this.errorMessage = errorMsg;
@@ -54,15 +71,41 @@ export class HeaderComponent implements OnInit {
     this.codeValidation = true;
   }
 
-  onVerifyCode(code: string, username: string) {
-    this.apiService
-      .verifyLoginCode(code, username, this.userNumber)
-      .subscribe((res: any) => {
-        this.tokenService.setToken(res.token);
-      });
+  onVerifyCode() {
+    let phoneNumber: string = this.signupForm.value.phoneNumber;
+    let code: string = this.verificationForm.value.verification;
+    let username: string | '' = this.verificationForm.value.username;
+
+    if (phoneNumber) {
+      this.apiService.verifyLoginCode(code, username, phoneNumber).subscribe(
+        (res: any) => {
+          this.tokenService.token = res.token;
+          this.getProfileData();
+        },
+        () => {
+          this.codeValidation = false;
+        }
+      );
+    }
   }
 
   refreshPage() {
     window.location.reload();
+  }
+
+  getProfileData() {
+    this.apiService.getUserProfile().subscribe((data) => {
+      console.log(data);
+      this.userAvatar = data.avatar;
+      this.isLoginDropdown = false;
+    });
+  }
+
+  onLogout() {
+    this.apiService.logout();
+  }
+
+  onProfile() {
+    this.apiService.toProfileComponent();
   }
 }

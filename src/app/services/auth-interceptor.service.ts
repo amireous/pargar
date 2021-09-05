@@ -6,8 +6,6 @@ import {
 } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 
-import { ApiService } from './api.service';
-
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { TokenService } from './token.service';
@@ -20,17 +18,26 @@ export class AuthInterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const token = this.tokenService.getToken();
+    const token = this.tokenService.token;
 
     if (token) {
-      console.log(token);
       req = req.clone({
         setHeaders: {
           Authorization: `Token ${token}`,
+          'Accept-Language': 'fa-IR',
         },
       });
     }
-
-    return next.handle(req);
+    return next.handle(req).pipe(
+      tap(
+        (event) => {
+          console.log(event);
+          console.log(token);
+        },
+        (error) => {
+          console.error(error);
+        }
+      )
+    );
   }
 }

@@ -13,14 +13,19 @@
   width: 100%;
   background-color: white;
   padding: 16px 0;
+}
 
-  .dropdown-login-btn {
-    border: none;
-    background-color: transparent;
-    font-weight: bold;
-    color: #757575;
-    cursor: pointer;
-  }
+.left-nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.dropdown-login-link {
+  border: none;
+  background-color: transparent;
+  color: #757575;
+  cursor: pointer;
 }
 
 .btn {
@@ -45,7 +50,8 @@
     color: white;
   }
 }
-.left-nav-btn-one {
+.left-nav-btn-one,
+.pluse-btn {
   color: white;
   background-color: #37b34a;
   transition: background-color 0.2s 0s;
@@ -216,6 +222,7 @@ button:hover .dropdown-menu {
       color: red;
       text-align: right;
       padding: 16px 0;
+      align-self: flex-start;
     }
 
     .login-btn {
@@ -254,6 +261,52 @@ button:hover .dropdown-menu {
     background-color: transparent;
     color: #37b34a;
     border: none;
+    cursor: pointer;
+  }
+}
+
+.user-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20px;
+
+  .user-avatar {
+    width: 32px;
+    height: 32px;
+    order: 1;
+  }
+
+  .dropdown-menu {
+    margin: auto;
+    width: 95px;
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: 0px 2px 10px 0px rgb(0 0 0 / 16%),
+      0px 2px 5px 0px rgb(0 0 0 / 26%);
+    padding: 4px;
+    text-align: right;
+    top: 59px;
+    left: 22px;
+
+    &::before {
+      top: -5px;
+      left: 45px;
+    }
+    li {
+      list-style: none;
+    }
+  }
+
+  &:hover .dropdown-menu {
+    display: block;
+  }
+
+  .pluse-btn {
+    margin: 0 0 0 1rem;
+  }
+
+  .profile-router {
     cursor: pointer;
   }
 }
