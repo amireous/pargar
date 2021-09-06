@@ -3,7 +3,11 @@ import { HttpClient, HttpErrorResponse, HttpEvent } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { RootObject, RootObjectChild } from '../models/api-data.model';
 import { environment } from 'src/environments/environment';
-import { UserDataPostService, UserVerifyCodePost } from '../models/user.model';
+import {
+  RootObjectProfile,
+  UserDataPostService,
+  UserVerifyCodePost,
+} from '../models/user.model';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
@@ -67,8 +71,8 @@ export class ApiService {
       .pipe(tap((eve) => {}));
   }
 
-  getUserProfile(): Observable<any> {
-    return this.http.get(`${baseUrl}/profile`);
+  getUserProfile(): Observable<RootObjectProfile> {
+    return this.http.get<RootObjectProfile>(`${baseUrl}/profile`);
   }
 
   disableScrolling() {
