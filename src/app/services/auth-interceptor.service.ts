@@ -7,12 +7,16 @@ import {
 import { Injectable, Injector } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { finalize, tap } from 'rxjs/operators';
+import { SpinnerService } from './spinner.service';
 import { TokenService } from './token.service';
 
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor {
-  constructor(private tokenService: TokenService) {}
+  constructor(
+    private tokenService: TokenService,
+    private spinnerService: SpinnerService
+  ) {}
 
   intercept(
     req: HttpRequest<any>,
@@ -28,7 +32,9 @@ export class AuthInterceptorService implements HttpInterceptor {
         },
       });
     }
+    this.spinnerService.showLoading();
     return next.handle(req).pipe(
+      finalize(() => this.spinnerService.hideLoading()),
       tap(
         () => {},
         (error) => {

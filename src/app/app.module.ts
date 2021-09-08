@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     HeaderComponent,
     FooterComponent,
     UserProfileComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
