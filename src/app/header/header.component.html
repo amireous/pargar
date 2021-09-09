@@ -1,7 +1,7 @@
 <div class="navbar-container">
   <nav class="navbar">
     <div class="left-nav">
-      <button class="left-nav-btn-two btn">در پرگار درس بدهید</button>
+      <button class="green-btn left-nav-btn-two btn">در پرگار درس بدهید</button>
       <div class="user-profile" *ngIf="userAvatar">
         <img class="user-avatar" [src]="userAvatar" alt="" />
         <div class="dropdown-menu">
@@ -16,9 +16,9 @@
             </li>
           </ul>
         </div>
-        <button class="pluse-btn btn">کاربر اشتراکی شوید</button>
+        <button class="pluse-btn btn white-btn">کاربر اشتراکی شوید</button>
       </div>
-      <button class="left-nav-btn-one btn" *ngIf="!userAvatar">
+      <button class="white-btn left-nav-btn-one btn" *ngIf="!userAvatar">
         حساب من <i class="fas fa-chevron-down"></i>
         <div class="dropdown-menu">
           <a class="dropdown-login-link" (click)="onLoginDropdown()">
@@ -44,8 +44,8 @@
   </nav>
 </div>
 
-<div class="form login-view-container" *ngIf="isLoginDropdown">
-  <div class="overlay" id="over"></div>
+<div class="form login-view-container" *ngIf="isLoginDropdown && showModal">
+  <div class="overlay" (click)="onOverlay()"></div>
   <form
     class="login-view"
     [formGroup]="signupForm"

@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
   isLoginDropdown: boolean = false;
   haveError: boolean = false;
   errorMessage: string | undefined;
+  showModal: boolean = true;
 
   userAvatar: string | undefined;
   profileValid: boolean = false;
@@ -31,6 +32,7 @@ export class HeaderComponent implements OnInit {
 
   onLoginDropdown() {
     this.isLoginDropdown = true;
+    this.showModal = true;
   }
 
   signupForm: FormGroup = new FormGroup({});
@@ -101,5 +103,9 @@ export class HeaderComponent implements OnInit {
   onProfile() {
     this.apiService.toProfileComponent();
     this.getProfileData();
+  }
+
+  onOverlay() {
+    this.showModal = false;
   }
 }

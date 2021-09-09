@@ -12,35 +12,8 @@ export class LoadingSpinnerComponent implements OnInit {
   loading: boolean | undefined;
 
   ngOnInit(): void {
-    // this.spinnerService.isLoading.subscribe((value) => {
-    //   console.log(value);
-    //   this.loading = value;
-    // });
-    //   this.spinnerService.showLoading();
-    //   if (this.spinnerService.isLoading) {
-    //     this.spinnerService.isLoading.subscribe((value) => {
-    //       console.log(value);
-    //     });
-    //   }
-    // }
-    // this.spinnerService.showLoading();
-    // if (this.spinnerService.isLoading) {
-    //   this.spinnerService.isLoading.subscribe((value) => {
-    //     this.loading = value;
-    //     console.log(value);
-    //   });
-    // }
     this.spinnerService.isLoading.subscribe((value) => {
       this.loading = value;
     });
   }
-
-  // onClick() {
-  //   this.spinnerService.showLoading();
-  //   if (this.spinnerService.isLoading) {
-  //     this.spinnerService.isLoading.subscribe((value) => {
-  //       this.loading = value;
-  //     });
-  //   }
-  // }
 }

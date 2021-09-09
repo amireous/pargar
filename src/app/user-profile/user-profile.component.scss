@@ -1,96 +1,89 @@
+@import "../../assets/styles/styles.scss";
+
 .container-profile {
   min-height: 10vh;
   height: 100%;
   width: 100%;
-  padding-top: 5rem;
+  padding-top: $medium-margin * 2 + 1;
 
   .user-header {
-    background-color: #37b34a;
-    padding-top: 40px;
+    background-color: $primary-green;
+    padding-top: $medium-padding + 0.5;
     padding-bottom: 0px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+
+    @include flex($direction: column);
 
     .user-dashbored {
-      color: white;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
+      width: 100%;
+      color: $white-color;
+      @include flex($justify: space-around);
     }
   }
 
   .user-name {
-    font-size: 40px;
+    font-size: $medium-font * 2;
   }
   .user-avatar {
     width: 80px;
     height: 80px;
     border-radius: 100%;
     display: inline-block;
-    margin: 0 1rem;
+    margin: 0 $base-margin;
   }
 
   .user-option {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+    @include flex($direction: column);
   }
 
   .user-profile {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 3rem;
+    @include flex();
+    padding: $medium-padding + 1;
   }
   .user-operations {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include flex($direction: column);
 
     & > * {
       width: 100%;
     }
 
     .edit-profile {
-      border: 1px solid white;
-      border-radius: 20px;
-      padding: 3px;
-      padding-left: 16px;
-      padding-right: 16px;
-      padding-bottom: 3px;
-      color: white;
+      border: 1px solid $white-color;
+      border-radius: 30px;
+      line-height: 32px;
+      padding: 3px $base-padding;
+      color: $white-color;
     }
 
     .logout {
-      color: white;
+      color: $white-color;
       cursor: pointer;
     }
   }
 }
 .become-special,
 .btn-join {
-  color: #37b34a;
-  font-size: 16px;
+  color: $primary-green;
+  font-size: $base-font + 1;
   line-height: 32px;
-  margin: 0px;
+
   text-align: center;
-  margin: 8px;
-  margin-left: 0px;
-  margin-right: 0px;
-  margin-bottom: 16px;
-  border: 1px solid white;
+  // margin: $small-margin;
+  // margin-left: 0px;
+  // margin-right: 0px;
+  // margin-bottom: 16px;
+  margin: $small-margin 0 $base-margin;
+  border: 1px solid $white-color;
   border-radius: 20px;
-  background: white;
-  padding: 3px;
-  padding-left: 16px;
-  padding-right: 16px;
-  padding-bottom: 3px;
+  background: $white-color;
+  // padding: 3px;
+  // padding-left: 16px;
+  // padding-right: 16px;
+  // padding-bottom: 3px;
+  padding: 3px $base-padding;
 }
 
 .user-options {
-  padding-top: 32px;
+  padding-top: $medium-padding;
 
   width: 52%;
   align-self: center;
@@ -102,8 +95,8 @@
 
     a {
       display: inline-block;
-      color: white;
-      font-size: 16px;
+      color: $white-color;
+      font-size: $base-font + 1;
       padding: 6px 0;
       font-weight: bold;
       position: relative;
@@ -118,19 +111,20 @@
   width: 1170px;
   .row {
     min-height: 400px;
-    padding: 20px;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-bottom: 40px;
+    // padding: 20px;
+    // padding-left: 40px;
+    // padding-right: 40px;
+    // padding-bottom: 40px;
+    padding: $base-padding + 0.25 $medium-padding + 0.5 $medium-padding + 0.5;
 
     & > * {
-      margin: 0.5rem 0;
+      margin: $small-margin 0;
     }
   }
 
   .btn-join {
-    background-color: #37b34a;
-    color: white;
-    margin: 2rem 0;
+    background-color: $primary-green;
+    color: $white-color;
+    margin: $medium-margin 0;
   }
 }

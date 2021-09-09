@@ -1,3 +1,5 @@
+// @import "../../styles/mixins";
+// @import "../styles/mixins";
 * {
   padding: 0;
   margin: 0;
@@ -7,3 +9,11 @@
 .main-container {
   background-color: #f5f5f5;
 }
+
+// @import "mixins";
+
+// @import "/src/styles/mixins";
+
+// .test {
+//   @include flex($direction: column, $align: flw);
+// }

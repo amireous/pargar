@@ -1,3 +1,5 @@
+@import "../../assets/styles/styles.scss";
+
 .navbar-container {
   position: fixed;
   top: 0;
@@ -7,62 +9,33 @@
 }
 
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex($justify: space-between);
   width: 100%;
   height: 100%;
-  background-color: white;
-  padding: 16px 0;
+  background-color: $white-color;
+  padding: $base-padding 0;
 }
 
 .left-nav {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  @include flex($justify: flex-end);
 }
 
 .dropdown-login-link {
   border: none;
   background-color: transparent;
-  color: #757575;
+  color: $primary-grey-medium;
   cursor: pointer;
 }
 
-.btn {
-  font-size: 13px;
-  line-height: 32px;
-  transition: color 0.2s 0s;
-  color: white;
-  border-radius: 30px;
-  padding: 0 1rem;
-  border: 2px solid #37b34a;
-  font-weight: 700;
-}
-
-.left-nav-btn-two {
-  color: #37b34a;
-  background-color: white;
-  &:hover {
-    background-color: #37b34a;
-    color: white;
-  }
-}
 .left-nav-btn-one,
 .pluse-btn {
-  color: white;
-  background-color: #37b34a;
-  transition: background-color 0.2s 0s;
-  -webkit-transition: background-color 0.2s 0s;
-  -moz-transition: background-color 0.2s 0s;
-  -ms-transition: background-color 0.2s 0s;
   position: relative;
-  margin-right: 1rem;
+  margin-right: $base-margin;
 }
 
 .dropdown-menu {
   width: 135px;
-  background-color: white;
+  background-color: $white-color;
   text-align: center;
   padding: 5px;
   display: none;
@@ -72,9 +45,8 @@
 
   a {
     display: block;
-    text-decoration: none;
-    color: #757575;
-    font-size: 14px;
+    color: $primary-grey-medium;
+    font-size: $base-font - 1;
   }
   &::before {
     content: "";
@@ -85,7 +57,7 @@
     left: 64px;
     border: 9px solid transparent;
     border-top: 0;
-    border-bottom: 7px solid white;
+    border-bottom: 7px solid $white-color;
   }
 }
 
@@ -94,19 +66,17 @@ button:hover .dropdown-menu {
 }
 
 .left-nav {
-  padding-left: 2.5rem;
+  padding-left: $medium-padding + 0.5;
 }
 
 .right-nav {
   top: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex();
   order: -1;
-  padding-right: 2.5rem;
+  padding-right: $medium-padding + 0.5;
 
   & > * {
-    margin-right: 20px;
+    margin-right: $base-margin + 0.4;
   }
 
   .logo {
@@ -119,25 +89,25 @@ button:hover .dropdown-menu {
     width: 70px;
     height: auto;
     padding: 0px;
-    padding-left: 20px;
-    border-left: 1px solid #bdbdbd;
+    padding-left: $base-margin + 0.4;
+    border-left: 1px solid $primary-white-medium;
   }
 }
 
 .search-bar {
   position: relative;
   input {
-    border: 1px solid #bdbdbd;
+    border: 1px solid $primary-white-medium;
     border-radius: 45px;
     width: 30vw;
     height: 40px;
     font-size: 14px;
     max-width: 460px;
-    padding: 0 40px;
+    padding: 0 $medium-padding + 0.3;
     outline: none;
     &::placeholder {
-      font-weight: 400;
-      color: #bdbdbd;
+      font-weight: 300;
+      color: $primary-white-medium;
     }
   }
 
@@ -146,18 +116,17 @@ button:hover .dropdown-menu {
     top: 12px;
     right: 15px;
     transform: rotateY(180deg);
-    color: #37b34a;
+    color: $primary-green;
   }
 }
 
 .categories,
 .guide {
-  color: #757575;
-  text-decoration: none;
+  color: $primary-grey-medium;
 }
 
 .right {
-  margin: 0 5px;
+  margin: 0 $small-margin - 3;
 }
 
 .login-view-container {
@@ -166,47 +135,43 @@ button:hover .dropdown-menu {
   width: 100%;
   height: 100vh;
   z-index: 10;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex();
 
   .overlay {
     width: 100%;
     height: 100%;
     position: absolute;
     background: rgba(0, 0, 0, 0.4);
-    animation: ngdialog-fadein 0.5s;
+    animation: 0.5s ease-in;
     z-index: -1;
   }
 
   .login-view {
-    background-color: #fff;
+    background-color: $white-color;
     width: 450px;
-    padding: 22px;
-    margin-bottom: 10px;
+    padding: $base-padding + 0.375;
+    margin-bottom: $small-padding + 0.2;
     border-radius: 8px;
 
     .login-title {
-      font-size: 18px;
+      font-size: $medium-font - 0.2;
       color: black;
-      margin-bottom: 1rem;
+      margin-bottom: $base-margin;
     }
     form {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
+      @include flex($direction: column);
     }
     input {
       width: 100%;
-      padding: 0.5rem;
+      padding: $small-padding;
       border-radius: 5px;
-      border: 1px solid #37b34a;
+      border: 1px solid $primary-green;
       outline: none;
       box-sizing: border-box;
+      font-size: $base-font + 3;
       &::placeholder {
-        font-weight: 500;
-        font-size: 16px;
+        font-weight: 300;
+        font-size: $base-font + 1;
         color: #acacac;
       }
     }
@@ -216,27 +181,27 @@ button:hover .dropdown-menu {
     }
 
     .error-text {
-      font-size: 18px;
-      color: red;
+      font-size: $base-font + 0.5;
+      color: $red-color;
       text-align: right;
-      padding: 16px 0;
+      padding: $base-padding 0;
       align-self: flex-start;
     }
 
     .login-btn {
       margin: 1rem 0;
       border-radius: 20px;
-      background: #37b34a;
-      border: 2px solid #37b34a;
+      background: $primary-green;
+      border: 2px solid $primary-green;
       transition: background-color 0.2s 0s;
       width: 50%;
-      color: white;
+      color: $white-color;
       font-size: 16px;
       padding: 5px 0;
       &:focus,
       &:hover {
-        background-color: white;
-        color: #37b34a;
+        background-color: $white-color;
+        color: $primary-green;
       }
     }
   }
@@ -245,19 +210,16 @@ button:hover .dropdown-menu {
 .login-view {
   width: 400px;
   input {
-    margin: 1rem 0;
+    margin: $base-margin 0;
   }
 }
 
 .login-btns {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include flex($direction: column);
 
   .resend-btn {
     background-color: transparent;
-    color: #37b34a;
+    color: $primary-green;
     border: none;
     cursor: pointer;
   }
@@ -267,22 +229,23 @@ button:hover .dropdown-menu {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 20px;
+  margin: 0 $base-margin + 4;
 
   .user-avatar {
     width: 32px;
     height: 32px;
+    border-radius: 50%;
     order: 1;
   }
 
   .dropdown-menu {
     margin: auto;
     width: 95px;
-    background-color: white;
+    background-color: $white-color;
     border-radius: 2px;
     box-shadow: 0px 2px 10px 0px rgb(0 0 0 / 16%),
       0px 2px 5px 0px rgb(0 0 0 / 26%);
-    padding: 4px;
+    padding: $small-padding - 4;
     text-align: right;
     top: 59px;
     left: 22px;
@@ -291,9 +254,6 @@ button:hover .dropdown-menu {
       top: -5px;
       left: 45px;
     }
-    li {
-      list-style: none;
-    }
   }
 
   &:hover .dropdown-menu {
@@ -301,7 +261,7 @@ button:hover .dropdown-menu {
   }
 
   .pluse-btn {
-    margin: 0 0 0 1rem;
+    margin: 0 0 0 $base-margin;
   }
 
   .profile-router {

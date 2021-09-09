@@ -1,0 +1,71 @@
+/* You can add global styles to this file, and also import other style files */
+@import "variables";
+@import "mixins";
+@import "colors";
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: $black-color;
+  text-decoration: none;
+  font-weight: 300;
+}
+
+li {
+  list-style: none;
+}
+
+a,
+p,
+li,
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+input {
+  font-family: "IRANSans", sans-serif;
+}
+
+.btn {
+  font-size: $base-font - 2;
+  line-height: 32px;
+  transition: color 0.2s 0s;
+  color: $white-color;
+  border-radius: 30px;
+  padding: 0 $base-padding;
+  border: 2px solid $primary-green;
+  font-weight: 700;
+}
+
+.green-btn {
+  color: #37b34a;
+  background-color: $white-color;
+  &:hover {
+    background-color: #37b34a;
+    color: $white-color;
+  }
+}
+.white-btn {
+  color: $white-color;
+  background-color: #37b34a;
+  transition: background-color 0.2s 0s;
+}
+
+@font-face {
+  font-family: IRANSans;
+  src: url(/assets/fonts/IRANSans_Bold.ttf) format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: IRANSans;
+  src: url(/assets/fonts/IRANSans_Light.ttf) format("truetype");
+  font-weight: 300;
+}

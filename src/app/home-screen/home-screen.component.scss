@@ -1,17 +1,14 @@
+@import "../../assets/styles/styles.scss";
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-a {
-  text-decoration: none;
-  color: black;
-}
-
 .container {
-  padding: 1.5rem 0;
-  margin-top: 5rem;
+  padding: $base-padding + 0.5 0;
+  margin-top: (2 * $medium-margin) + $base-margin;
   .scrollbar-hidden::-webkit-scrollbar {
     display: none;
   }
@@ -27,21 +24,19 @@ a {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: $base-margin + 0.5;
 
     .header-item {
       overflow: hidden;
       direction: ltr;
       width: 443.25px;
-      margin: 0 0.5rem;
+      margin: 0 $small-margin;
       position: relative;
 
       a {
         width: 100%;
         height: 100%;
-        font-family: "iran-sans", sans-serif;
-        text-decoration: none;
-        color: white;
+        color: $white-color;
       }
 
       img {
@@ -54,41 +49,36 @@ a {
         top: 215px;
         left: 0;
         font-weight: bold;
-        font-size: 1.1rem;
+        font-size: $base-font + 2.6;
         text-align: center;
-        padding: 20px;
-        font-size: 16px;
+        padding: $base-padding + 0.25;
+        font-size: $base-font + 1;
       }
     }
   }
   .navbar {
     width: 100%;
-    padding: 1.25rem 3rem;
-    background-color: white;
+    padding: $base-padding + 0.25 $medium-padding + 1;
+    background-color: $white-color;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0px 1px 1px 0px #e0e0e0;
+    box-shadow: 0px 1px 1px 0px $primary-white-light;
     z-index: 9;
     ul {
-      display: flex;
-      justify-content: space-between;
+      @include flex($justify: space-between);
       list-style: none;
       max-width: 1080px;
       width: 100%;
 
       a:hover {
-        color: #37b34a;
+        color: $primary-green;
       }
     }
   }
   main {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
+    margin-top: $base-margin;
+    @include flex($direction: column);
     section {
       max-width: 1170px;
       width: 100%;
@@ -96,10 +86,7 @@ a {
   }
 
   .item-template {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @include flex($direction: column);
     width: 100%;
   }
 
@@ -107,32 +94,29 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    padding: 1.5rem 0;
+    padding: $base-padding + 0.5 0;
 
     p {
-      color: #37b34a;
+      color: $primary-green;
       font-weight: bold;
-      font-size: 15px;
+      font-size: $base-font;
       cursor: pointer;
     }
   }
 
   .item-template-title {
-    color: #424242;
-    font-weight: 500;
-    font-size: 18px;
+    color: $primary-grey-dark;
+    font-weight: 300;
+    font-size: $base-font + 3;
     line-height: 32px;
     margin: 0px;
-    padding: 0px;
-    padding-bottom: 16px;
+    padding: 0 0 $base-padding 0;
   }
 
   .products {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    @include flex($justify: flex-start);
 
-    margin: 5px;
+    margin: $small-margin - 3;
     position: relative;
     border-radius: 8px;
     height: 300px;
@@ -140,10 +124,10 @@ a {
 
   .product-item {
     height: 100%;
-    background: #fff;
+    background: $white-color;
     border-radius: 8px;
     width: 278px;
-    margin-left: 13px;
+    margin-left: $base-margin - 3;
     border: 1px solid rgba(0, 0, 0, 0.09);
     border-radius: 8px;
     cursor: pointer;
@@ -155,7 +139,7 @@ a {
     img {
       width: 100%;
       min-height: 166px;
-      background-color: #757575;
+      background-color: $primary-grey-medium;
       border-radius: 8px 8px 0 0;
       object-fit: cover;
     }
@@ -170,69 +154,65 @@ a {
 
     .item-view {
       width: 100%;
-      color: #9e9e9e;
+      color: $primary-grey-light;
     }
 
     .item-title {
-      font-size: 14px;
+      font-size: $base-font -1;
       line-height: 24px;
-      margin: 0 0 10xp;
+      margin: 0 0 $small-margin + 2;
       padding: 5px;
       font-weight: bold;
-      padding: 1rem;
+      padding: $base-padding;
     }
 
     .item-detail {
-      display: flex;
-      justify-content: space-between;
+      @include flex($justify: space-between);
       width: 100%;
-      padding: 10px;
+      padding: $small-padding + 0.125;
 
       .view-author {
-        font-size: 0.8rem;
+        font-size: $base-font - 2.2;
       }
 
       .view {
-        padding-top: 5px;
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        font-size: 0.7rem;
+        padding-top: $small-padding;
+        @include flex($justify: space-between, $align: baseline);
+
+        font-size: $base-font - 3.2;
       }
     }
   }
 
   .fa-star {
-    color: #e0e0e0;
+    color: $primary-white-light;
   }
 
   .feature-single-item {
-    padding: 24px;
-    background: white;
+    padding: $base-padding + 0.5;
+    background: $white-color;
     border-radius: 8px;
     box-shadow: 0px 1px 4px 0px rgb(0 0 0 / 4%);
     border: 1px solid rgba(0, 0, 0, 0.09);
     position: relative;
-    margin: 1rem 0;
+    margin: ($base-margin * 2) 0;
     width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    @include flex($justify: flex-start);
+
     cursor: pointer;
 
     .feature-detail {
-      padding: 24px 45px 24px 24px;
+      padding: ($base-padding + 0.5) 45px ($base-padding + 0.5)
+        ($base-padding + 0.5);
     }
     .feature {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
+      @include flex($align: flex-start);
     }
 
     .feature-title {
-      font-size: 1.5rem;
-      color: #424242;
-      padding-bottom: 0.5rem;
+      font-size: $medium-font + 4;
+      color: $primary-grey-dark;
+      padding-bottom: $small-padding;
     }
 
     img {
@@ -241,27 +221,24 @@ a {
     }
 
     .feature-view {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 1rem;
+      @include flex($justify: space-between);
+      margin-top: $base-margin;
 
       .view-author {
-        color: black;
+        color: $black-color;
       }
 
       .view-number {
-        color: #9e9e9e;
+        color: $primary-grey-light;
         font-size: 0.8rem;
       }
     }
   }
 
   .feature-several-item {
-    margin: 2rem 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
+    margin: $medium-margin 0;
+
+    @include flex($align: baseline, $justify: space-between);
     width: 100%;
     cursor: pointer;
     & > div {
@@ -277,7 +254,7 @@ a {
     }
 
     .feature:not(.feature:last-child) {
-      margin-left: 12px;
+      margin-left: $base-margin - 4;
     }
   }
 
