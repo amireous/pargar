@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RootObjectProfile } from '../models/user.model';
-import { ApiService } from '../services/api.service';
+import { RootObjectProfile } from '../../models/user.model';
+import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 
 @Component({

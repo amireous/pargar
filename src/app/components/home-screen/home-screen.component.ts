@@ -1,6 +1,10 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ApiService } from '../services/api.service';
-import { Headeritem, Homeitem, ParentCategory } from '../models/api-data.model';
+import { ApiService } from '../../services/api.service';
+import {
+  Headeritem,
+  Homeitem,
+  ParentCategory,
+} from '../../models/api-data.model';
 
 @Component({
   selector: 'app-home-screen',
