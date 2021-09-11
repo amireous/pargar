@@ -14,11 +14,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 // import { LoadingSpinnerComponent } from './modules/shared/shared/loading-spinner/loading-spinner.component';
 import { UserProfileModule } from './modules/user-profile/user-profile.module';
 import { SharedModule } from './modules/shared/shared.module';
-import { ParentCategoryComponent } from './modules/category/parent-category/parent-category.component';
-import { ChildCategoryComponent } from './modules/category/child-category/child-category.component';
-import { ProductsListComponent } from './modules/category/products-list/products-list.component';
-import { ProductDetailComponent } from './modules/category/product-detail/product-detail.component';
-import { ErrorViewComponent } from './components/error-view/error-view.component';
+// import { ParentCategoryComponent } from './modules/category/parent-category/parent-category.component';
+// import { ChildCategoryComponent } from './modules/category/child-category/child-category.component';
+// import { ProductsListComponent } from './modules/category/products-list/products-list.component';
+// import { ProductDetailComponent } from './modules/category/product-detail/product-detail.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { CategoryModule } from './modules/category/category.module';
 
 // import { ErrorComponent } from './modules/shared/error-view/error-view.component';
 // import { ProductDetailComponent } from './modules/product-detail/product-detail.component';
@@ -29,11 +30,7 @@ import { ErrorViewComponent } from './components/error-view/error-view.component
     HomeScreenComponent,
     HeaderComponent,
     FooterComponent,
-    ParentCategoryComponent,
-    ChildCategoryComponent,
-    ProductsListComponent,
-    ProductDetailComponent,
-    ErrorViewComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +40,7 @@ import { ErrorViewComponent } from './components/error-view/error-view.component
     ReactiveFormsModule,
     UserProfileModule,
     SharedModule,
+    CategoryModule,
   ],
   providers: [
     {

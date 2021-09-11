@@ -3,10 +3,10 @@ import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-error',
-  templateUrl: './error-view.component.html',
-  styleUrls: ['./error-view.component.scss'],
+  templateUrl: './not-found.component.html',
+  styleUrls: ['./not-found.component.scss'],
 })
-export class ErrorViewComponent implements OnInit {
+export class NotFoundComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {

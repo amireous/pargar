@@ -17,3 +17,31 @@
 // .test {
 //   @include flex($direction: column, $align: flw);
 // }
+
+.tes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 642px;
+  background-color: dodgerblue;
+  &:hover .dropdown-menu {
+    display: block;
+  }
+  .dropdown-menu {
+    display: none;
+    background: darkolivegreen;
+    margin-top: 0.5rem;
+    align-self: flex-end;
+  }
+
+  .a {
+    margin: 0 1rem;
+  }
+  ul {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    margin-top: 0.25rem;
+  }
+}

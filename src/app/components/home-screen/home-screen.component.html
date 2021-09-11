@@ -13,11 +13,15 @@
     (scroll)="onscroll()"
     [ngClass]="navbarfixed ? 'fixed' : 'nofixed'"
   >
-    <ul>
-      <li class="nav-item" *ngFor="let item of parentItemList">
-        <a href="#"> {{ item.title }}</a>
-        <div class="dropdown-menu">
-          <ul *ngFor=""></ul>
+    <ul class="nav-items-list">
+      <li class="nav-item" *ngFor="let item of parentItemList | slice: 2:13">
+        <a [routerLink]="['/parent-cat', item.id]"> {{ item.title }}</a>
+        <div class="sub-cat">
+          <ul class="child-items">
+            <li *ngFor="let child of item.childs">
+              <a [routerLink]="['/child-cat', child.id]">{{ child.title }} </a>
+            </li>
+          </ul>
         </div>
       </li>
     </ul>

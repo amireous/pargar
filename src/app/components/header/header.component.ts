@@ -27,7 +27,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private apiService: ApiService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -88,6 +89,7 @@ export class HeaderComponent implements OnInit {
           (res: any) => {
             this.tokenService.token = res.token;
             this.getProfileData();
+            this.router.navigate(['/']);
           },
           () => {
             this.codeValidation = false;

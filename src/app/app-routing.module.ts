@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ErrorViewComponent } from './components/error-view/error-view.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeScreenComponent } from './components/home-screen/home-screen.component';
 import { UserProfileComponent } from './modules/user-profile/user-profile.component';
 import { AuthGuard } from './services/auth.guard';
@@ -12,7 +12,14 @@ const routes: Routes = [
     component: UserProfileComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'not-found', component: ErrorViewComponent },
+  {
+    path: 'parent-cat',
+    loadChildren: () =>
+      import('./modules/category/category.module').then(
+        (m) => m.CategoryModule
+      ),
+  },
+  { path: 'not-found', component: NotFoundComponent },
   { path: '**', redirectTo: 'not-found' },
 ];
 

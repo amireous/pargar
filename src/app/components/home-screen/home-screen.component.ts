@@ -4,6 +4,7 @@ import {
   Headeritem,
   Homeitem,
   ParentCategory,
+  RootObjectChild,
 } from '../../models/api-data.model';
 
 @Component({
@@ -12,9 +13,12 @@ import {
   styleUrls: ['./home-screen.component.scss'],
 })
 export class HomeScreenComponent implements OnInit {
-  parentItemList: ParentCategory[] = [];
+  // parentItemList: ParentCategory[] = [];
+  parentItemList: RootObjectChild[] = [];
   headerItemList: Headeritem[] = [];
   homeItemList: Homeitem[] = [];
+
+  parent: RootObjectChild[] = [];
 
   navbarfixed: boolean = false;
 
@@ -31,9 +35,6 @@ export class HomeScreenComponent implements OnInit {
   ngOnInit(): void {
     this.apiService.getHomeScreenData().subscribe(
       (data) => {
-        this.parentItemList = data.parent_categories.filter(
-          (item: any) => item.is_visible === true
-        );
         this.headerItemList = data.headeritem;
         this.homeItemList = data.homeitem.filter(
           (item: any) => item.products.length > 0
@@ -44,8 +45,10 @@ export class HomeScreenComponent implements OnInit {
         console.log(err);
       }
     );
-    //  this.apiService.getHeaderItemChilds().subscribe((childData) => {
-    //    console.log(childData);
-    //  });
+    this.apiService.getHomeChildCategory().subscribe((data) => {
+      this.parentItemList = data;
+      console.log(this.parentItemList);
+      data.forEach((el) => console.log(el.id));
+    });
   }
 }

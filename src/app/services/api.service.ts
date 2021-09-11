@@ -25,6 +25,10 @@ export class ApiService {
     return this.http.get<RootObject>(`${baseUrl}/store/${storeId}`);
   }
 
+  getHomeChildCategory(): Observable<RootObjectChild[]> {
+    return this.http.get<RootObjectChild[]>(`${baseUrl}/category/${storeId}/0`);
+  }
+
   getUserProfile(): Observable<RootObjectProfile> {
     return this.http.get<RootObjectProfile>(`${baseUrl}/profile`);
   }
