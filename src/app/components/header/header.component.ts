@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { ApiService } from '../../services/api.service';
 import { TokenService } from '../../services/token.service';
 
@@ -22,6 +23,7 @@ export class HeaderComponent implements OnInit {
   codeValidation: boolean = true;
 
   constructor(
+    private authService: AuthService,
     private apiService: ApiService,
     private tokenService: TokenService
   ) {}
@@ -50,7 +52,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onSignup() {
-    this.apiService.signUp(this.signupForm.value.phoneNumber).subscribe(
+    this.authService.signUp(this.signupForm.value.phoneNumber).subscribe(
       (response) => {
         console.log(response);
         this.currentMode = 'verify';
@@ -75,7 +77,7 @@ export class HeaderComponent implements OnInit {
     let username: string | '' = this.verificationForm.value.username;
 
     if (phoneNumber) {
-      this.apiService
+      this.authService
         .verifyLoginCode(code, username || '', phoneNumber)
         .subscribe(
           (res: any) => {
@@ -97,7 +99,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogout() {
-    this.apiService.logout();
+    this.authService.logout();
   }
 
   onProfile() {
