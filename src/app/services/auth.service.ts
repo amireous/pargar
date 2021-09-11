@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { UserDataPostService, UserVerifyCodePost } from '../models/user.model';
 
 const baseUrl = environment.baseUrl;
+const storeId: number = environment.storeId;
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class AuthService {
 
   signUp(phoneNumber: string): Observable<UserDataPostService> {
     return this.http
-      .post<UserDataPostService>(`${baseUrl}/mobile_login_step1/7`, {
+      .post<UserDataPostService>(`${baseUrl}/mobile_login_step1/${storeId}`, {
         mobile: phoneNumber,
         device_os: 'angularJS',
         device_id: 'Desktop',
@@ -52,7 +53,7 @@ export class AuthService {
     phoneNumber: string | undefined
   ) {
     return this.http
-      .post<UserVerifyCodePost>(`${baseUrl}/mobile_login_step2/7`, {
+      .post<UserVerifyCodePost>(`${baseUrl}/mobile_login_step2/${storeId}`, {
         mobile: phoneNumber,
         device_id: 'Desktop',
         verification_code: code,

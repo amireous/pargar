@@ -13,6 +13,7 @@ import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
 
 const baseUrl: string = environment.baseUrl;
+const storeId: number = environment.storeId;
 
 @Injectable({
   providedIn: 'root',
@@ -21,55 +22,8 @@ export class ApiService {
   constructor(private http: HttpClient, private router: Router) {}
 
   getHomeScreenData(): Observable<RootObject> {
-    return this.http.get<RootObject>(`${baseUrl}/store/7`);
+    return this.http.get<RootObject>(`${baseUrl}/store/${storeId}`);
   }
-
-  // signUp(phoneNumber: string): Observable<UserDataPostService> {
-  //   return this.http
-  //     .post<UserDataPostService>(`${baseUrl}/mobile_login_step1/7`, {
-  //       mobile: phoneNumber,
-  //       device_os: 'angularJS',
-  //       device_id: 'Desktop',
-  //       device_model: 'browser',
-  //     })
-  //     .pipe(
-  //       tap((event) => {
-  //         console.log(event);
-  //       }),
-  //       catchError((errorResponse: HttpErrorResponse) => {
-  //         let errorMessage = 'اروری رخ داده است لطفا رفرش کنید';
-  //         if (!errorResponse.error || !errorResponse.error.error) {
-  //           return throwError(errorMessage);
-  //         }
-  //         switch (errorResponse.error.message) {
-  //           case 'incomplete parameters':
-  //             errorMessage = 'پر کردن تمامی قسمت ها الزامی است.';
-  //             break;
-
-  //           case 'Mobile is not valid':
-  //             errorMessage =
-  //               'لطفا شماره موبایل خود را با فرمت صحیح وارد نمایید.';
-  //         }
-
-  //         return throwError(errorMessage);
-  //       })
-  //     );
-  // }
-
-  // verifyLoginCode(
-  //   code: string,
-  //   username: string | '',
-  //   phoneNumber: string | undefined
-  // ) {
-  //   return this.http
-  //     .post<UserVerifyCodePost>(`${baseUrl}/mobile_login_step2/7`, {
-  //       mobile: phoneNumber,
-  //       device_id: 'Desktop',
-  //       verification_code: code,
-  //       nickname: username,
-  //     })
-  //     .pipe(tap((eve) => {}));
-  // }
 
   getUserProfile(): Observable<RootObjectProfile> {
     return this.http.get<RootObjectProfile>(`${baseUrl}/profile`);
@@ -84,13 +38,6 @@ export class ApiService {
   enableScrolling() {
     window.onscroll = function () {};
   }
-
-  // logout() {
-  //   localStorage.clear();
-  //   this.router.navigate(['/']).then(() => {
-  //     window.location.reload();
-  //   });
-  // }
 
   toProfileComponent() {
     this.router.navigate(['/profile']).then(() => {});
