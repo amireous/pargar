@@ -5,7 +5,7 @@
   top: 0;
   width: 100%;
   z-index: 10;
-  height: 60px;
+  height: 70px;
 }
 
 .navbar {
@@ -13,7 +13,6 @@
   width: 100%;
   height: 100%;
   background-color: $white-color;
-  padding: $base-padding 0;
 }
 
 .left-nav {
@@ -266,5 +265,24 @@ button:hover .dropdown-menu {
 
   .profile-router {
     cursor: pointer;
+  }
+}
+
+.notLogged-error {
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+
+  h2 {
+    background-color: white;
+    padding: 2rem;
+    height: 200px;
+    width: 300px;
   }
 }

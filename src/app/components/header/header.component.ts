@@ -22,6 +22,8 @@ export class HeaderComponent implements OnInit {
   currentMode: string = 'login';
   codeValidation: boolean = true;
 
+  logged: boolean = false;
+
   constructor(
     private authService: AuthService,
     private apiService: ApiService,
@@ -30,6 +32,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForms();
+    this.logged = this.authService.isLogged;
+    console.log(this.logged);
+    console.log(this.authService.isLogged);
   }
 
   onLoginDropdown() {

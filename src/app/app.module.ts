@@ -13,11 +13,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 // import { UserProfileComponent } from './modules/user-profile/user-profile.component';
 // import { LoadingSpinnerComponent } from './modules/shared/shared/loading-spinner/loading-spinner.component';
 import { UserProfileModule } from './modules/user-profile/user-profile.module';
-import { SharedModule } from './modules/shared/shared/shared.module';
+import { SharedModule } from './modules/shared/shared.module';
 import { ParentCategoryComponent } from './modules/category/parent-category/parent-category.component';
 import { ChildCategoryComponent } from './modules/category/child-category/child-category.component';
 import { ProductsListComponent } from './modules/category/products-list/products-list.component';
 import { ProductDetailComponent } from './modules/category/product-detail/product-detail.component';
+import { ErrorViewComponent } from './components/error-view/error-view.component';
+
+// import { ErrorComponent } from './modules/shared/error-view/error-view.component';
 // import { ProductDetailComponent } from './modules/product-detail/product-detail.component';
 
 @NgModule({
@@ -30,6 +33,7 @@ import { ProductDetailComponent } from './modules/category/product-detail/produc
     ChildCategoryComponent,
     ProductsListComponent,
     ProductDetailComponent,
+    ErrorViewComponent,
   ],
   imports: [
     BrowserModule,

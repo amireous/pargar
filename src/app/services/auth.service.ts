@@ -13,6 +13,8 @@ const storeId: number = environment.storeId;
   providedIn: 'root',
 })
 export class AuthService {
+  isLogged: boolean = false;
+
   constructor(private http: HttpClient, private router: Router) {}
 
   signUp(phoneNumber: string): Observable<UserDataPostService> {
@@ -52,14 +54,20 @@ export class AuthService {
     username: string | '',
     phoneNumber: string | undefined
   ) {
-    return this.http
-      .post<UserVerifyCodePost>(`${baseUrl}/mobile_login_step2/${storeId}`, {
+    return this.http.post<UserVerifyCodePost>(
+      `${baseUrl}/mobile_login_step2/${storeId}`,
+      {
         mobile: phoneNumber,
         device_id: 'Desktop',
         verification_code: code,
         nickname: username,
-      })
-      .pipe(tap((eve) => {}));
+      }
+    );
+    // .pipe(tap((eve) => {}));
+  }
+
+  loggedIn() {
+    return !!localStorage.getItem('token');
   }
 
   logout() {

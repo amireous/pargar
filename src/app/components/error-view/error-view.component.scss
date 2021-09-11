@@ -1,0 +1,34 @@
+@import "../../../assets/styles/styles.scss";
+
+.error-view-container {
+  @include flex();
+  padding-top: $medium-padding * 3;
+}
+.error-view {
+  width: 1170px;
+  position: relative;
+  min-height: 600px;
+  background-image: url(/assets/images/404.png);
+  background-position-x: 70px;
+  background-position-y: 55px;
+  background-repeat: no-repeat;
+
+  .text-404 {
+    p {
+      padding-top: 36px;
+      font-size: $base-font + 1;
+      position: relative;
+
+      .arrow-svg {
+        position: absolute;
+        bottom: 0px;
+      }
+    }
+
+    h2 {
+      padding-top: $base-padding;
+      color: $primary-green;
+      font-size: 60px;
+    }
+  }
+}

@@ -8,7 +8,8 @@ import { Injectable, Injector } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
-import { SpinnerService } from './spinner.service';
+import { SpinnerService } from '../modules/shared/loading-spinner/spinner.service';
+
 import { TokenService } from './token.service';
 
 @Injectable()
