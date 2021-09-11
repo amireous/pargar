@@ -6,6 +6,7 @@ import { UserProfileComponent } from './modules/user-profile/user-profile.compon
 const routes: Routes = [
   { path: '', component: HomeScreenComponent },
   { path: 'profile', component: UserProfileComponent },
+
   { path: '**', redirectTo: '' },
 ];
 

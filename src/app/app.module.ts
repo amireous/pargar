@@ -14,11 +14,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 // import { LoadingSpinnerComponent } from './modules/shared/shared/loading-spinner/loading-spinner.component';
 import { UserProfileModule } from './modules/user-profile/user-profile.module';
 import { SharedModule } from './modules/shared/shared/shared.module';
-import { ProductComponent } from './modules/product/product.component';
-import { EditProfileComponent } from './modules/edit-profile/edit-profile.component';
-import { ParentCategoryComponent } from './modules/parent-category/parent-category.component';
-import { ChildCategoryComponent } from './modules/child-category/child-category.component';
-import { FeatureProductComponent } from './modules/feature-product/feature-product.component';
+import { ParentCategoryComponent } from './modules/category/parent-category/parent-category.component';
+import { ChildCategoryComponent } from './modules/category/child-category/child-category.component';
+import { ProductsListComponent } from './modules/category/products-list/products-list.component';
+import { ProductDetailComponent } from './modules/category/product-detail/product-detail.component';
+// import { ProductDetailComponent } from './modules/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -26,11 +26,10 @@ import { FeatureProductComponent } from './modules/feature-product/feature-produ
     HomeScreenComponent,
     HeaderComponent,
     FooterComponent,
-    ProductComponent,
-    EditProfileComponent,
     ParentCategoryComponent,
     ChildCategoryComponent,
-    FeatureProductComponent,
+    ProductsListComponent,
+    ProductDetailComponent,
   ],
   imports: [
     BrowserModule,
