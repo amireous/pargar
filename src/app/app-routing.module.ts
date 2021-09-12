@@ -2,18 +2,20 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeScreenComponent } from './components/home-screen/home-screen.component';
-import { UserProfileComponent } from './modules/user-profile/user-profile.component';
-import { AuthGuard } from './services/auth.guard';
+// import { UserProfileComponent } from './modules/user-profile/user-profile.component';
+// import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeScreenComponent },
   {
     path: 'profile',
-    component: UserProfileComponent,
-    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./modules/user-profile/user-profile.module').then(
+        (m) => m.UserProfileModule
+      ),
   },
   {
-    path: 'parent-cat',
+    path: '',
     loadChildren: () =>
       import('./modules/category/category.module').then(
         (m) => m.CategoryModule

@@ -44,6 +44,6 @@ export class ApiService {
   }
 
   toProfileComponent() {
-    this.router.navigate(['/profile']).then(() => {});
+    this.router.navigate(['/profile']);
   }
 }

@@ -47,8 +47,6 @@ export class HomeScreenComponent implements OnInit {
     );
     this.apiService.getHomeChildCategory().subscribe((data) => {
       this.parentItemList = data;
-      console.log(this.parentItemList);
-      data.forEach((el) => console.log(el.id));
     });
   }
 }

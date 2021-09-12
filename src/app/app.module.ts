@@ -41,6 +41,7 @@ import { CategoryModule } from './modules/category/category.module';
     UserProfileModule,
     SharedModule,
     CategoryModule,
+    UserProfileModule,
   ],
   providers: [
     {

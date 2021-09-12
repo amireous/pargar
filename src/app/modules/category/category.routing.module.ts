@@ -7,14 +7,8 @@ import { ProductsListComponent } from './products-list/products-list.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'parent-cat/:id',
     component: ParentCategoryComponent,
-    children: [
-      {
-        path: ':id',
-        component: ParentCategoryComponent,
-      },
-    ],
   },
   {
     path: 'child-cat/:id',
