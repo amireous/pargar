@@ -22,7 +22,9 @@ export class HeaderComponent implements OnInit {
   currentMode: string = 'login';
   codeValidation: boolean = true;
 
-  logged: boolean = false;
+  loggin: boolean = false;
+
+  isLogged: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -33,9 +35,31 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForms();
-    this.logged = this.authService.isLogged;
-    console.log(this.logged);
-    console.log(this.authService.isLogged);
+
+    this.apiService.getHomeChildCategory().subscribe((data) => {
+      console.log(data);
+    });
+
+    // this.apiService.loginStatus.subscribe((status) => {
+    //   this.isLogged = status;
+    // });
+
+    // if (this.apiService.isLogged) {
+    //   this.apiService.getUserProfile().subscribe((data) => {
+    //     this.userAvatar = data.avatar;
+    //     this.isLoginDropdown = false;
+    //   });
+    // }
+
+    this.getProfileData();
+    // console.log(data);
+    // this.userAvatar = data.avatar;
+    // this.apiService.getUserProfile().subscribe((data) => {
+    //   this.userAvatar = data.avatar;
+    //   this.isLoginDropdown = false;
+    // });
+
+    // }
   }
 
   onLoginDropdown() {
@@ -89,6 +113,7 @@ export class HeaderComponent implements OnInit {
           (res: any) => {
             this.tokenService.token = res.token;
             this.getProfileData();
+            // this.getProfileData();
             this.router.navigate(['/']);
           },
           () => {
@@ -101,8 +126,13 @@ export class HeaderComponent implements OnInit {
   getProfileData() {
     this.apiService.getUserProfile().subscribe((data) => {
       this.userAvatar = data.avatar;
-      this.isLoginDropdown = false;
     });
+
+    //   this.apiService.getUserProfile().subscribe((data) => {
+    //     this.userAvatar = data.avatar;
+    //   });
+
+    this.isLoginDropdown = false;
   }
 
   onLogout() {
@@ -111,7 +141,6 @@ export class HeaderComponent implements OnInit {
 
   onProfile() {
     this.apiService.toProfileComponent();
-    this.getProfileData();
   }
 
   onOverlay() {

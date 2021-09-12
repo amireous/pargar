@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpEvent } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { RootObject, RootObjectChild } from '../models/api-data.model';
 import { environment } from 'src/environments/environment';
 import {
@@ -19,6 +19,9 @@ const storeId: number = environment.storeId;
   providedIn: 'root',
 })
 export class ApiService {
+  loginStatus = new Subject<boolean>();
+  isLogged: boolean | undefined;
+
   constructor(private http: HttpClient, private router: Router) {}
 
   getHomeScreenData(): Observable<RootObject> {

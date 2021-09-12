@@ -9,6 +9,7 @@ import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 import { SpinnerService } from '../modules/shared/loading-spinner/spinner.service';
+import { ApiService } from './api.service';
 
 import { TokenService } from './token.service';
 
@@ -16,7 +17,8 @@ import { TokenService } from './token.service';
 export class AuthInterceptorService implements HttpInterceptor {
   constructor(
     private tokenService: TokenService,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
+    private apiService: ApiService
   ) {}
 
   intercept(
@@ -32,6 +34,8 @@ export class AuthInterceptorService implements HttpInterceptor {
           'Accept-Language': 'fa-IR',
         },
       });
+      this.apiService.isLogged = true;
+      this.apiService.loginStatus.next(this.apiService.isLogged);
     }
     this.spinnerService.showLoading();
     return next.handle(req).pipe(
