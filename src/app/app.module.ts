@@ -4,9 +4,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeScreenComponent } from './components/home-screen/home-screen.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
+// import { HomeScreenComponent } from './modules/home-screen/home-screen.component';
+// import { HeaderComponent } from './modules/layout/header/header.component';
+// import { FooterComponent } from './modules/layout/footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -20,28 +20,28 @@ import { SharedModule } from './modules/shared/shared.module';
 // import { ProductDetailComponent } from './modules/category/product-detail/product-detail.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CategoryModule } from './modules/category/category.module';
+import { LayoutModule } from './modules/layout/layout.module';
+import { HomeScreenModule } from './modules/home-screen/home-screen.module';
+// import { CategoryComponent } from './modules/category/category/category.component';
+// import { NormalComponent } from './normal/normal.component';
 
 // import { ErrorComponent } from './modules/shared/error-view/error-view.component';
 // import { ProductDetailComponent } from './modules/product-detail/product-detail.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeScreenComponent,
-    HeaderComponent,
-    FooterComponent,
-    NotFoundComponent,
-  ],
+  declarations: [AppComponent, NotFoundComponent],
   imports: [
-    BrowserModule,
+    HomeScreenModule,
     AppRoutingModule,
+    LayoutModule,
+    CategoryModule,
+    UserProfileModule,
+    BrowserModule,
+
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    UserProfileModule,
     SharedModule,
-    CategoryModule,
-    UserProfileModule,
   ],
   providers: [
     {

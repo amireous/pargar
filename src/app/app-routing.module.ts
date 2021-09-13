@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { HomeScreenComponent } from './components/home-screen/home-screen.component';
+// import { HomeScreenComponent } from './components/home-screen/home-screen.component';
 // import { UserProfileComponent } from './modules/user-profile/user-profile.component';
 // import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeScreenComponent },
   {
     path: 'profile',
     loadChildren: () =>
@@ -21,6 +20,11 @@ const routes: Routes = [
         (m) => m.CategoryModule
       ),
   },
+  {
+    path: '',
+    loadChildren: () => import('./modules/home-screen/home-screen.module'),
+  },
+
   { path: 'not-found', component: NotFoundComponent },
   { path: '**', redirectTo: 'not-found' },
 ];

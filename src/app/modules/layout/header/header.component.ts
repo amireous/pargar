@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { ApiService } from '../../services/api.service';
-import { TokenService } from '../../services/token.service';
+import { ApiService } from '../../../services/api.service';
+import { TokenService } from '../../../services/token.service';
 
 @Component({
   selector: 'app-header',
@@ -51,7 +51,9 @@ export class HeaderComponent implements OnInit {
     //   });
     // }
 
-    this.getProfileData();
+    if (this.apiService.isLogged) {
+      this.getProfileData();
+    }
     // console.log(data);
     // this.userAvatar = data.avatar;
     // this.apiService.getUserProfile().subscribe((data) => {

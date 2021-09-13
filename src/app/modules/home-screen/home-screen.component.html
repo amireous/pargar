@@ -1,7 +1,7 @@
 <div class="container">
   <div class="home-screen header">
     <div class="header-item" *ngFor="let item of headerItemList">
-      <a href="#">
+      <a [routerLink]="['/feature-product', item.id]">
         <img [src]="item.feature_avatar.xhdpi" alt="{{ item.name }}" />
         <h2 class="header-item-title">{{ item.name }}</h2>
       </a>
@@ -19,7 +19,7 @@
         <div class="sub-cat">
           <ul class="child-items">
             <li *ngFor="let child of item.childs">
-              <a [routerLink]="['/child-cat', child.id]">{{ child.title }} </a>
+              <a [routerLink]="['/category', child.id]">{{ child.title }} </a>
             </li>
           </ul>
         </div>
@@ -47,7 +47,7 @@
                   let i = index
                 "
               >
-                <div class="normal">
+                <a [routerLink]="['/product', product.id]" class="normal">
                   <img
                     [src]="product.feature_avatar.xhdpi"
                     alt="{{ product.name }}"
@@ -74,11 +74,14 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
           </div>
-          <div *ngIf="item.row_type === 'feature'">
+          <a
+            [routerLink]="['/feature-product', item.id]"
+            *ngIf="item.row_type === 'feature'"
+          >
             <div
               class="feature-item"
               [ngClass]="{
@@ -129,7 +132,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       </ng-container>
     </section>

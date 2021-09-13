@@ -3,7 +3,6 @@ import { ApiService } from '../../services/api.service';
 import {
   Headeritem,
   Homeitem,
-  ParentCategory,
   RootObjectChild,
 } from '../../models/api-data.model';
 
@@ -35,6 +34,7 @@ export class HomeScreenComponent implements OnInit {
   ngOnInit(): void {
     this.apiService.getHomeScreenData().subscribe(
       (data) => {
+        console.log(data);
         this.headerItemList = data.headeritem;
         this.homeItemList = data.homeitem.filter(
           (item: any) => item.products.length > 0
@@ -47,6 +47,7 @@ export class HomeScreenComponent implements OnInit {
     );
     this.apiService.getHomeChildCategory().subscribe((data) => {
       this.parentItemList = data;
+      console.log(data);
     });
   }
 }
