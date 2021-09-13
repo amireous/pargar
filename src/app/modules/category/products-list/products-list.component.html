@@ -1,1 +1,54 @@
-<p>products-list works!</p>
+<div class="product-detail-container">
+  <div class="product-detail">
+    <ng-container *ngIf="selectedProduct">
+      <div class="collection-crumb" *ngIf="selectedproductParentDetail">
+        <p>
+          <a
+            class="collection-crumb-link"
+            [routerLink]="['/parent-cat', selectedproductParentDetail?.id]"
+            >{{ selectedproductParentDetail?.title }}</a
+          >
+          >
+          <a
+            class="collection-crumb-link"
+            [routerLink]="['/category', selectedProduct.category_model[0].id]"
+            >{{ selectedProduct.category_model[0].title }}</a
+          >
+        </p>
+        <h2 class="feature-title">{{ selectedProduct.name }}</h2>
+      </div>
+
+      <a
+        [routerLink]="['/product', product.id]"
+        class="product"
+        *ngFor="let product of selectedProduct.products"
+      >
+        <div class="product-image">
+          <img [src]="product.feature_avatar.xhdpi" alt="{{ product.name }}" />
+        </div>
+        <div class="product-detail-content">
+          <div class="product-description">
+            <h2>{{ product.name }}</h2>
+            <p class="text">{{ product.short_description }}</p>
+          </div>
+          <p class="auther">{{ product.producer_name }}</p>
+          <div class="product-view">
+            <div class="view">
+              <div class="view-number">
+                <i class="fas fa-eye"></i>
+                <span> {{ product.total_view }}</span>
+              </div>
+              <div class="view-rate">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </ng-container>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpEvent } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { RootObject, RootObjectChild } from '../models/api-data.model';
+import { Product, RootObject, RootObjectChild } from '../models/api-data.model';
 import { environment } from 'src/environments/environment';
 import {
   RootObjectProfile,
@@ -11,6 +11,7 @@ import {
 import { catchError, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { FeatureProductsObject } from '../models/products-collection.model';
 
 const baseUrl: string = environment.baseUrl;
 const storeId: number = environment.storeId;
@@ -48,5 +49,13 @@ export class ApiService {
 
   toProfileComponent() {
     this.router.navigate(['/profile']);
+  }
+
+  // getFeatureProductCollection: Observable<ProductCollectionObject> | undefined(id: number | undefined) {
+  // return  this.http.get<ProductCollectionObject>(`${baseUrl}/product/${id}`)
+  // );
+  // }
+  getFeatureProducts(id: number): Observable<FeatureProductsObject> {
+    return this.http.get<FeatureProductsObject>(`${baseUrl}/product/${id}`);
   }
 }

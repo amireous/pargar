@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import {
-  Headeritem,
+  ProductItem,
   Homeitem,
   RootObjectChild,
 } from '../../models/api-data.model';
@@ -14,7 +14,7 @@ import {
 export class HomeScreenComponent implements OnInit {
   // parentItemList: ParentCategory[] = [];
   parentItemList: RootObjectChild[] = [];
-  headerItemList: Headeritem[] = [];
+  headerItemList: ProductItem[] = [];
   homeItemList: Homeitem[] = [];
 
   parent: RootObjectChild[] = [];

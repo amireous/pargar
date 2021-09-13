@@ -235,9 +235,7 @@
   }
 
   .feature-single-item {
-    padding: $base-padding + 0.5;
     background: $white-color;
-    border-radius: 8px;
     box-shadow: 0px 1px 4px 0px rgb(0 0 0 / 4%);
     border: 1px solid rgba(0, 0, 0, 0.09);
     position: relative;
@@ -252,7 +250,11 @@
         ($base-padding + 0.5);
     }
     .feature {
-      @include flex($align: flex-start);
+      background: $white-color;
+      padding: $base-padding + 0.5;
+      border-radius: 8px;
+      width: 100%;
+      @include flex($align: flex-start, $justify: flex-start);
     }
 
     .feature-title {

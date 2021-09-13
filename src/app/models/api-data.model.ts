@@ -36,7 +36,7 @@ export interface Support {
   telegram: string;
 }
 
-export interface Headeritem {
+export interface ProductItem {
   id: number;
   name: string;
   name_english: string;
@@ -115,6 +115,7 @@ export interface Product {
   product_type: number;
   producer_name: string;
   payment_type: number[];
+  products: Product[];
   price: number;
   price_show?: any;
   avatar: Avatar2;
@@ -159,7 +160,7 @@ export interface RootObject {
   name: string;
   category: any[];
   tabStrip: any[];
-  headeritem: Headeritem[];
+  headeritem: ProductItem[];
   homeitem: Homeitem[];
 }
 

@@ -1,7 +1,12 @@
 <div class="container">
   <div class="home-screen header">
     <div class="header-item" *ngFor="let item of headerItemList">
-      <a [routerLink]="['/feature-product', item.id]">
+      <a
+        [routerLink]="[
+          item.product_type === 3 ? '/feature-product' : '/product',
+          item.id
+        ]"
+      >
         <img [src]="item.feature_avatar.xhdpi" alt="{{ item.name }}" />
         <h2 class="header-item-title">{{ item.name }}</h2>
       </a>
@@ -47,7 +52,15 @@
                   let i = index
                 "
               >
-                <a [routerLink]="['/product', product.id]" class="normal">
+                <a
+                  [routerLink]="[
+                    product.product_type === 3
+                      ? '/feature-product'
+                      : '/product',
+                    product.id
+                  ]"
+                  class="normal"
+                >
                   <img
                     [src]="product.feature_avatar.xhdpi"
                     alt="{{ product.name }}"
@@ -78,10 +91,7 @@
               </div>
             </div>
           </div>
-          <a
-            [routerLink]="['/feature-product', item.id]"
-            *ngIf="item.row_type === 'feature'"
-          >
+          <div *ngIf="item.row_type === 'feature'">
             <div
               class="feature-item"
               [ngClass]="{
@@ -89,7 +99,11 @@
                 'feature-several-item': item.products.length > 1
               }"
             >
-              <div
+              <a
+                [routerLink]="[
+                  product.product_type === 3 ? '/feature-product' : '/product',
+                  product.id
+                ]"
                 class="feature"
                 *ngFor="let product of item.products | slice: 0:4"
               >
@@ -130,9 +144,9 @@
                     <h3>{{ product.name }}</h3>
                   </ng-template>
                 </div>
-              </div>
+              </a>
             </div>
-          </a>
+          </div>
         </div>
       </ng-container>
     </section>
