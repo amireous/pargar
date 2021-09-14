@@ -13,7 +13,6 @@ export class UserProfileComponent implements OnInit {
   userData: RootObjectProfile | undefined;
 
   isBookmark: boolean = true;
-  editMode: boolean = false;
   constructor(
     private authService: AuthService,
     private apiService: ApiService,
@@ -30,9 +29,8 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  editProfile() {
+  toEditProfile() {
     this.router.navigate(['/profile/edit-profile']);
-    this.editMode = true;
   }
 
   onLogout() {

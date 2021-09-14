@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { UserDataPostService, UserVerifyCodePost } from '../models/user.model';
+import { UserDataPostService, UserVerifyPost } from '../models/user.model';
 
 const baseUrl = environment.baseUrl;
 const storeId: number = environment.storeId;
@@ -53,8 +53,8 @@ export class AuthService {
     code: string,
     username: string | '',
     phoneNumber: string | undefined
-  ) {
-    return this.http.post<UserVerifyCodePost>(
+  ): Observable<UserVerifyPost> {
+    return this.http.post<UserVerifyPost>(
       `${baseUrl}/mobile_login_step2/${storeId}`,
       {
         mobile: phoneNumber,
@@ -75,5 +75,9 @@ export class AuthService {
     this.router.navigate(['/']).then(() => {
       window.location.reload();
     });
+  }
+
+  toEdit() {
+    this.router.navigate(['/profile/edit-profile']);
   }
 }

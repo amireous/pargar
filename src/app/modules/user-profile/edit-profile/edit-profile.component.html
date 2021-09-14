@@ -1,1 +1,44 @@
-<p>edit-profile works!</p>
+<div class="edit-profile-container">
+  <div class="edit-profile" *ngIf="userData">
+    <div class="profile-info">
+      <h2>ویرایش حساب کاربری</h2>
+      <div class="user-avatar">
+        <img [src]="userAvatar" alt="Avatar" />
+        <div class="avatar-upload">
+          <div class="upload-inpute">
+            <input
+              #SelectedFile
+              type="file"
+              accept="image/jpeg"
+              (change)="onChange($event)"
+            />
+          </div>
+          <button
+            class="verify-btn"
+            (click)="onUploadAvatar()"
+            *ngIf="showVerifyBtn"
+          >
+            تایید
+          </button>
+        </div>
+      </div>
+    </div>
+    <form class="editProfileForm" [formGroup]="informationForm">
+      <p>نام نمایشی</p>
+
+      <input type="text" placeholder="نام نمایشی" formControlName="nickname" />
+
+      <p>شماره تلفن همراه</p>
+      <input
+        type="text"
+        placeholder="شماره تلفن همراه"
+        formControlName="phoneNumber"
+      />
+      <p>پست الکترونیک</p>
+      <input type="email" placeholder="شما هنوز ایمیل خود را وارد نکرده اید" />
+      <button class="white-btn" type="submit" (click)="onSaveChanges()">
+        ذخیره تغییرات
+      </button>
+    </form>
+  </div>
+</div>

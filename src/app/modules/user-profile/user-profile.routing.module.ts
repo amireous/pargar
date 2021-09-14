@@ -9,12 +9,10 @@ const routes: Routes = [
     path: '',
     component: UserProfileComponent,
     canActivate: [AuthGuard],
-    children: [
-      {
-        path: 'edit-profile',
-        component: EditProfileComponent,
-      },
-    ],
+  },
+  {
+    path: 'edit-profile',
+    component: EditProfileComponent,
   },
 ];
 

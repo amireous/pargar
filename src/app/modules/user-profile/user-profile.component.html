@@ -1,4 +1,4 @@
-<div class="container-profile" *ngIf="!editMode">
+<div class="container-profile">
   <div class="user-header" *ngIf="userData">
     <div class="user-dashbored">
       <div class="user-profile">
@@ -10,7 +10,7 @@
         <h3 class="user-name">{{ userData.nickname }}</h3>
       </div>
       <div class="user-operations">
-        <a (click)="editProfile()" class="edit-profile"
+        <a (click)="toEditProfile()" class="edit-profile"
           >ویرایش اطلاعات کاربری</a
         >
         <a href="#" class="become-special">کاربر ویژه شوید</a>
@@ -41,7 +41,4 @@
       </div>
     </div>
   </div>
-</div>
-<div *ngIf="editMode">
-  <router-outlet></router-outlet>
 </div>

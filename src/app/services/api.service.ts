@@ -6,12 +6,13 @@ import { environment } from 'src/environments/environment';
 import {
   RootObjectProfile,
   UserDataPostService,
-  UserVerifyCodePost,
+  UserVerifyPost,
 } from '../models/user.model';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { FeatureProductsObject } from '../models/products-collection.model';
+import { UpdateAvatarData } from '../models/user-profile';
 
 const baseUrl: string = environment.baseUrl;
 const storeId: number = environment.storeId;
@@ -57,5 +58,20 @@ export class ApiService {
   // }
   getFeatureProducts(id: number): Observable<FeatureProductsObject> {
     return this.http.get<FeatureProductsObject>(`${baseUrl}/product/${id}`);
+  }
+
+  uploadUserAvatar(file: File): Observable<UpdateAvatarData> {
+    const formData = new FormData();
+    formData.append('avatar', file, file.name);
+    return this.http.post<UpdateAvatarData>(`${baseUrl}/profile`, formData);
+  }
+
+  verifyUserChanges(userName: string): Observable<UserDataPostService> {
+    return this.http.post<UserDataPostService>(`${baseUrl}/profile`, {
+      device_os: 'angularJS',
+      device_id: 'Desktop',
+      device_model: 'browser',
+      nickname: userName,
+    });
   }
 }
