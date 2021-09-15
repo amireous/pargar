@@ -72,9 +72,10 @@ export class AuthService {
 
   logout() {
     localStorage.clear();
-    this.router.navigate(['/']).then(() => {
-      window.location.reload();
-    });
+    this.router.navigate(['/']);
+    // .then(() => {
+    //   window.location.reload();
+    // });
   }
 
   toEdit() {

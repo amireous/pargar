@@ -1,4 +1,7 @@
-@import "../../../assets/styles/styles.scss";
+// @import "../../../assets/styles/styles.scss";
+// @import "../../../../styles.scss";
+
+@import "../../../styles.scss";
 
 * {
   padding: 0;
@@ -95,7 +98,6 @@
           display: block;
           opacity: 1;
           z-index: 100;
-          -webkit-transition: display 0.2s 1s;
         }
       }
 

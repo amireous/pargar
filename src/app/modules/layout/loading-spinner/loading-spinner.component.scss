@@ -1,4 +1,6 @@
-@import "../../../../assets/styles/styles.scss";
+// @import "../../../../assets/styles/styles.scss";
+@import "../../../../styles.scss";
+
 .overlay-wrapper {
   position: fixed;
   width: 100%;
@@ -11,13 +13,27 @@
 .loader {
   width: 120px;
   height: 120px;
-  border: 16px solid #f3f3f3;
+
   border-bottom: 16px solid $primary-green;
 
   border-radius: 50%;
   display: inline-block;
   box-sizing: border-box;
   animation: rotation 2s linear infinite;
+}
+
+.mat-spinner {
+  animation: rotation 2s linear infinite;
+}
+
+:host ::ng-deep .track circle {
+  stroke-opacity: 0.3;
+}
+
+.spinners {
+  .mat-progress-spinner {
+    display: inline;
+  }
 }
 
 @keyframes rotation {
