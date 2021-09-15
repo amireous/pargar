@@ -19,16 +19,18 @@
     [ngClass]="navbarfixed ? 'fixed' : 'nofixed'"
   >
     <ul class="nav-items-list">
-      <li class="nav-item" *ngFor="let item of parentItemList | slice: 2:13">
-        <a [routerLink]="['/parent-cat', item.id]"> {{ item.title }}</a>
-        <div class="sub-cat">
-          <ul class="child-items">
-            <li *ngFor="let child of item.childs">
-              <a [routerLink]="['/category', child.id]">{{ child.title }} </a>
-            </li>
-          </ul>
-        </div>
-      </li>
+      <ng-container *ngFor="let item of parentItemList">
+        <li class="nav-item" *ngIf="item.is_visible === true">
+          <a [routerLink]="['/parent-cat', item.id]"> {{ item.title }}</a>
+          <div class="sub-cat">
+            <ul class="child-items">
+              <li *ngFor="let child of item.childs">
+                <a [routerLink]="['/category', child.id]">{{ child.title }} </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ng-container>
     </ul>
   </nav>
   <main>
@@ -44,14 +46,74 @@
               <p *ngIf="item.products.length === 5">مشاهده همه</p>
             </div>
 
-            <div class="products">
-              <div
-                class="product-item product-item-{{ i }}"
-                *ngFor="
-                  let product of item.products | slice: 0:4;
-                  let i = index
-                "
+            <!-- <div class="products"> -->
+            <div class="slick-wrapper">
+              <ngx-slick-carousel
+                class="carousel products"
+                #slickModal="slick-carousel"
+                [config]="slideConfig"
+                (init)="slickInit($event)"
+                (breakpoint)="breakpoint($event)"
+                (afterChange)="afterChange($event)"
+                (beforeChange)="beforeChange($event)"
               >
+                <div
+                  ngxSlickItem
+                  class="product-item product-item-{{ i }}"
+                  *ngFor="let product of item.products; let i = index"
+                >
+                  <a
+                    [routerLink]="[
+                      product.product_type === 3
+                        ? '/feature-product'
+                        : '/product',
+                      product.id
+                    ]"
+                    class="normal"
+                  >
+                    <img
+                      [src]="product.feature_avatar.xhdpi"
+                      alt="{{ product.name }}"
+                    />
+
+                    <div class="item-description">
+                      <p class="item-title">{{ product.name }}</p>
+                      <div class="item-detail">
+                        <div class="item-view">
+                          <p class="view-author">پرگار</p>
+                          <div class="view">
+                            <div class="view-number">
+                              <i class="fas fa-eye"></i>
+                              <span> {{ product.total_view }}</span>
+                            </div>
+
+                            <span class="item-rate">
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i
+                            ></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </ngx-slick-carousel>
+              <!-- </div> -->
+            </div>
+          </div>
+          <div *ngIf="item.row_type === 'feature'">
+            <div
+              class="products"
+              class="carousel products"
+              [ngClass]="{
+                'feature-single-item': item.products.length === 1,
+                'feature-several-item': item.products.length > 1
+              }"
+            >
+              <div class="feature" *ngFor="let product of item.products">
                 <a
                   [routerLink]="[
                     product.product_type === 3
@@ -59,92 +121,46 @@
                       : '/product',
                     product.id
                   ]"
-                  class="normal"
                 >
                   <img
+                    class="feature-image"
                     [src]="product.feature_avatar.xhdpi"
                     alt="{{ product.name }}"
                   />
-                  <div class="item-description">
-                    <p class="item-title">{{ product.name }}</p>
-                    <div class="item-detail">
-                      <div class="item-view">
-                        <p class="view-author">پرگار</p>
-                        <div class="view">
-                          <div class="view-number">
-                            <i class="fas fa-eye"></i>
-                            <span> {{ product.total_view }}</span>
-                          </div>
 
-                          <span class="item-rate">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i
-                          ></span>
+                  <div class="feature-detail">
+                    <div
+                      class="single-feature"
+                      *ngIf="item.products.length === 1; else elseCondition"
+                    >
+                      <h3 class="feature-title">{{ product.name }}</h3>
+                      <div class="feature-details">
+                        <p class="text">{{ product.description }}</p>
+                        <div class="feature-info">
+                          <p class="view-author">پرگار</p>
+                          <div class="feature-view">
+                            <div class="view-number">
+                              <i class="fas fa-eye"></i>
+                              <span> {{ product.total_view }}</span>
+                            </div>
+
+                            <span class="item-rate">
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i
+                            ></span>
+                          </div>
                         </div>
                       </div>
                     </div>
+                    <ng-template #elseCondition class="several-feature">
+                      <h3>{{ product.name }}</h3>
+                    </ng-template>
                   </div>
                 </a>
               </div>
-            </div>
-          </div>
-          <div *ngIf="item.row_type === 'feature'">
-            <div
-              class="feature-item"
-              [ngClass]="{
-                'feature-single-item': item.products.length === 1,
-                'feature-several-item': item.products.length > 1
-              }"
-            >
-              <a
-                [routerLink]="[
-                  product.product_type === 3 ? '/feature-product' : '/product',
-                  product.id
-                ]"
-                class="feature"
-                *ngFor="let product of item.products | slice: 0:4"
-              >
-                <img
-                  class="feature-image"
-                  [src]="product.feature_avatar.xhdpi"
-                  alt="{{ product.name }}"
-                />
-
-                <div class="feature-detail">
-                  <div
-                    class="single-feature"
-                    *ngIf="item.products.length === 1; else elseCondition"
-                  >
-                    <h3 class="feature-title">{{ product.name }}</h3>
-                    <div class="feature-details">
-                      <p class="text">{{ product.description }}</p>
-                      <div class="feature-info">
-                        <p class="view-author">پرگار</p>
-                        <div class="feature-view">
-                          <div class="view-number">
-                            <i class="fas fa-eye"></i>
-                            <span> {{ product.total_view }}</span>
-                          </div>
-
-                          <span class="item-rate">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i
-                          ></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <ng-template #elseCondition class="several-feature">
-                    <h3>{{ product.name }}</h3>
-                  </ng-template>
-                </div>
-              </a>
             </div>
           </div>
         </div>

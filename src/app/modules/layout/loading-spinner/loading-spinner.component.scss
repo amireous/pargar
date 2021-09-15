@@ -26,16 +26,6 @@
   animation: rotation 2s linear infinite;
 }
 
-:host ::ng-deep .track circle {
-  stroke-opacity: 0.3;
-}
-
-.spinners {
-  .mat-progress-spinner {
-    display: inline;
-  }
-}
-
 @keyframes rotation {
   0% {
     transform: rotate(0deg);

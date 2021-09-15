@@ -23,6 +23,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CategoryModule } from './modules/category/category.module';
 import { LayoutModule } from './modules/layout/layout.module';
 import { HomeScreenModule } from './modules/home-screen/home-screen.module';
+
 // import { CategoryComponent } from './modules/category/category/category.component';
 // import { NormalComponent } from './normal/normal.component';
 

@@ -70,3 +70,48 @@ input {
   src: url(/assets/fonts/IRANSans_Light.ttf) format("truetype");
   font-weight: 300;
 }
+
+// .slick-arrow {
+//   color: #37b34a;
+// }
+
+// .slick-prev:before,
+// .slick-next:before {
+//   color: yellow;
+//   background-color: red;
+// }
+
+// .slick-prev:before {
+//   color: darkcyan;
+// }
+// .slick-next:before {
+//   color: darkslateblue;
+// }
+// .slick-prev.slick-disabled:before {
+//   opacity: 1 !important;
+// }
+// .slick-next:before.slick-disabled:before {
+//   opacity: 1 !important;
+// }
+
+// .slick-prev::before {
+//   opacity: 1 !important;
+// }
+
+// .slick-prev::before,
+// .slick-next::before {
+//   font-size: 35px !important;
+// }
+
+// .slick-arrow {
+//   background-color: rebeccapurple !important;
+// }
+
+.fa-angle-right,
+.fa-angle-left {
+  font-size: 40px;
+  color: #3c3b3bbd;
+}
+.slick-wrapper {
+  width: 1170px;
+}

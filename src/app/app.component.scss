@@ -18,30 +18,91 @@
 //   @include flex($direction: column, $align: flw);
 // }
 
-.tes {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 642px;
-  background-color: dodgerblue;
-  &:hover .dropdown-menu {
-    display: block;
-  }
-  .dropdown-menu {
-    display: none;
-    background: darkolivegreen;
-    margin-top: 0.5rem;
-    align-self: flex-end;
-  }
+// .tes {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+//   width: 642px;
+//   background-color: dodgerblue;
+//   &:hover .dropdown-menu {
+//     display: block;
+//   }
+//   .dropdown-menu {
+//     display: none;
+//     background: darkolivegreen;
+//     margin-top: 0.5rem;
+//     align-self: flex-end;
+//   }
 
-  .a {
-    margin: 0 1rem;
-  }
-  ul {
-    display: flex;
-    justify-content: space-between;
-    width: 300px;
-    margin-top: 0.25rem;
-  }
+//   .a {
+//     margin: 0 1rem;
+//   }
+//   ul {
+//     display: flex;
+//     justify-content: space-between;
+//     width: 300px;
+//     margin-top: 0.25rem;
+//   }
+// }
+
+// .slick-slider {
+//   width: 88%;
+//   margin: auto;
+//   background: rgb(14, 13, 13);
+// }
+
+// body .slick-prev,
+// body .slick-next {
+//   height: 45px;
+//   width: 40px;
+//   background: grey !important;
+//   z-index: 100;
+// }
+
+// .slick-slider {
+//   width: 90%;
+//   margin: auto;
+//   background: #000;
+// }
+
+// .nav-btn {
+//   height: 47px;
+//   position: absolute;
+//   width: 26px;
+//   cursor: pointer;
+//   top: 100px !important;
+// }
+
+// .prev-slide.slick-disabled,
+// .next-slide.slick-disabled {
+//   pointer-events: none;
+//   opacity: 0.2;
+// }
+
+// .prev-slide {
+//   background: url(assets/images/nav-icon.png) no-repeat scroll 0 0;
+//   left: -33px;
+// }
+
+// .next-slide {
+//   background: url(assets/images/nav-icon.png) no-repeat scroll -24px 0px;
+//   right: -33px;
+// }
+
+// .prev-slide:hover {
+//   background-position: 0px -53px;
+// }
+
+// .next-slide:hover {
+//   background-position: -24px -53px;
+// }
+.slick-wrapper {
+  width: 1000px;
+  margin: 20px auto;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: black !important;
 }
