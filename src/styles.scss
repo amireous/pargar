@@ -34,6 +34,10 @@ input {
   font-family: "IRANSans", sans-serif;
 }
 
+img {
+  background: url(/assets/images/logo_.png);
+}
+
 .btn {
   font-size: $base-font - 2;
   line-height: 32px;
@@ -114,4 +118,21 @@ input {
 }
 .slick-wrapper {
   width: 1170px;
+  direction: rtl;
 }
+
+// .item-template-4 .slick-track {
+//   opacity: 1;
+//   width: 1170px !important;
+//   transform: translate3d(0, 0px, 0px) !important;
+//   width: 100% !important;
+// }
+
+// .feature-several-item .slick-slide {
+//   width: 373.333px !important;
+//   width: unset;
+// }
+
+// // .slick-track {
+// //   width: 100% !important;
+// // }

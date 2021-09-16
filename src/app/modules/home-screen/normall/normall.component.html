@@ -1,0 +1,128 @@
+<div class="items-template">
+  <div class="normal-item">
+    <div class="item-template-head">
+      <h2 class="item-template-title"></h2>
+      <!-- <p *ngIf="products.length === 5">مشاهده همه</p> -->
+    </div>
+
+    <!-- <div class="products"> -->
+    <div class="slick-wrapper">
+      <ngx-slick-carousel
+        class="carousel products"
+        #slickModal="slick-carousel"
+        [config]="slideConfig"
+        (init)="slickInit($event)"
+        (breakpoint)="breakpoint($event)"
+        (afterChange)="afterChange($event)"
+        (beforeChange)="beforeChange($event)"
+      >
+        <div
+          ngxSlickItem
+          class="product-item product-item-{{ i }}"
+          *ngFor="let product of products; let i = index"
+        >
+          <a
+            [routerLink]="[
+              product.product_type === 3 ? '/feature-product' : '/product',
+              product.id
+            ]"
+            class="normal"
+          >
+            <img
+              [src]="product.feature_avatar.xhdpi"
+              alt="{{ product.name }}"
+            />
+
+            <div class="item-description">
+              <p class="item-title">{{ product.name }}</p>
+              <div class="item-detail">
+                <div class="item-view">
+                  <p class="view-author">پرگار</p>
+                  <div class="view">
+                    <div class="view-number">
+                      <i class="fas fa-eye"></i>
+                      <span> {{ product.total_view }}</span>
+                    </div>
+
+                    <span class="item-rate">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i
+                    ></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </ngx-slick-carousel>
+      <!-- </div> -->
+    </div>
+  </div>
+
+  <!-- <div class="feature">
+    <div class="slick-wrapper">
+      <ngx-slick-carousel
+        class="carousel"
+        #slickModal="slick-carousel"
+        [config]="slideConfig"
+        class="products"
+        class="carousel products"
+        [ngClass]="{
+          'feature-single-item': products.length === 1,
+          'feature-several-item': products.length > 1
+        }"
+      >
+        <div class="feature" *ngFor="let product of products" ngxSlickItem>
+          <a
+            [routerLink]="[
+              product.product_type === 3 ? '/feature-product' : '/product',
+              product.id
+            ]"
+          >
+            <img
+              class="feature-image"
+              [src]="product.feature_avatar.xhdpi"
+              alt="{{ product.name }}"
+            />
+
+            <div class="feature-detail">
+              <div
+                class="single-feature"
+                *ngIf="products.length === 1; else elseCondition"
+              >
+                <h3 class="feature-title">{{ product.name }}</h3>
+                <div class="feature-details">
+                  <p class="text">{{ product.description }}</p>
+                  <div class="feature-info">
+                    <p class="view-author">پرگار</p>
+                    <div class="feature-view">
+                      <div class="view-number">
+                        <i class="fas fa-eye"></i>
+                        <span> {{ product.total_view }}</span>
+                      </div>
+
+                      <span class="item-rate">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i
+                      ></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <ng-template #elseCondition class="several-feature">
+                <h3>{{ product.name }}</h3>
+              </ng-template>
+            </div>
+          </a>
+        </div>
+      </ngx-slick-carousel>
+    </div>
+  </div> -->
+</div>

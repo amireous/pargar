@@ -1,0 +1,85 @@
+@import "../../../../styles.scss";
+
+.feature-single-item {
+  border-radius: 8px;
+  background: $white-color;
+  box-shadow: 0px 1px 4px 0px rgb(0 0 0 / 4%);
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  position: relative;
+  margin: ($base-margin * 2) 0;
+  width: 100%;
+  @include flex($justify: flex-start);
+
+  cursor: pointer;
+
+  .feature-detail {
+    padding: ($base-padding + 0.5) 45px ($base-padding + 0.5)
+      ($base-padding + 0.5);
+  }
+  .feature {
+    background: $white-color;
+    padding: $base-padding + 0.5;
+    border-radius: 8px;
+    width: 100%;
+    @include flex($align: flex-start, $justify: flex-start);
+
+    a {
+      width: 100%;
+      @include flex($justify: flex-start, $align: flex-start);
+    }
+  }
+
+  .feature-title {
+    font-size: $medium-font + 4;
+    color: $primary-grey-dark;
+    padding-bottom: $small-padding;
+  }
+
+  img {
+    width: 420px;
+    border-radius: 8px;
+    min-height: 70px;
+    height: 100%;
+  }
+
+  .feature-view {
+    @include flex($justify: space-between);
+    margin-top: $base-margin;
+
+    .view-author {
+      color: $black-color;
+    }
+
+    .view-number {
+      color: $primary-grey-light;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.feature-several-item {
+  margin: $medium-margin 0;
+
+  @include flex($align: baseline, $justify: space-between);
+  width: 100%;
+  cursor: pointer;
+  & > div {
+    width: 373.333px;
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .feature:not(.feature:last-child) {
+    margin-left: $base-margin - 4;
+  }
+}
+
+.several-feature {
+  width: 100%;
+}

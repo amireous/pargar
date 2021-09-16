@@ -27,6 +27,7 @@ export class HomeScreenComponent implements OnInit {
     dots: false,
     infinite: false,
     arrows: true,
+
     nextArrow:
       "<div style='position: absolute; top: 35%; right: -35px; cursor: pointer;' class='next-slide'><i class=\"fas fa-angle-right\"></i></div>",
     prevArrow:

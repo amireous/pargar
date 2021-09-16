@@ -1,0 +1,72 @@
+@import "../../../../styles.scss"; // .products {
+//     @include flex($justify: flex-start);
+//     margin: $small-margin - 3;
+//     position: relative;
+//     border-radius: 8px;
+//     direction: ltr;
+//   }
+.product-item {
+  height: 320px;
+  background: $white-color;
+  border-radius: 8px;
+  width: 278px;
+  margin-left: $base-margin - 3;
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:last-child {
+    margin-left: 0;
+  }
+
+  img {
+    width: 100%;
+    min-height: 166px;
+    background-color: $primary-grey-medium;
+    border-radius: 8px 8px 0 0;
+    object-fit: cover;
+  }
+
+  .item-description {
+    position: relative;
+  }
+
+  .item-view {
+    width: 100%;
+    color: $primary-grey-light;
+  }
+
+  .item-title {
+    font-size: $base-font -1;
+    line-height: 24px;
+    margin: 0 0 $small-margin + 2;
+    padding: 5px;
+    font-weight: bold;
+    padding: $base-padding;
+  }
+
+  .item-detail {
+    position: absolute;
+    top: 79px;
+    @include flex($justify: space-between);
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: $small-padding + 0.125 $small-padding + 0.125 0;
+
+    .view-author {
+      font-size: $base-font - 2.2;
+    }
+
+    .view {
+      padding-top: $small-padding;
+      @include flex($justify: space-between, $align: baseline);
+
+      font-size: $base-font - 3.2;
+    }
+  }
+}
+
+.slick-wrapper {
+  direction: rtl;
+}

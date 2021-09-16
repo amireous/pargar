@@ -1,0 +1,39 @@
+<div class="single-item">
+  <div class="products feature-single-item">
+    <div class="feature">
+      <a [routerLink]="['/feature-product', singleItem[0].id]">
+        <img
+          class="feature-image"
+          [src]="singleItem[0].feature_avatar.xhdpi"
+          alt="{{ singleItem[0].name }}"
+        />
+
+        <div class="feature-detail">
+          <div class="single-feature">
+            <h3 class="feature-title">{{ singleItem[0].name }}</h3>
+            <div class="feature-details">
+              <p class="text">{{ singleItem[0].description }}</p>
+              <div class="feature-info">
+                <p class="view-author">پرگار</p>
+                <div class="feature-view">
+                  <div class="view-number">
+                    <i class="fas fa-eye"></i>
+                    <span> {{ singleItem[0].total_view }}</span>
+                  </div>
+
+                  <span class="item-rate">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i
+                  ></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

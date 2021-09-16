@@ -1,0 +1,32 @@
+<div class="features">
+  <div class="slick-wrapper">
+    <ngx-slick-carousel
+      class="carousel"
+      #slickModal="slick-carousel"
+      [config]="slideConfig"
+      class="products"
+      class="carousel products feature-several-item"
+    >
+      <div class="feature" *ngFor="let feature of featureItems" ngxSlickItem>
+        <a
+          [routerLink]="[
+            feature.product_type === 3 ? '/feature-product' : '/product',
+            feature.id
+          ]"
+        >
+          <img
+            class="feature-image"
+            [src]="feature.feature_avatar.xhdpi"
+            alt="{{ feature.name }}"
+          />
+
+          <div class="feature-detail">
+            <div class="several-feature">
+              <h3>{{ feature.name }}</h3>
+            </div>
+          </div>
+        </a>
+      </div>
+    </ngx-slick-carousel>
+  </div>
+</div>
