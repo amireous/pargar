@@ -23,9 +23,9 @@ export class NormallComponent implements OnInit {
     rtl: true,
 
     nextArrow:
-      "<div style='position: absolute; top: 35%; right: -35px; cursor: pointer;' class='next-slide'><i class=\"fas fa-angle-right\"></i></div>",
+      "<div style='position: absolute; top: 35%; right: 1175px; cursor: pointer;transform: rotate(180deg);' class='next-slide'><i class=\"fas fa-angle-right\"></i></div>",
     prevArrow:
-      "<div style='position: absolute; top: 35%; left: -25px; z-index: 1; cursor: pointer;' class='next-slide'><i class=\"fas fa-angle-left\"></i></div>",
+      "<div style='position: absolute; top: 35%; left: 1190px; z-index: 1; cursor: pointer; transform: rotate(180deg);' class='next-slide'><i class=\"fas fa-angle-left\"></i></div>",
     // initialSlide: 1,
 
     responsive: [
@@ -54,28 +54,4 @@ export class NormallComponent implements OnInit {
       },
     ],
   };
-
-  //  addSlide() {
-  //    this.slides.push(488);
-  //  }
-
-  //  removeSlide() {
-  //    this.slides.length = this.slides.length - 1;
-  //  }
-
-  slickInit(e: any) {
-    console.log('slick initialized');
-  }
-
-  breakpoint(e: any) {
-    console.log('breakpoint');
-  }
-
-  afterChange(e: any) {
-    console.log('afterChange');
-  }
-
-  beforeChange(e: any) {
-    console.log('beforeChange');
-  }
 }

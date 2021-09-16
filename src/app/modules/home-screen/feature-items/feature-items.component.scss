@@ -1,9 +1,5 @@
 @import "../../../../styles.scss";
 
-.slick-wrapper {
-  direction: rtl;
-}
-
 .feature-several-item {
   margin: $medium-margin 0;
   //   @include flex($align: baseline, $justify: space-between);
@@ -18,10 +14,6 @@
     width: 100%;
     margin-left: $base-margin - 4;
   }
-
-  //   .feature:not(.feature:last-child) {
-  //     margin-left: $base-margin - 4;
-  //   }
 }
 
 .feature {
