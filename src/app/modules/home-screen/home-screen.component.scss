@@ -3,13 +3,6 @@
 
 @import "../../../styles.scss";
 
-.slick-prev {
-  background-color: red !important;
-  color: #37b34a !important;
-  display: block !important;
-  opacity: 10 !important;
-}
-
 * {
   padding: 0;
   margin: 0;
@@ -24,17 +17,13 @@
     display: none;
   }
 
-  /* Hide scrollbar for IE, Edge add Firefox */
   .scrollbar-hidden {
     -ms-overflow-style: none;
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
   }
 
   .header {
     overflow: hidden;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
     margin-bottom: $base-margin + 0.5;
 
     .header-item {
@@ -43,6 +32,7 @@
       width: 443.25px;
       margin: 0 $small-margin;
       position: relative;
+      border-radius: 8px;
 
       a {
         width: 100%;
@@ -54,10 +44,26 @@
         width: 100%;
         border-radius: 8px;
       }
-      .header-item-title {
+      .title {
         position: absolute;
+        top: 223px;
         width: 100%;
-        top: 215px;
+        border-radius: 8px;
+        background-image: -webkit-linear-gradient(
+          -180deg,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.5) 100%
+        );
+        background-image: linear-gradient(
+          -180deg,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.5) 100%
+        );
+      }
+      .header-item-title {
+        // position: absolute;
+        width: 100%;
+        // top: 215px;
         left: 0;
         font-weight: bold;
         font-size: $base-font + 2.6;
@@ -77,6 +83,7 @@
 
     .nav-items-list {
       @include flex($justify: space-between);
+      flex-wrap: wrap;
       list-style: none;
       max-width: 1170px;
       width: 100%;
@@ -163,191 +170,59 @@
   .item-template-title {
     color: $primary-grey-dark;
     font-weight: bold;
-    font-size: $base-font + 3;
-    line-height: 32px;
+
     margin: 0px;
     padding: 0 0 $base-padding 0;
+    font-size: 24px;
+    margin: 10px 0;
+    margin-top: 1.5rem;
+    margin: $base-margin 0 $small-margin + 2;
   }
+}
 
-  .products {
-    @include flex($justify: flex-start);
+.products {
+  @include flex($justify: flex-start);
 
-    margin: $small-margin - 3;
-    position: relative;
-    border-radius: 8px;
-    direction: ltr;
-  }
+  margin: $small-margin - 3;
+  position: relative;
+  border-radius: 8px;
+  direction: ltr;
+}
 
-  .product-item {
-    height: 320px;
-    background: $white-color;
-    border-radius: 8px;
-    width: 278px;
-    margin-left: $base-margin - 3;
-    border: 1px solid rgba(0, 0, 0, 0.09);
-    border-radius: 8px;
-    cursor: pointer;
-    direction: rtl;
+.fixed {
+  position: fixed;
+  width: 100%;
+  transition: 0.2s linear;
+  top: 68px;
+}
 
-    &:last-child {
-      margin-left: 0;
+.nofixed {
+  position: static;
+  transition: 0.2s linear;
+  top: -50px;
+}
+
+.slick-wrapper {
+  width: 100%;
+}
+.parent-cat-mode {
+  max-width: 1170px;
+  width: 100%;
+  text-align: right;
+  display: block;
+  li {
+    padding: 12px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 9px;
+    display: inline-block;
+    border-bottom: 3px solid white;
+    a:hover {
+      color: $primary-green;
     }
 
-    img {
-      width: 100%;
-      min-height: 166px;
-      background-color: $primary-grey-medium;
-      border-radius: 8px 8px 0 0;
-      object-fit: cover;
-    }
-
-    .item-description {
-      position: relative;
-    }
-
-    .item-view {
-      width: 100%;
-      color: $primary-grey-light;
-    }
-
-    .item-title {
-      font-size: $base-font -1;
-      line-height: 24px;
-      margin: 0 0 $small-margin + 2;
-      padding: 5px;
-      font-weight: bold;
-      padding: $base-padding;
-    }
-
-    .item-detail {
-      position: absolute;
-      top: 79px;
-      @include flex($justify: space-between);
-      width: 100%;
-
-      padding: $small-padding + 0.125 $small-padding + 0.125 0;
-
-      .view-author {
-        font-size: $base-font - 2.2;
-      }
-
-      .view {
-        padding-top: $small-padding;
-        @include flex($justify: space-between, $align: baseline);
-
-        font-size: $base-font - 3.2;
-      }
+    .sub-cat {
+      display: none;
     }
   }
-
-  .fa-star {
-    color: $primary-white-light;
-  }
-
-  //   .feature-single-item {
-  //     background: $white-color;
-  //     box-shadow: 0px 1px 4px 0px rgb(0 0 0 / 4%);
-  //     border: 1px solid rgba(0, 0, 0, 0.09);
-  //     position: relative;
-  //     margin: ($base-margin * 2) 0;
-  //     width: 100%;
-  //     @include flex($justify: flex-start);
-
-  //     cursor: pointer;
-
-  //     .feature-detail {
-  //       padding: ($base-padding + 0.5) 45px ($base-padding + 0.5)
-  //         ($base-padding + 0.5);
-  //     }
-  //     .feature {
-  //       background: $white-color;
-  //       padding: $base-padding + 0.5;
-  //       border-radius: 8px;
-  //       width: 100%;
-  //       @include flex($align: flex-start, $justify: flex-start);
-
-  //       a {
-  //         width: 100%;
-  //         @include flex($justify: flex-start, $align: flex-start);
-  //       }
-  //     }
-
-  //     .feature-title {
-  //       font-size: $medium-font + 4;
-  //       color: $primary-grey-dark;
-  //       padding-bottom: $small-padding;
-  //     }
-
-  //     img {
-  //       width: 420px;
-  //       border-radius: 8px;
-  //       min-height: 70px;
-  //       height: 100%;
-  //     }
-
-  //     .feature-view {
-  //       @include flex($justify: space-between);
-  //       margin-top: $base-margin;
-
-  //       .view-author {
-  //         color: $black-color;
-  //       }
-
-  //       .view-number {
-  //         color: $primary-grey-light;
-  //         font-size: 0.8rem;
-  //       }
-  //     }
-  //   }
-
-  //   .feature-several-item {
-  //     margin: $medium-margin 0;
-
-  //     @include flex($align: baseline, $justify: space-between);
-  //     width: 100%;
-  //     cursor: pointer;
-  //     & > div {
-  //       width: 373.333px;
-  //     }
-
-  //     h3 {
-  //       text-align: center;
-  //     }
-
-  //     img {
-  //       width: 100%;
-  //     }
-
-  //     .feature:not(.feature:last-child) {
-  //       margin-left: $base-margin - 4;
-  //     }
-  //   }
-
-  //   .several-feature {
-  //     width: 100%;
-  //   }
-  // }
-
-  .fixed {
-    position: fixed;
-    width: 100%;
-    transition: 0.2s linear;
-    top: 68px;
-  }
-
-  .nofixed {
-    position: static;
-    transition: 0.2s linear;
-    top: -50px;
-  }
-
-  // .slick-arrow {
-  //   background-color: rebeccapurple;
-  // }
-
-  // .carousel.products.slick-initialized.slick-slider {
-  //   button {
-  //     color: yellow;
-  //     background-color: red;
-  //   }
 }

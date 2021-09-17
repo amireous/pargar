@@ -1,10 +1,4 @@
-@import "../../../../styles.scss"; // .products {
-//     @include flex($justify: flex-start);
-//     margin: $small-margin - 3;
-//     position: relative;
-//     border-radius: 8px;
-//     direction: ltr;
-//   }
+@import "../../../../styles.scss";
 .product-item {
   height: 320px;
   background: $white-color;

@@ -18,10 +18,9 @@ export class NormallComponent implements OnInit {
     slidesToScroll: 1,
     initialSlide: 0,
     dots: false,
-    infinite: false,
+    infinite: true,
     arrows: true,
     rtl: true,
-
     nextArrow:
       "<div style='position: absolute; top: 35%; right: 1175px; cursor: pointer;transform: rotate(180deg);' class='next-slide'><i class=\"fas fa-angle-right\"></i></div>",
     prevArrow:

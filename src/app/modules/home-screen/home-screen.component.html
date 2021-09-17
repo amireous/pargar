@@ -1,15 +1,33 @@
 <div class="container">
-  <div class="home-screen header">
-    <div class="header-item" *ngFor="let item of headerItemList">
-      <a
-        [routerLink]="[
-          item.product_type === 3 ? '/feature-product' : '/product',
-          item.id
-        ]"
+  <div class="slick-wrapper">
+    <div class="row">
+      <ngx-slick-carousel
+        class="carousel home-screen header"
+        #slickModal="slick-carousel"
+        [config]="slideConfig"
       >
-        <img [src]="item.feature_avatar.xhdpi" alt="{{ item.name }}" />
-        <h2 class="header-item-title">{{ item.name }}</h2>
-      </a>
+        <div
+          class="header-item"
+          *ngFor="let item of headerItemList"
+          ngxSlickItem
+        >
+          <a
+            [routerLink]="[
+              item.product_type === 3 ? '/feature-product' : '/product',
+              item.id
+            ]"
+          >
+            <img
+              class="img"
+              [src]="item.feature_avatar.xhdpi"
+              alt="{{ item.name }}"
+            />
+            <div class="title">
+              <h2 class="header-item-title">{{ item.name }}</h2>
+            </div>
+          </a>
+        </div>
+      </ngx-slick-carousel>
     </div>
   </div>
 
@@ -18,10 +36,10 @@
     (scroll)="onscroll()"
     [ngClass]="navbarfixed ? 'fixed' : 'nofixed'"
   >
-    <ul class="nav-items-list">
+    <ul [ngClass]="parentCatMode ? 'parent-cat-mode' : 'nav-items-list'">
       <ng-container *ngFor="let item of parentItemList">
         <li class="nav-item" *ngIf="item.is_visible === true">
-          <a [routerLink]="['/parent-cat', item.id]"> {{ item.title }}</a>
+          <a [routerLink]="['/parent_cat', item.id]"> {{ item.title }}</a>
           <div class="sub-cat">
             <ul class="child-items">
               <li *ngFor="let child of item.childs">
@@ -42,15 +60,15 @@
           </h2>
           <app-normall
             [products]="item.products"
-            *ngIf="item.row_type === 'normal'"
+            *ngIf="item.row_type === 'normal' && item.products.length >= 2"
           ></app-normall>
           <app-single-item
             [singleItem]="item.products"
-            *ngIf="item.row_type === 'feature' && item.products.length === 1"
+            *ngIf="item.products.length === 1"
           ></app-single-item>
           <app-feature-items
             [featureItems]="item.products"
-            *ngIf="item.row_type === 'feature' && item.products.length > 1"
+            *ngIf="item.row_type === 'feature' && item.products.length >= 2"
           >
           </app-feature-items>
         </div>

@@ -1,9 +1,14 @@
 <div class="single-item">
   <div class="products feature-single-item">
     <div class="feature">
-      <a [routerLink]="['/feature-product', singleItem[0].id]">
+      <a
+        [routerLink]="[
+          singleItem[0].product_type === 1 ? '/product' : '/feature-product',
+          singleItem[0].id
+        ]"
+      >
         <img
-          class="feature-image"
+          class="feature-image image"
           [src]="singleItem[0].feature_avatar.xhdpi"
           alt="{{ singleItem[0].name }}"
         />
@@ -12,7 +17,9 @@
           <div class="single-feature">
             <h3 class="feature-title">{{ singleItem[0].name }}</h3>
             <div class="feature-details">
-              <p class="text">{{ singleItem[0].description }}</p>
+              <p class="text">
+                {{ singleItem[0].description }}
+              </p>
               <div class="feature-info">
                 <p class="view-author">پرگار</p>
                 <div class="feature-view">

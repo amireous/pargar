@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpEvent } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { Product, RootObject, RootObjectChild } from '../models/api-data.model';
+import {
+  ParentCat,
+  Product,
+  RootObject,
+  RootObjectChild,
+} from '../models/api-data.model';
 import { environment } from 'src/environments/environment';
 import {
   RootObjectProfile,
@@ -73,5 +78,9 @@ export class ApiService {
       device_model: 'browser',
       nickname: userName,
     });
+  }
+
+  getHomeItemData(id: number): Observable<any> {
+    return this.http.get<any>(`${baseUrl}/homeitem/${storeId}/${id}`);
   }
 }

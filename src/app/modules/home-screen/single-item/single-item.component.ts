@@ -9,7 +9,10 @@ import { Product } from 'src/app/models/api-data.model';
 export class SingleItemComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.singleItem);
+    console.log(this.singleItem[0].product_type, this.singleItem[0].products);
+  }
 
   @Input() singleItem: Product[] = [];
 }

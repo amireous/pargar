@@ -17,7 +17,7 @@ export class FeaturesItemsComponent implements OnInit {
     slidesToShow: 3,
     slidesToScroll: 1,
     dots: false,
-    infinite: false,
+    infinite: true,
     arrows: true,
     rtl: true,
     nextArrow:

@@ -24,7 +24,11 @@
         *ngFor="let product of selectedProduct.products"
       >
         <div class="product-image">
-          <img [src]="product.feature_avatar.xhdpi" alt="{{ product.name }}" />
+          <img
+            class="image"
+            [src]="product.feature_avatar.xhdpi"
+            alt="{{ product.name }}"
+          />
         </div>
         <div class="product-detail-content">
           <div class="product-description">

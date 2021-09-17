@@ -6,7 +6,7 @@ export interface ParentCategory {
   position: number;
   is_enable: boolean;
   is_visible: boolean;
-  parent?: any;
+  parent: number;
 }
 
 export interface Avatar {
@@ -36,7 +36,7 @@ export interface Support {
   telegram: string;
 }
 
-export interface ProductItem {
+export interface HeaderItem {
   id: number;
   name: string;
   name_english: string;
@@ -160,7 +160,7 @@ export interface RootObject {
   name: string;
   category: any[];
   tabStrip: any[];
-  headeritem: ProductItem[];
+  headeritem: HeaderItem[];
   homeitem: Homeitem[];
 }
 
@@ -192,10 +192,16 @@ export interface RootObjectChild {
   id: number;
   is_default: boolean;
   title: string;
-  avatar: string;
+  avatar?: string;
   position: number;
   is_enable: boolean;
   is_visible: boolean;
   parent?: any;
-  childs: Child[];
+  childs?: Child[];
+}
+
+export interface ParentCat {
+  category: CategoryModel;
+  headeritem: HeaderItem[];
+  homeitem: Homeitem[];
 }
