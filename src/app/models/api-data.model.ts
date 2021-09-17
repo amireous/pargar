@@ -201,7 +201,7 @@ export interface RootObjectChild {
 }
 
 export interface ParentCat {
-  category: CategoryModel;
+  category: RootObjectChild[];
   headeritem: HeaderItem[];
   homeitem: Homeitem[];
 }

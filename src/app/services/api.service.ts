@@ -80,7 +80,7 @@ export class ApiService {
     });
   }
 
-  getHomeItemData(id: number): Observable<any> {
-    return this.http.get<any>(`${baseUrl}/homeitem/${storeId}/${id}`);
+  getHomeItemData(id: number): Observable<ParentCat> {
+    return this.http.get<ParentCat>(`${baseUrl}/homeitem/${storeId}/${id}`);
   }
 }

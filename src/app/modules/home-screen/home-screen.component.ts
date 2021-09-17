@@ -14,7 +14,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./home-screen.component.scss'],
 })
 export class HomeScreenComponent implements OnInit {
-  // parentItemList: ParentCategory[] = [];
   parentItemList: RootObjectChild[] = [];
   headerItemList: HeaderItem[] = [];
   homeItemList: Homeitem[] = [];
@@ -39,24 +38,6 @@ export class HomeScreenComponent implements OnInit {
         this.getHomeData();
       }
     });
-
-    // this.apiService.getHomeScreenData().subscribe(
-    //   (data) => {
-    //     console.log(data);
-    //     this.headerItemList = data.headeritem;
-    //     this.homeItemList = data.homeitem.filter(
-    //       (item: any) => item.products.length > 0
-    //     );
-    //     this.homeItemList.filter((item) => item.products);
-    //   },
-    //   (err) => {
-    //     console.log(err);
-    //   }
-    // );
-    // this.apiService.getHomeChildCategory().subscribe((data) => {
-    //   this.parentItemList = data;
-    //   console.log(data);
-    // });
   }
   @HostListener('window:scroll', ['$event']) onscroll() {
     if (!this.parentCatMode) {
