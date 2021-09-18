@@ -1,15 +1,15 @@
 <div class="category-container">
-  <nav class="navbar">
+  <nav class="navbar" *ngIf="isCategoryPath">
     <div class="nav-container">
       <ul class="nav-items-list">
         <li>
           <a
             class="category-title"
-            [routerLink]="['/parent_cat', selectedCategoryParent.id]"
-            >{{ selectedCategoryParent.title }}</a
+            [routerLink]="['/parent_cat', selectedCategoryParent?.id]"
+            >{{ selectedCategoryParent?.title }}</a
           >
         </li>
-        <li *ngFor="let child of selectedCategoryParent.childs">
+        <li *ngFor="let child of selectedCategoryParent?.childs">
           <a
             [routerLink]="['/category', child.id]"
             [routerLinkActiveOptions]="{ exact: true }"
@@ -24,7 +24,11 @@
   <div class="products">
     <div class="product-item" *ngFor="let item of categoryItemsList">
       <a [routerLink]="['/product', item.id]">
-        <img [src]="item.feature_avatar.xhdpi" alt="{{ item.name }}" />
+        <img
+          class="image"
+          [src]="item.feature_avatar.xhdpi"
+          alt="{{ item.name }}"
+        />
       </a>
       <div class="item-description">
         <p class="item-title">{{ item.name }}</p>
@@ -50,4 +54,13 @@
       </div>
     </div>
   </div>
+
+  <button
+    class="white-btn btn more-btn"
+    (click)="onSeeMore()"
+    *ngIf="!isCategoryPath"
+  >
+    مشاهده بیشتر
+    <i class="fas fa-caret-down"></i>
+  </button>
 </div>

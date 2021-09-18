@@ -205,3 +205,71 @@ export interface ParentCat {
   headeritem: HeaderItem[];
   homeitem: Homeitem[];
 }
+
+export interface CommentsSummery {
+  score: number;
+  count: number;
+}
+export interface Producer {
+  id: number;
+  email: string;
+  name: string;
+  producer_slug: string;
+  avatar?: any;
+  description: string;
+}
+export interface PromotionalContainer {
+  id: number;
+  video: string;
+  external_video: string;
+  external_frame?: any;
+  img?: any;
+  length?: any;
+  video_path: string;
+  banner: boolean;
+  is_confirmed: boolean;
+  priority: number;
+  product: number;
+  aparat_key?: any;
+}
+
+export interface CategoryItems {
+  id: number;
+  name: string;
+  name_english: string;
+  producer: Producer;
+  product_type: number;
+  producer_name: string;
+  payment_type: number[];
+  price: number;
+  category?: number[];
+  price_show?: any;
+  avatar: Avatar;
+  feature_avatar: FeatureAvatar;
+  rank: number;
+  is_enable?: boolean;
+  totalInstalled: number;
+  description?: string;
+  promotionalContainers?: PromotionalContainer[];
+  short_description?: string;
+  is_purchased: boolean;
+  comments: number;
+  is_bookmarked: boolean;
+  sku: string;
+  tags: any[];
+  category_model: CategoryModel[];
+  comments_summery: CommentsSummery[];
+  price_unit: string;
+  total_view: number;
+  custom_json?: any;
+  polls: any[];
+  date_added: Date;
+  invest_goal?: any;
+  product_staff: any[];
+  support: Support;
+  is_special: boolean;
+  additional_attributes: any[];
+  date_published: Date;
+  customjson?: any;
+  approved_age?: any;
+}

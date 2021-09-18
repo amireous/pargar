@@ -52,17 +52,22 @@ input {
 }
 
 .green-btn {
-  color: #37b34a;
+  color: $primary-green;
   background-color: $white-color;
   &:hover {
-    background-color: #37b34a;
+    background-color: $primary-green;
     color: $white-color;
   }
 }
 .white-btn {
   color: $white-color;
-  background-color: #37b34a;
+  background-color: $primary-green;
   transition: background-color 0.2s 0s;
+
+  &:hover {
+    background-color: $white-color;
+    color: $primary-green;
+  }
 }
 
 @font-face {

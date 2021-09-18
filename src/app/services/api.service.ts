@@ -2,17 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpEvent } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import {
+  CategoryItems,
+  CategoryModel,
   ParentCat,
   Product,
   RootObject,
   RootObjectChild,
 } from '../models/api-data.model';
 import { environment } from 'src/environments/environment';
-import {
-  RootObjectProfile,
-  UserDataPostService,
-  UserVerifyPost,
-} from '../models/user.model';
+import { RootObjectProfile, UserDataPostService } from '../models/user.model';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
@@ -83,10 +81,24 @@ export class ApiService {
     return this.http.get<ParentCat>(`${baseUrl}/homeitem/${storeId}/${id}`);
   }
 
-  getCategoryData(productId: number) {
-    return this.http.get(`${baseUrl}/listproducts/${productId}`, {
+  getCategoryData(productId: number): Observable<CategoryItems[]> {
+    return this.http.get<CategoryItems[]>(
+      `${baseUrl}/listproducts/${productId}`,
+      {
+        params: {
+          limit: 20,
+        },
+      }
+    );
+  }
+
+  getModuleData(
+    moduleId: number,
+    limitNum: number = 20
+  ): Observable<CategoryItems[]> {
+    return this.http.get<CategoryItems[]>(`${baseUrl}/module/${moduleId}`, {
       params: {
-        limit: 20,
+        limit: limitNum,
       },
     });
   }

@@ -233,3 +233,11 @@
 .selectedRoute {
   color: $primary-green;
 }
+
+.item-title {
+  @include flex($justify: space-between, $align: baseline);
+  a {
+    font-weight: bold;
+    color: #37b34a;
+  }
+}

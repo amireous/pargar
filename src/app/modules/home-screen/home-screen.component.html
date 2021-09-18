@@ -18,7 +18,7 @@
             ]"
           >
             <img
-              class="img"
+              class="img image"
               [src]="item.feature_avatar.xhdpi"
               alt="{{ item.name }}"
             />
@@ -68,9 +68,17 @@
     <section>
       <ng-container *ngFor="let item of homeItemList; let i = index">
         <div class="items-template 'item-template-{{ i + 1 }}' ">
-          <h2 class="item-template-title" *ngIf="item.row_type === 'normal'">
-            {{ item.title }}
-          </h2>
+          <div class="item-title">
+            <h2 class="item-template-title" *ngIf="item.row_type === 'normal'">
+              {{ item.title }}
+            </h2>
+            <a
+              [routerLink]="['/module', item.module]"
+              *ngIf="item.module > 130 && item.products.length >= 4"
+              >مشاهده همه</a
+            >
+          </div>
+
           <app-normall
             [products]="item.products"
             *ngIf="item.row_type === 'normal' && item.products.length >= 2"
