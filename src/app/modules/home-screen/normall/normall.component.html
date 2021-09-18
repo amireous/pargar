@@ -22,11 +22,17 @@
             ]"
             class="normal"
           >
-            <img
-              class="image"
-              [src]="product.feature_avatar.xhdpi"
-              alt="{{ product.name }}"
-            />
+            <div class="item-image">
+              <img
+                class="image"
+                [src]="product.feature_avatar.xhdpi"
+                alt="{{ product.name }}"
+              />
+
+              <div class="item-special" *ngIf="product.is_special">
+                <p>ویژه</p>
+              </div>
+            </div>
 
             <div class="item-description">
               <p class="item-title">{{ product.name }}</p>

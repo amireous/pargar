@@ -95,3 +95,18 @@ input {
 .selectedRoute {
   color: $primary-green;
 }
+
+.item-image {
+  position: relative;
+
+  .item-special {
+    position: absolute;
+    bottom: 11px;
+    left: 6px;
+    z-index: 1;
+    background-color: $primary-green;
+    border-radius: 4px;
+    color: $white-color;
+    padding: $small-padding / 2 $base-padding;
+  }
+}

@@ -17,11 +17,16 @@
               item.id
             ]"
           >
-            <img
-              class="img image"
-              [src]="item.feature_avatar.xhdpi"
-              alt="{{ item.name }}"
-            />
+            <div class="item-image">
+              <img
+                class="img image"
+                [src]="item.feature_avatar.xhdpi"
+                alt="{{ item.name }}"
+              />
+              <div class="item-special" *ngIf="item.is_special">
+                <p>ویژه</p>
+              </div>
+            </div>
             <div class="title">
               <h2 class="header-item-title">{{ item.name }}</h2>
             </div>

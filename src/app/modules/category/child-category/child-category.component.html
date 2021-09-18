@@ -24,11 +24,16 @@
   <div class="products">
     <div class="product-item" *ngFor="let item of categoryItemsList">
       <a [routerLink]="['/product', item.id]">
-        <img
-          class="image"
-          [src]="item.feature_avatar.xhdpi"
-          alt="{{ item.name }}"
-        />
+        <div class="item-image">
+          <img
+            class="image"
+            [src]="item.feature_avatar.xhdpi"
+            alt="{{ item.name }}"
+          />
+          <div class="item-special" *ngIf="item.is_special">
+            <p>ویژه</p>
+          </div>
+        </div>
       </a>
       <div class="item-description">
         <p class="item-title">{{ item.name }}</p>
