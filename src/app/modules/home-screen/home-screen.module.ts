@@ -22,5 +22,6 @@ import { FeaturesItemsComponent } from './feature-items/feature-items.component'
     HomeScreenRoutingModule,
     SlickCarouselModule,
   ],
+  exports: [NormallComponent],
 })
 export class HomeScreenModule {}

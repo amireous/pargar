@@ -37,9 +37,22 @@
     [ngClass]="navbarfixed ? 'fixed' : 'nofixed'"
   >
     <ul [ngClass]="parentCatMode ? 'parent-cat-mode' : 'nav-items-list'">
+      <li *ngIf="parentCatMode">
+        <a
+          class="parent-title"
+          [routerLink]="['/parent_cat', selectedParent.id]"
+          >{{ selectedParent.title }}</a
+        >
+      </li>
       <ng-container *ngFor="let item of parentItemList">
         <li class="nav-item" *ngIf="item.is_visible === true">
-          <a [routerLink]="['/parent_cat', item.id]"> {{ item.title }}</a>
+          <a
+            [routerLink]="[item.parent ? '/category' : '/parent_cat', item.id]"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLinkActive="selectedRoute"
+          >
+            {{ item.title }}</a
+          >
           <div class="sub-cat">
             <ul class="child-items">
               <li *ngFor="let child of item.childs">

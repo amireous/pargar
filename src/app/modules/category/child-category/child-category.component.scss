@@ -1,6 +1,116 @@
-p {
-  width: 500px;
-  height: 300px;
-  background-color: rebeccapurple;
-  padding: 10rem;
+@import "../../../../styles.scss";
+
+.category-container {
+  padding: $medium-padding * 4 0 $medium-padding * 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar {
+  width: 100%;
+  background-color: $white-color;
+  @include flex();
+  box-shadow: 0px 1px 1px 0px $primary-white-light;
+  z-index: 9;
+  padding: $small-padding 0;
+
+  .nav-container {
+    max-width: 1170px;
+    width: 100%;
+
+    a:hover {
+      color: $primary-green;
+    }
+  }
+
+  .category-title {
+    font-weight: bold;
+    color: $primary-green;
+  }
+
+  .nav-items-list {
+    @include flex($justify: flex-start, $align: baseline);
+    flex-wrap: wrap;
+    list-style: none;
+    text-align: center;
+    li {
+      padding: 12px;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-bottom: 9px;
+    }
+  }
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 1170px;
+  width: 100%;
+  direction: ltr;
+}
+
+.product-item {
+  margin-top: 0.75rem;
+  height: 320px;
+  background: $white-color;
+  border-radius: 8px;
+  width: 278px;
+  direction: rtl;
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:last-child {
+    margin-left: 0;
+  }
+
+  img {
+    width: 100%;
+    min-height: 166px;
+    background-color: $primary-grey-medium;
+    border-radius: 8px 8px 0 0;
+    object-fit: cover;
+  }
+
+  .item-description {
+    position: relative;
+  }
+
+  .item-view {
+    width: 100%;
+    color: $primary-grey-light;
+  }
+
+  .item-title {
+    font-size: $base-font -1;
+    line-height: 24px;
+    margin: 0 0 $small-margin + 2;
+    padding: 5px;
+    font-weight: bold;
+    padding: $base-padding;
+  }
+
+  .item-detail {
+    position: absolute;
+    top: 79px;
+    @include flex($justify: space-between);
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: $small-padding + 0.125 $small-padding + 0.125 0;
+
+    .view-author {
+      font-size: $base-font - 2.2;
+    }
+
+    .view {
+      padding-top: $small-padding;
+      @include flex($justify: space-between, $align: baseline);
+
+      font-size: $base-font - 3.2;
+    }
+  }
 }

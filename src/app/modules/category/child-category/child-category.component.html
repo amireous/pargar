@@ -1,1 +1,53 @@
-<p>child-category works!</p>
+<div class="category-container">
+  <nav class="navbar">
+    <div class="nav-container">
+      <ul class="nav-items-list">
+        <li>
+          <a
+            class="category-title"
+            [routerLink]="['/parent_cat', selectedCategoryParent.id]"
+            >{{ selectedCategoryParent.title }}</a
+          >
+        </li>
+        <li *ngFor="let child of selectedCategoryParent.childs">
+          <a
+            [routerLink]="['/category', child.id]"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLinkActive="selectedRoute"
+            >{{ child.title }}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="products">
+    <div class="product-item" *ngFor="let item of categoryItemsList">
+      <a [routerLink]="['/product', item.id]">
+        <img [src]="item.feature_avatar.xhdpi" alt="{{ item.name }}" />
+      </a>
+      <div class="item-description">
+        <p class="item-title">{{ item.name }}</p>
+        <div class="item-detail">
+          <div class="item-view">
+            <p class="view-author">پرگار</p>
+            <div class="view">
+              <div class="view-number">
+                <i class="fas fa-eye"></i>
+                <span> {{ item.total_view }}</span>
+              </div>
+
+              <span class="item-rate">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i
+              ></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -20,7 +20,7 @@ export class HomeScreenComponent implements OnInit {
 
   navbarfixed: boolean = false;
   parentCatMode: boolean = false;
-
+  selectedParent: any = {};
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -31,7 +31,12 @@ export class HomeScreenComponent implements OnInit {
           this.headerItemList = data.headeritem;
           this.homeItemList = data.homeitem;
           this.parentItemList = data.category;
-          console.log(this.parentItemList);
+
+          this.apiService.getHomeChildCategory().subscribe((data) => {
+            this.selectedParent = data.find(
+              (data) => data.id === this.parentItemList[0].parent
+            );
+          });
         });
         this.parentCatMode = true;
       } else {
@@ -52,7 +57,6 @@ export class HomeScreenComponent implements OnInit {
   getHomeData() {
     this.apiService.getHomeScreenData().subscribe(
       (data) => {
-        console.log(data);
         this.headerItemList = data.headeritem;
         this.homeItemList = data.homeitem.filter(
           (item: any) => item.products.length > 0
@@ -65,7 +69,6 @@ export class HomeScreenComponent implements OnInit {
     );
     this.apiService.getHomeChildCategory().subscribe((data) => {
       this.parentItemList = data;
-      console.log(data);
     });
     this.parentCatMode = false;
   }

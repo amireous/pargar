@@ -81,6 +81,10 @@
     box-shadow: 0px 1px 1px 0px $primary-white-light;
     z-index: 9;
 
+    .parent-title {
+      color: $primary-green;
+      font-weight: bold;
+    }
     .nav-items-list {
       @include flex($justify: space-between);
       flex-wrap: wrap;
@@ -224,4 +228,8 @@
       display: none;
     }
   }
+}
+
+.selectedRoute {
+  color: $primary-green;
 }

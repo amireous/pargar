@@ -83,4 +83,12 @@ export class ApiService {
   getHomeItemData(id: number): Observable<ParentCat> {
     return this.http.get<ParentCat>(`${baseUrl}/homeitem/${storeId}/${id}`);
   }
+
+  getCategoryData(productId: number) {
+    return this.http.get(`${baseUrl}/listproducts/${productId}`, {
+      params: {
+        limit: 20,
+      },
+    });
+  }
 }
