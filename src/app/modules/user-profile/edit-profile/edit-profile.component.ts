@@ -48,13 +48,13 @@ export class EditProfileComponent implements OnInit {
 
   onChange(event: any) {
     this.showVerifyBtn = true;
-    console.log(event.target.files[0]);
     this.selectedFile = event.target.files[0];
   }
 
   onUploadAvatar() {
     this.apiService.uploadUserAvatar(this.selectedFile).subscribe((res) => {
-      this.userAvatar = res.data.avatar;
+      this.apiService.userAvatar.next(res.data.avatar);
+      this.apiService.userAvatar.subscribe((data) => (this.userAvatar = data));
       this.router.navigate(['/profile']);
     });
   }

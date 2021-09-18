@@ -27,7 +27,6 @@ export class HomeScreenComponent implements OnInit {
     this.route.params.subscribe((param) => {
       if (param.id) {
         this.apiService.getHomeItemData(param.id).subscribe((data) => {
-          console.log(data);
           this.headerItemList = data.headeritem;
           this.homeItemList = data.homeitem;
           this.parentItemList = data.category;

@@ -18,8 +18,6 @@ export class ProductsListComponent implements OnInit {
   ngOnInit(): void {
     this.apiService.getFeatureProducts(this.productId).subscribe((data) => {
       this.selectedProduct = data;
-      console.log(this.selectedProduct);
-      console.log(this.selectedProduct.category_model[0].parent);
       this.findParent();
     });
   }

@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { UserDataPostService, UserVerifyPost } from '../models/user.model';
@@ -13,7 +13,7 @@ const storeId: number = environment.storeId;
   providedIn: 'root',
 })
 export class AuthService {
-  isLogged: boolean = false;
+  isLogged = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -63,7 +63,6 @@ export class AuthService {
         nickname: username,
       }
     );
-    // .pipe(tap((eve) => {}));
   }
 
   loggedIn() {
@@ -72,9 +71,7 @@ export class AuthService {
 
   logout() {
     localStorage.clear();
-    this.router.navigate(['/']).then(() => {
-      window.location.reload();
-    });
+    this.router.navigate(['/']).then(() => this.isLogged.next(false));
   }
 
   toEdit() {

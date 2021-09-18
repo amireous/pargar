@@ -19,7 +19,7 @@ import { SharedModule } from './modules/shared/shared.module';
 // import { ChildCategoryComponent } from './modules/category/child-category/child-category.component';
 // import { ProductsListComponent } from './modules/category/products-list/products-list.component';
 // import { ProductDetailComponent } from './modules/category/product-detail/product-detail.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
+import { NotFoundComponent } from './modules/layout/not-found/not-found.component';
 import { CategoryModule } from './modules/category/category.module';
 import { LayoutModule } from './modules/layout/layout.module';
 import { HomeScreenModule } from './modules/home-screen/home-screen.module';
@@ -31,15 +31,16 @@ import { HomeScreenModule } from './modules/home-screen/home-screen.module';
 // import { ProductDetailComponent } from './modules/product-detail/product-detail.component';
 
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent],
+  declarations: [AppComponent],
   imports: [
     HomeScreenModule,
-    AppRoutingModule,
-    LayoutModule,
-    CategoryModule,
     UserProfileModule,
-    BrowserModule,
+    LayoutModule,
+    AppRoutingModule,
 
+    CategoryModule,
+
+    BrowserModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

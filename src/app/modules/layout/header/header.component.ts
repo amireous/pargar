@@ -40,28 +40,9 @@ export class HeaderComponent implements OnInit {
       console.log(data);
     });
 
-    // this.apiService.loginStatus.subscribe((status) => {
-    //   this.isLogged = status;
-    // });
-
-    // if (this.apiService.isLogged) {
-    //   this.apiService.getUserProfile().subscribe((data) => {
-    //     this.userAvatar = data.avatar;
-    //     this.isLoginDropdown = false;
-    //   });
-    // }
-
     if (this.apiService.isLogged) {
       this.getProfileData();
     }
-    // console.log(data);
-    // this.userAvatar = data.avatar;
-    // this.apiService.getUserProfile().subscribe((data) => {
-    //   this.userAvatar = data.avatar;
-    //   this.isLoginDropdown = false;
-    // });
-
-    // }
   }
 
   onLoginDropdown() {
@@ -88,7 +69,6 @@ export class HeaderComponent implements OnInit {
       (response) => {
         console.log(response);
         this.currentMode = 'verify';
-        console.log(this.currentMode);
       },
       (errorMsg) => {
         this.errorMessage = errorMsg;
@@ -115,7 +95,6 @@ export class HeaderComponent implements OnInit {
           (res: any) => {
             this.tokenService.token = res.token;
             this.getProfileData();
-            // this.getProfileData();
             this.router.navigate(['/']);
           },
           () => {
@@ -126,19 +105,26 @@ export class HeaderComponent implements OnInit {
   }
 
   getProfileData() {
-    this.apiService.getUserProfile().subscribe((data) => {
-      this.userAvatar = data.avatar;
+    this.isLogged = true;
+    this.apiService.getUserProfile().subscribe(() => {
+      this.apiService.userAvatar.subscribe((data) => {
+        this.userAvatar = data;
+      });
     });
-
-    //   this.apiService.getUserProfile().subscribe((data) => {
-    //     this.userAvatar = data.avatar;
-    //   });
 
     this.isLoginDropdown = false;
   }
 
   onLogout() {
     this.authService.logout();
+    this.authService.isLogged.subscribe((status) => {
+      if (!status) {
+        this.userAvatar = undefined;
+        this.currentMode = 'login';
+      }
+    });
+
+    this.initForms();
   }
 
   onProfile() {

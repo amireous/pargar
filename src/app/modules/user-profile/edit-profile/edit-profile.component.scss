@@ -22,13 +22,14 @@
   }
 
   .avatar-upload {
-    @include flex($align: center);
+    @include flex($align: baseline);
     .upload-inpute {
       width: 110px;
     }
     .verify-btn {
       order: -1;
       margin-left: $medium-margin;
+      padding: 0.6rem 2.6rem;
     }
     input {
       width: 100%;

@@ -28,6 +28,7 @@ const storeId: number = environment.storeId;
 export class ApiService {
   loginStatus = new Subject<boolean>();
   isLogged: boolean | undefined;
+  userAvatar = new BehaviorSubject<string>('');
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -40,7 +41,9 @@ export class ApiService {
   }
 
   getUserProfile(): Observable<RootObjectProfile> {
-    return this.http.get<RootObjectProfile>(`${baseUrl}/profile`);
+    return this.http
+      .get<RootObjectProfile>(`${baseUrl}/profile`)
+      .pipe(tap((data) => this.userAvatar.next(data.avatar)));
   }
 
   disableScrolling() {
@@ -57,10 +60,6 @@ export class ApiService {
     this.router.navigate(['/profile']);
   }
 
-  // getFeatureProductCollection: Observable<ProductCollectionObject> | undefined(id: number | undefined) {
-  // return  this.http.get<ProductCollectionObject>(`${baseUrl}/product/${id}`)
-  // );
-  // }
   getFeatureProducts(id: number): Observable<FeatureProductsObject> {
     return this.http.get<FeatureProductsObject>(`${baseUrl}/product/${id}`);
   }
