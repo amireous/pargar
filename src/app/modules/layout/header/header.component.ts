@@ -36,15 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.initForms();
-
-    this.apiService.getHomeChildCategory().subscribe((data) => {
-      console.log(data);
-    });
-
-    if (this.apiService.isLogged) {
-      this.getProfileData();
-    }
+    this.initial();
   }
 
   onLoginDropdown() {
@@ -66,10 +58,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
+  initial() {
+    this.initForms();
+
+    this.apiService.getHomeChildCategory().subscribe((data) => {
+      console.log(data);
+    });
+
+    if (this.apiService.isLogged) {
+      this.getProfileData();
+    }
+  }
+
   onSignup() {
     this.authService.signUp(this.signupForm.value.phoneNumber).subscribe(
       (response) => {
-        console.log(response);
         this.currentMode = 'verify';
       },
       (errorMsg) => {
@@ -115,7 +118,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         })
       );
     });
-
     this.isLoginDropdown = false;
   }
 
@@ -123,10 +125,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.logout();
     this.subscription.push(
       this.authService.isLogged.subscribe((status) => {
-        if (!status) {
-          this.userAvatar = undefined;
-          this.currentMode = 'login';
-        }
+        this.userAvatar = undefined;
+        this.currentMode = 'login';
       })
     );
 
@@ -147,8 +147,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   // }
 
   ngOnDestroy(): void {
-    console.log('destroy');
-    this.authService.isLogged.unsubscribe();
     this.subscription.forEach((subscription) => subscription.unsubscribe());
   }
 }

@@ -1,13 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RootObjectProfile } from 'src/app/models/user.model';
 import { ApiService } from 'src/app/services/api.service';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -15,29 +10,38 @@ import { Subscription } from 'rxjs';
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.scss'],
 })
-export class EditProfileComponent implements OnInit, OnDestroy {
+export class EditProfileComponent implements OnInit {
   userData: RootObjectProfile | undefined;
   userAvatar: string | undefined;
   selectedFile: any;
   showVerifyBtn: boolean = false;
-
   subscription: Subscription | undefined;
+  informationForm = new FormGroup({});
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.apiService.getUserProfile().subscribe((data) => {
-      console.log(data);
-      this.userData = data;
-      this.subscription = this.apiService.userAvatar.subscribe((data) => {
-        this.userAvatar = data;
-      });
+    this.initial();
+    // this.apiService.getUserProfile().subscribe((data) => {
+    //   console.log(data);
+    //   this.userData = data;
 
-      this.initForms();
-    });
+    // });
   }
 
-  informationForm = new FormGroup({});
+  initial() {
+    this.route.data.subscribe((data) => {
+      this.userData = data[0];
+      this.subscription = this.apiService.userAvatar.subscribe((data) => {
+        this.userAvatar = data;
+        this.initForms();
+      });
+    });
+  }
 
   initForms() {
     this.informationForm = new FormGroup({
@@ -59,7 +63,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   onUploadAvatar() {
     this.apiService.uploadUserAvatar(this.selectedFile).subscribe((res) => {
       this.apiService.userAvatar.next(res.data.avatar);
-      this.apiService.userAvatar.subscribe((data) => (this.userAvatar = data));
+      // this.subscription = this.apiService.userAvatar.subscribe(
+      //   (data) => (this.userAvatar = data)
+      // );
       this.router.navigate(['/profile']);
     });
   }
@@ -74,7 +80,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('eee');
     this.subscription?.unsubscribe();
   }
 }

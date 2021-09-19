@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RootObjectProfile } from '../../models/user.model';
 import { ApiService } from '../../services/api.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { Subscription } from 'rxjs';
 
@@ -19,7 +19,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private apiService: ApiService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   onChangeMode() {
@@ -27,13 +28,24 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.apiService.getUserProfile().subscribe((data) => {
-      this.userData = data;
-      if (this.authService.isLogged) {
-        this.subscription = this.apiService.userAvatar.subscribe((data) => {
-          this.userAvatar = data;
-        });
-      }
+    this.initial();
+
+    // this.apiService.getUserProfile().subscribe((data) => {
+    //    this.userData = data;
+
+    // });
+  }
+
+  initial() {
+    this.route.data.subscribe((data) => {
+      this.userData = data[0];
+      this.authService.isLogged.subscribe((data) => {
+        if (data) {
+          this.subscription = this.apiService.userAvatar.subscribe((data) => {
+            this.userAvatar = data;
+          });
+        }
+      });
     });
   }
 
@@ -43,6 +55,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   onLogout() {
     this.authService.logout();
+    this.apiService.userAvatar.next('');
   }
 
   ngOnDestroy() {

@@ -9,7 +9,5 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NotFoundComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {
-    console.log(this.authService.isLogged);
-  }
+  ngOnInit(): void {}
 }
