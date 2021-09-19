@@ -49,19 +49,10 @@ export class AuthService {
       );
   }
 
-  verifyLoginCode(
-    code: string,
-    username: string | '',
-    phoneNumber: string | undefined
-  ): Observable<UserVerifyPost> {
+  verifyLoginCode(userData: UserVerifyPost): Observable<UserVerifyPost> {
     return this.http.post<UserVerifyPost>(
       `${baseUrl}/mobile_login_step2/${storeId}`,
-      {
-        mobile: phoneNumber,
-        device_id: 'Desktop',
-        verification_code: code,
-        nickname: username,
-      }
+      userData
     );
   }
 

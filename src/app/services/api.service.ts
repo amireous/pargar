@@ -8,6 +8,7 @@ import {
   Product,
   RootObject,
   RootObjectChild,
+  VoucherData,
 } from '../models/api-data.model';
 import { environment } from 'src/environments/environment';
 import { RootObjectProfile, UserDataPostService } from '../models/user.model';
@@ -101,5 +102,11 @@ export class ApiService {
         limit: limitNum,
       },
     });
+  }
+
+  submitGiftCode(giftCode: string): Observable<VoucherData> {
+    return this.http.get<VoucherData>(
+      `${baseUrl}/voucher/get_voucher/${giftCode}`
+    );
   }
 }

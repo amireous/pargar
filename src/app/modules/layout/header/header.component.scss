@@ -254,6 +254,9 @@ button:hover .dropdown-menu {
       top: -5px;
       left: 45px;
     }
+    a {
+      cursor: pointer;
+    }
   }
 
   &:hover .dropdown-menu {
@@ -262,10 +265,6 @@ button:hover .dropdown-menu {
 
   .pluse-btn {
     margin: 0 0 0 $base-margin;
-  }
-
-  .profile-router {
-    cursor: pointer;
   }
 }
 

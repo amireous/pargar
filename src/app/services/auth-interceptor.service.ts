@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 import { SpinnerService } from '../modules/layout/loading-spinner/spinner.service';
 import { ApiService } from './api.service';
+import { AuthService } from './auth.service';
 
 import { TokenService } from './token.service';
 
@@ -18,7 +19,8 @@ export class AuthInterceptorService implements HttpInterceptor {
   constructor(
     private tokenService: TokenService,
     private spinnerService: SpinnerService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private authService: AuthService
   ) {}
 
   intercept(
@@ -36,6 +38,7 @@ export class AuthInterceptorService implements HttpInterceptor {
       });
       this.apiService.isLogged = true;
       this.apiService.loginStatus.next(this.apiService.isLogged);
+      this.authService.isLogged.next(true);
     }
     this.spinnerService.showLoading();
     return next.handle(req).pipe(
@@ -44,6 +47,7 @@ export class AuthInterceptorService implements HttpInterceptor {
         () => {},
         (error) => {
           console.error(error);
+          alert(error.statusText);
         }
       )
     );

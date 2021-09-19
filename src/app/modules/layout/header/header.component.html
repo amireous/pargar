@@ -7,7 +7,7 @@
         <div class="dropdown-menu">
           <ul>
             <li><a class="profile-router" (click)="onProfile()">پروفایل</a></li>
-            <li><a href="#">کد هدیه</a></li>
+            <li><a class="gift-code" (click)="openDialog()">کد هدیه</a></li>
             <li><a href="#">راهنما</a></li>
             <li>
               <a class="dropdown-login-link" (click)="onLogout()">
@@ -21,10 +21,10 @@
       <button class="white-btn left-nav-btn-one btn" *ngIf="!userAvatar">
         حساب من <i class="fas fa-chevron-down"></i>
         <div class="dropdown-menu">
-          <a class="dropdown-login-link" (click)="onLoginDropdown()">
+          <a class="dropdown-login-link" (click)="openDialog()">
             ورود/ثبت نام رایگان
           </a>
-          <a href="#">کد هدیه</a>
+          <a (click)="openDialog()">کد هدیه</a>
         </div>
       </button>
     </div>
@@ -43,7 +43,7 @@
     </div>
   </nav>
 </div>
-
+<!-- 
 <div class="form login-view-container" *ngIf="isLoginDropdown && showModal">
   <div class="overlay" (click)="onOverlay()"></div>
   <form
@@ -63,6 +63,7 @@
       <p class="error-text" *ngIf="haveError">
         {{ errorMessage }}
       </p>
+
       <button type="submit" class="login-btn">دریافت کد تایید</button>
     </div>
   </form>
@@ -104,8 +105,7 @@
     <i class="fas fa-times"></i>
     <p>ورود کد هدیه</p>
   </div>
-  <!-- <form *ngIf="isLogged">
+ - <form *ngIf="isLogged">
     <input type="text" placeholder="کد هدیه" />
     <button class="submit-gift-code">تایید</button>
   </form> -->
-</div>

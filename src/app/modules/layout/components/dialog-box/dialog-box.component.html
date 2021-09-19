@@ -1,0 +1,74 @@
+<div class="form-container">
+  <div class="dialog-title">
+    <p
+      class="login-title"
+      *ngIf="currentMode === 'loginMode' || currentMode === 'verifyMode'"
+    >
+      {{ currentMode === "loginMode" ? "ورود و ثبت نام" : "ورود کد تایید" }}
+    </p>
+    <p class="login-title" *ngIf="currentMode === 'giftMode'">ورود کد هدیه</p>
+  </div>
+
+  <form class="form" [formGroup]="userForm">
+    <mat-form-field appearance="outline" *ngIf="currentMode === 'loginMode'">
+      <input
+        class="phoneNumber-field"
+        formControlName="phoneNumber"
+        matInput
+        placeholder="َشماره تلفن همراه"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline" *ngIf="currentMode === 'verifyMode'">
+      <input
+        type="text"
+        formControlName="verificationCode"
+        matInput
+        placeholder="کد تایید"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline" *ngIf="currentMode === 'verifyMode'">
+      <input
+        type="text"
+        formControlName="nickname"
+        matInput
+        placeholder="نام نمایشی شما"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline" *ngIf="currentMode === 'giftMode'">
+      <input
+        type="text"
+        formControlName="giftCode"
+        matInput
+        placeholder="کد هدیه"
+      />
+    </mat-form-field>
+
+    <p class="error-text invalid-number" *ngIf="haveError">
+      {{ errorMessage }}
+    </p>
+    <p class="error-text invalid-code" *ngIf="!codeValidation">کد نادرست است</p>
+    <p class="error-text invalid-gift-code">{{ giftErrorMsg }}</p>
+    <button
+      type="submit"
+      class="login-btn"
+      (click)="onSubmit()"
+      *ngIf="currentMode === 'loginMode' || currentMode === 'verifyMode'"
+    >
+      {{ currentMode === "loginMode" ? "دریافت کد تایید" : "ورود به پرگار" }}
+    </button>
+    <button
+      class="login-btn"
+      (click)="onSubmit()"
+      *ngIf="currentMode === 'giftMode'"
+    >
+      تایید
+    </button>
+  </form>
+  <button
+    class="resend-btn"
+    (click)="onResendCode()"
+    *ngIf="currentMode === 'verifyMode'"
+  >
+    ارسال مجدد کد تایید
+  </button>
+</div>

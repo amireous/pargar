@@ -273,3 +273,8 @@ export interface CategoryItems {
   customjson?: any;
   approved_age?: any;
 }
+
+export interface VoucherData {
+  message: string;
+  success: boolean;
+}
