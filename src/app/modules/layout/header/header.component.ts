@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { ApiService } from '../../../services/api.service';
 import { TokenService } from '../../../services/token.service';
@@ -10,7 +11,7 @@ import { TokenService } from '../../../services/token.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   isLoginDropdown: boolean = false;
   haveError: boolean = false;
   errorMessage: string | undefined;
@@ -25,6 +26,7 @@ export class HeaderComponent implements OnInit {
   loggin: boolean = false;
 
   isLogged: boolean = false;
+  subscription: Subscription[] = [];
 
   constructor(
     private authService: AuthService,
@@ -107,9 +109,11 @@ export class HeaderComponent implements OnInit {
   getProfileData() {
     this.isLogged = true;
     this.apiService.getUserProfile().subscribe(() => {
-      this.apiService.userAvatar.subscribe((data) => {
-        this.userAvatar = data;
-      });
+      this.subscription.push(
+        this.apiService.userAvatar.subscribe((data) => {
+          this.userAvatar = data;
+        })
+      );
     });
 
     this.isLoginDropdown = false;
@@ -117,12 +121,14 @@ export class HeaderComponent implements OnInit {
 
   onLogout() {
     this.authService.logout();
-    this.authService.isLogged.subscribe((status) => {
-      if (!status) {
-        this.userAvatar = undefined;
-        this.currentMode = 'login';
-      }
-    });
+    this.subscription.push(
+      this.authService.isLogged.subscribe((status) => {
+        if (!status) {
+          this.userAvatar = undefined;
+          this.currentMode = 'login';
+        }
+      })
+    );
 
     this.initForms();
   }
@@ -133,5 +139,16 @@ export class HeaderComponent implements OnInit {
 
   onOverlay() {
     this.showModal = false;
+  }
+
+  // onGiftCode() {
+  //   if (this.isLogged) {
+  //   }
+  // }
+
+  ngOnDestroy(): void {
+    console.log('destroy');
+    this.authService.isLogged.unsubscribe();
+    this.subscription.forEach((subscription) => subscription.unsubscribe());
   }
 }

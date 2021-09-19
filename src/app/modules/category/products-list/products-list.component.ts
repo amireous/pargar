@@ -19,6 +19,7 @@ export class ProductsListComponent implements OnInit {
     this.apiService.getFeatureProducts(this.productId).subscribe((data) => {
       this.selectedProduct = data;
       this.findParent();
+      console.log(data);
     });
   }
 

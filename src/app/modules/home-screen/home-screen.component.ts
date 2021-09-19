@@ -17,10 +17,10 @@ export class HomeScreenComponent implements OnInit {
   parentItemList: RootObjectChild[] = [];
   headerItemList: HeaderItem[] = [];
   homeItemList: Homeitem[] = [];
-
   navbarfixed: boolean = false;
   parentCatMode: boolean = false;
   selectedParent: any = {};
+
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {

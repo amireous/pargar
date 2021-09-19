@@ -2,11 +2,7 @@
   <div class="user-header" *ngIf="userData">
     <div class="user-dashbored">
       <div class="user-profile">
-        <img
-          src="{{ userData.avatar }}"
-          alt="User Avatar"
-          class="user-avatar"
-        />
+        <img src="{{ userAvatar }}" alt="User Avatar" class="user-avatar" />
         <h3 class="user-name">{{ userData.nickname }}</h3>
       </div>
       <div class="user-operations">

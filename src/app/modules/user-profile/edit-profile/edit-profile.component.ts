@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RootObjectProfile } from 'src/app/models/user.model';
 import { ApiService } from 'src/app/services/api.service';
@@ -8,26 +8,31 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.scss'],
 })
-export class EditProfileComponent implements OnInit {
-  constructor(private apiService: ApiService, private router: Router) {}
-
+export class EditProfileComponent implements OnInit, OnDestroy {
   userData: RootObjectProfile | undefined;
   userAvatar: string | undefined;
   selectedFile: any;
   showVerifyBtn: boolean = false;
 
+  subscription: Subscription | undefined;
+
+  constructor(private apiService: ApiService, private router: Router) {}
+
   ngOnInit(): void {
     this.apiService.getUserProfile().subscribe((data) => {
       console.log(data);
       this.userData = data;
-      this.userAvatar = data.avatar;
-      console.log(this.userData);
+      this.subscription = this.apiService.userAvatar.subscribe((data) => {
+        this.userAvatar = data;
+      });
+
       this.initForms();
     });
   }
@@ -66,5 +71,10 @@ export class EditProfileComponent implements OnInit {
         this.router.navigate(['/profile']);
       }
     });
+  }
+
+  ngOnDestroy() {
+    console.log('eee');
+    this.subscription?.unsubscribe();
   }
 }
