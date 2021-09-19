@@ -30,34 +30,23 @@
   }
 }
 
-.login-view {
-  width: 400px;
-  input {
-    margin: $base-margin 0;
-  }
-}
-
-.login-btns {
-  @include flex($direction: column);
-
-  .resend-btn {
-    background-color: transparent;
-    color: $primary-green;
-    border: none;
-    cursor: pointer;
-  }
+.resend-btn {
+  background-color: transparent;
+  color: $primary-green;
+  border: none;
+  cursor: pointer;
 }
 
 .form-container {
   .form {
     @include flex($justify: center, $direction: column);
   }
-  .login-title {
+  .form-title {
     font-size: $medium-font - 0.2;
-    color: black;
+    color: $black-color;
     margin-bottom: $base-margin;
   }
-  .login-btn {
+  .submit-btn {
     font-weight: bold;
     margin: 1rem 0;
     border-radius: 20px;
@@ -80,11 +69,12 @@
     font-size: $base-font + 0.5;
     color: $red-color;
     text-align: right;
-    // padding: $base-padding 0;
     align-self: flex-start;
   }
 
   .resend-btn {
+    width: 100%;
+    text-align: center;
     background-color: transparent;
     color: $primary-green;
     border: none;

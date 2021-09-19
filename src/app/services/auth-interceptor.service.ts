@@ -47,7 +47,6 @@ export class AuthInterceptorService implements HttpInterceptor {
         () => {},
         (error) => {
           console.error(error);
-          alert(error.statusText);
         }
       )
     );
