@@ -6,7 +6,7 @@ import { ChildCategoryComponent } from './child-category/child-category.componen
 // import { ParentCategoryComponent } from './parent-category/parent-category.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductsListComponent } from './products-list/products-list.component';
-
+import { HomeScreenModule } from '../home-screen/home-screen.module';
 const routes: Routes = [
   {
     path: 'category/:id',
@@ -17,7 +17,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes), HomeScreenModule],
   exports: [RouterModule],
 })
 export class CategoryRoutingModule {}

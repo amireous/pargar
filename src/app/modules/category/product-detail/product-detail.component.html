@@ -1,8 +1,15 @@
-<div class="product-detail-container">
-  <div class="product-info">
-    <p>مخصوص کاربران اشتراکی</p>
-    <div class="add-favourite">
-      افزودن به علاقه مندی ها <i class="far fa-heart"></i>
+<div class="product-detail-container" *ngIf="selectedProduct">
+  <section class="product">
+    <h2 class="product-title">{{ selectedProduct.name }}</h2>
+    <div class="product-info">
+      <div class="poduct-status">
+        <p class="subscription-product">مخصوص کاربران اشتراکی</p>
+        <p class="producer">{{ selectedProduct.producer_name }}</p>
+      </div>
+
+      <div class="add-favourite">
+        افزودن به علاقه مندی ها <i class="far fa-heart"></i>
+      </div>
     </div>
     <div class="player">
       <div class="video-list">
@@ -12,11 +19,117 @@
       </div>
       <div class="video-player"></div>
     </div>
-    <div class="video-info"></div>
-    <div class="comments"></div>
-    <div class="related-products">
-      <h2 class="others-title">دوره های مرتبط</h2>
-      <div class="products"></div>
+    <div class="video-info">
+      <h3>درباره این دوره</h3>
+      <div class="product-details">
+        <div class="product-rate">
+          <p>{{ selectedProduct.rank }}</p>
+          <i class="fa fa-star"></i><i class="fa fa-star"></i
+          ><i class="fa fa-star"></i><i class="fa fa-star"></i
+          ><i class="fa fa-star"></i>
+        </div>
+        <div class="product-view">
+          {{ selectedProduct.total_view }} نفر این دوره را دیده اند
+        </div>
+      </div>
     </div>
-  </div>
+    <div class="comments-section">
+      <h3 *ngIf="productComments.length > 0">نظر شرکت کنندگان در این دوره</h3>
+      <div class="comment" *ngFor="let comment of productComments">
+        <div class="user-comment">
+          <div class="user-detail">
+            <h4 class="username">{{ comment.user }}</h4>
+            <div class="user-rate">
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+            </div>
+          </div>
+          <p class="comment-text">{{ comment.comment_text }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="comment-add">
+      <a class="comment-btn">
+        <i class="far fa-comment-alt"></i>
+        <p>نظر و امتیاز درمورد این محصول</p>
+      </a>
+      <div class="comment-write" hidden>
+        <div class="comment-question">
+          <i class="far fa-comment-alt"></i>
+          <p>به این دوره چه امتیازی میدهید</p>
+          <div class="rate">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="related-products">
+      <h3 class="relate-products-title">دوره های مرتبط</h3>
+      <div class="products">
+        <div class="product-item" *ngFor="let item of relatedProducts">
+          <a [routerLink]="['/product', item.id]">
+            <div class="item-image">
+              <img
+                class="image"
+                [src]="item.feature_avatar.xhdpi"
+                alt="{{ item.name }}"
+              />
+              <div class="item-special" *ngIf="item.is_special">
+                <p>ویژه</p>
+              </div>
+            </div>
+          </a>
+          <div class="item-description">
+            <p class="item-title">{{ item.name }}</p>
+            <div class="item-detail">
+              <div class="item-view">
+                <p class="view-author">{{ item.producer_name }}</p>
+                <div class="view">
+                  <div class="view-number">
+                    <i class="fas fa-eye"></i>
+                    <span> {{ item.total_view }}</span>
+                  </div>
+
+                  <span class="item-rate">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i
+                  ></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <!-- <video
+          src="http://stream.vasapi.click:1935/vod/_definst_/smil:1515398976_VrT9JSvZTc.mp4.smil/playlist.m3u8?wprefixendtime=1632130993&wprefixstarttime=0&wprefixhash=mT-12gENMa5H8j_kdB1iAIcey3qCGR4lBY0umxfsA5c%3D&wprefixuserid=336298&wprefixstore=7&product=39870&producer=299&avfile=29421&promo=0&length=261&price=0"
+        ></video> -->
+      <!-- <video width="320" height="240" controls>
+          <source
+            src="http://stream.vasapi.click:1935/vod/_definst_/smil:1515398976_VrT9JSvZTc.mp4.smil/playlist.m3u8?wprefixendtime=1632130993&wprefixstarttime=0&wprefixhash=mT-12gENMa5H8j_kdB1iAIcey3qCGR4lBY0umxfsA5c%3D&wprefixuserid=336298&wprefixstore=7&product=39870&producer=299&avfile=29421&promo=0&length=261&price=0"
+            type="video/mp4"
+          />
+        </video>
+        <video controls #videoPlayer>
+          <source
+            src="{{
+              'http://stream.vasapi.click:1935/vod/_definst_/smil:1508823120_s2o2gJ5ksh.mp4.smil/playlist.m3u8?wprefixendtime=1632128294&wprefixstarttime=0&wprefixhash=h8Yz1BaoH7qvEXOF72Zd26G2wrexAeCIKcejMzjXvQc%3D&wprefixuserid=336298&wprefixstore=7&product=36742&producer=299&avfile=22745&promo=0&length=201&price=0'
+            }}"
+            type="video/mp4"
+          />
+          Browser not supported
+        </video> -->
+    </div>
+  </section>
 </div>

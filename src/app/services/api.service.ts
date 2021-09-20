@@ -4,8 +4,10 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import {
   CategoryItems,
   CategoryModel,
+  CommentModel,
   ParentCat,
   Product,
+  ProductDetails,
   RootObject,
   RootObjectChild,
   VoucherData,
@@ -108,5 +110,25 @@ export class ApiService {
     return this.http.get<VoucherData>(
       `${baseUrl}/voucher/get_voucher/${giftCode}`
     );
+  }
+
+  getProductDetail(id: number): Observable<ProductDetails> {
+    return this.http.get<ProductDetails>(`${baseUrl}/product/${id}`, {
+      params: {
+        device_os: 'ios',
+      },
+    });
+  }
+
+  getProductComments(id: number): Observable<CommentModel[]> {
+    return this.http.get<CommentModel[]>(`${baseUrl}/comment/${id}`, {
+      params: {
+        limit: 5,
+      },
+    });
+  }
+
+  getRelatedProducts(id: number): Observable<CategoryItems[]> {
+    return this.http.get<CategoryItems[]>(`${baseUrl}/related_products/${id}`);
   }
 }

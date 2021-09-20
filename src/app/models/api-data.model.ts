@@ -278,3 +278,129 @@ export interface VoucherData {
   message: string;
   success: boolean;
 }
+export interface File {
+  id: number;
+  name: string;
+  file: string;
+  img?: any;
+  sku: string;
+  sku_registered: boolean;
+  sku_reg_date: Date;
+  price: number;
+  price_show?: any;
+  is_purchased: boolean;
+  length: number;
+  description: string;
+  sub_fa?: any;
+  sub_en?: any;
+  is_downloadable: boolean;
+  price_unit: string;
+  is_enable: boolean;
+  file_type: number;
+  subtitles: any[];
+  preview?: any;
+  file_redirect: string;
+}
+
+export interface ProductDetails {
+  id: number;
+  name: string;
+  name_english: string;
+  product_type: number;
+  producer: Producer;
+  producer_name: string;
+  payment_type: number[];
+  category: number[];
+  price: number;
+  price_show?: any;
+  avatar: Avatar;
+  feature_avatar: FeatureAvatar;
+  rank: number;
+  totalInstalled: number;
+  short_description: string;
+  description: string;
+  promotionalContainers: PromotionalContainer[];
+  is_purchased: boolean;
+  comments: number;
+  files: File[];
+  generic_files: any[];
+  director: any[];
+  movie_producer: any[];
+  cast: any[];
+  date_create?: any;
+  is_jalali: boolean;
+  is_bookmarked: boolean;
+  sku: string;
+  tags: any[];
+  category_model: CategoryModel[];
+  comments_summery: CommentsSummery[];
+  price_unit: string;
+  total_view: number;
+  is_enable: boolean;
+  custom_json?: any;
+  polls: any[];
+  date_added: Date;
+  invest_goal?: any;
+  product_staff: any[];
+  support: Support;
+  is_special: boolean;
+  additional_attributes: any[];
+  date_published: Date;
+  customjson?: any;
+  approved_age?: any;
+  last_checked_file?: any;
+}
+
+export interface CommentModel {
+  id: number;
+  title: string;
+  score: number;
+  comment_text: string;
+  likes: number;
+  dislikes: number;
+  user: string;
+  date_added: Date;
+  comment_reply: any[];
+  user_avatar: string;
+  product: number;
+  is_read: boolean;
+  is_approved: boolean;
+  product_name: string;
+  date_modify: Date;
+}
+
+// export interface RootObject {
+//   id: number;
+//   name: string;
+//   name_english: string;
+//   product_type: number;
+//   producer_name: string;
+//   payment_type: number[];
+//   price: number;
+//   price_show?: any;
+//   avatar: Avatar;
+//   feature_avatar: FeatureAvatar;
+//   rank: number;
+//   totalInstalled: number;
+//   short_description: string;
+//   is_purchased: boolean;
+//   comments: number;
+//   is_bookmarked: boolean;
+//   sku: string;
+//   tags: any[];
+//   category_model: CategoryModel[];
+//   comments_summery: CommentsSummery[];
+//   price_unit: string;
+//   total_view: number;
+//   custom_json?: any;
+//   polls: any[];
+//   date_added: Date;
+//   invest_goal?: any;
+//   product_staff: any[];
+//   support: Support;
+//   is_special: boolean;
+//   additional_attributes: any[];
+//   date_published: Date;
+//   customjson?: any;
+//   approved_age?: any;
+// }
