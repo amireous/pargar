@@ -31,6 +31,9 @@
         <div class="product-view">
           {{ selectedProduct.total_view }} نفر این دوره را دیده اند
         </div>
+        <div class="product-description">
+          <p>{{ selectedProduct.description }}</p>
+        </div>
       </div>
     </div>
     <div class="comments-section">
@@ -52,20 +55,32 @@
       </div>
     </div>
     <div class="comment-add">
-      <a class="comment-btn">
+      <a class="comment-btn" (click)="onAddComment()" *ngIf="!commentMode">
         <i class="far fa-comment-alt"></i>
-        <p>نظر و امتیاز درمورد این محصول</p>
+        <a>نظر و امتیاز درمورد این محصول</a>
       </a>
-      <div class="comment-write" hidden>
-        <div class="comment-question">
+      <div class="comment-write" *ngIf="commentMode">
+        <div class="comment-question comment-btn">
           <i class="far fa-comment-alt"></i>
-          <p>به این دوره چه امتیازی میدهید</p>
+          <a>به این دوره چه امتیازی میدهید</a>
           <div class="rate">
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
+          </div>
+        </div>
+        <div class="comment-box">
+          <textarea #commentMsg placeholder="نظر خود را بنویسید"></textarea>
+          <div class="comment-operation-btns">
+            <a class="dismiss" (click)="onDismissComment()">انصراف</a>
+            <a
+              class="submit-comment"
+              (click)="onSubmitComment(commentMsg.value)"
+            >
+              ثبت نظر
+            </a>
           </div>
         </div>
       </div>
@@ -85,51 +100,32 @@
                 <p>ویژه</p>
               </div>
             </div>
-          </a>
-          <div class="item-description">
-            <p class="item-title">{{ item.name }}</p>
-            <div class="item-detail">
-              <div class="item-view">
-                <p class="view-author">{{ item.producer_name }}</p>
-                <div class="view">
-                  <div class="view-number">
-                    <i class="fas fa-eye"></i>
-                    <span> {{ item.total_view }}</span>
-                  </div>
+            <div class="item-description">
+              <p class="item-title">{{ item.name }}</p>
+              <div class="item-detail">
+                <div class="item-view">
+                  <p class="view-author">{{ item.producer_name }}</p>
+                  <div class="view">
+                    <div class="view-number">
+                      <i class="fas fa-eye"></i>
+                      <span> {{ item.total_view }}</span>
+                    </div>
 
-                  <span class="item-rate">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i
-                  ></span>
+                    <span class="item-rate">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i
+                    ></span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
-    <div>
-      <!-- <video
-          src="http://stream.vasapi.click:1935/vod/_definst_/smil:1515398976_VrT9JSvZTc.mp4.smil/playlist.m3u8?wprefixendtime=1632130993&wprefixstarttime=0&wprefixhash=mT-12gENMa5H8j_kdB1iAIcey3qCGR4lBY0umxfsA5c%3D&wprefixuserid=336298&wprefixstore=7&product=39870&producer=299&avfile=29421&promo=0&length=261&price=0"
-        ></video> -->
-      <!-- <video width="320" height="240" controls>
-          <source
-            src="http://stream.vasapi.click:1935/vod/_definst_/smil:1515398976_VrT9JSvZTc.mp4.smil/playlist.m3u8?wprefixendtime=1632130993&wprefixstarttime=0&wprefixhash=mT-12gENMa5H8j_kdB1iAIcey3qCGR4lBY0umxfsA5c%3D&wprefixuserid=336298&wprefixstore=7&product=39870&producer=299&avfile=29421&promo=0&length=261&price=0"
-            type="video/mp4"
-          />
-        </video>
-        <video controls #videoPlayer>
-          <source
-            src="{{
-              'http://stream.vasapi.click:1935/vod/_definst_/smil:1508823120_s2o2gJ5ksh.mp4.smil/playlist.m3u8?wprefixendtime=1632128294&wprefixstarttime=0&wprefixhash=h8Yz1BaoH7qvEXOF72Zd26G2wrexAeCIKcejMzjXvQc%3D&wprefixuserid=336298&wprefixstore=7&product=36742&producer=299&avfile=22745&promo=0&length=201&price=0'
-            }}"
-            type="video/mp4"
-          />
-          Browser not supported
-        </video> -->
-    </div>
+    <div></div>
   </section>
 </div>

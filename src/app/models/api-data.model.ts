@@ -369,38 +369,13 @@ export interface CommentModel {
   date_modify: Date;
 }
 
-// export interface RootObject {
-//   id: number;
-//   name: string;
-//   name_english: string;
-//   product_type: number;
-//   producer_name: string;
-//   payment_type: number[];
-//   price: number;
-//   price_show?: any;
-//   avatar: Avatar;
-//   feature_avatar: FeatureAvatar;
-//   rank: number;
-//   totalInstalled: number;
-//   short_description: string;
-//   is_purchased: boolean;
-//   comments: number;
-//   is_bookmarked: boolean;
-//   sku: string;
-//   tags: any[];
-//   category_model: CategoryModel[];
-//   comments_summery: CommentsSummery[];
-//   price_unit: string;
-//   total_view: number;
-//   custom_json?: any;
-//   polls: any[];
-//   date_added: Date;
-//   invest_goal?: any;
-//   product_staff: any[];
-//   support: Support;
-//   is_special: boolean;
-//   additional_attributes: any[];
-//   date_published: Date;
-//   customjson?: any;
-//   approved_age?: any;
-// }
+export interface PostComment {
+  title: string;
+  comment_text: string;
+  score: number;
+}
+
+export interface PostCommentResponse {
+  error: number;
+  message: string;
+}

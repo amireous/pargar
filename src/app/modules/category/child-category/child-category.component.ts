@@ -23,6 +23,10 @@ export class ChildCategoryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.inital();
+  }
+
+  inital() {
     this.route.params.subscribe((param) => {
       if (this.router.url === `/category/${param.id}`) {
         this.apiService.getCategoryData(param.id).subscribe((data) => {

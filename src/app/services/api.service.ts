@@ -6,6 +6,8 @@ import {
   CategoryModel,
   CommentModel,
   ParentCat,
+  PostComment,
+  PostCommentResponse,
   Product,
   ProductDetails,
   RootObject,
@@ -130,5 +132,15 @@ export class ApiService {
 
   getRelatedProducts(id: number): Observable<CategoryItems[]> {
     return this.http.get<CategoryItems[]>(`${baseUrl}/related_products/${id}`);
+  }
+
+  postUserComment(
+    id: number | undefined,
+    commentData: PostComment
+  ): Observable<PostCommentResponse> {
+    return this.http.post<PostCommentResponse>(
+      `${baseUrl}/comment/${id}`,
+      commentData
+    );
   }
 }
