@@ -18,23 +18,26 @@ export class NormallComponent implements OnInit {
     slidesToScroll: 1,
     initialSlide: 0,
     dots: false,
-    infinite: true,
     arrows: true,
     rtl: true,
+    adaptiveHeight: true,
+    variableWidth: true,
     nextArrow:
       "<div style='position: absolute; top: 35%; right: 1175px; cursor: pointer;transform: rotate(180deg);' class='next-slide'><i class=\"fas fa-angle-right\"></i></div>",
     prevArrow:
       "<div style='position: absolute; top: 35%; left: 1190px; z-index: 1; cursor: pointer; transform: rotate(180deg);' class='next-slide'><i class=\"fas fa-angle-left\"></i></div>",
-    // initialSlide: 1,
 
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1200,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 4,
+          slidesToScroll: 1,
           infinite: false,
           dots: false,
+          arrows: false,
+          nextArrow: false,
+          prevArrow: false,
         },
       },
       {
@@ -42,6 +45,9 @@ export class NormallComponent implements OnInit {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
+          arrows: false,
+          nextArrow: false,
+          prevArrow: false,
         },
       },
       {
@@ -49,6 +55,9 @@ export class NormallComponent implements OnInit {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          arrows: false,
+          nextArrow: false,
+          prevArrow: false,
         },
       },
     ],

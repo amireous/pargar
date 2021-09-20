@@ -20,12 +20,11 @@ export class FeaturesItemsComponent implements OnInit {
     infinite: true,
     arrows: true,
     rtl: true,
+
     nextArrow:
       "<div style='position: absolute; top: 35%; right: 1175px; cursor: pointer;transform: rotate(180deg);' class='next-slide'><i class=\"fas fa-angle-right\"></i></div>",
     prevArrow:
       "<div style='position: absolute; top: 35%; left: 1190px; z-index: 1; cursor: pointer; transform: rotate(180deg);' class='next-slide'><i class=\"fas fa-angle-left\"></i></div>",
-    // initialSlide: 1,
-
     responsive: [
       {
         breakpoint: 1024,

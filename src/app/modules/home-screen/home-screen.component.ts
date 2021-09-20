@@ -1,7 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import {
-  CategoryModel,
   HeaderItem,
   Homeitem,
   RootObjectChild,
@@ -24,6 +23,10 @@ export class HomeScreenComponent implements OnInit {
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.initial();
+  }
+
+  initial() {
     this.route.params.subscribe((param) => {
       if (param.id) {
         this.apiService.getHomeItemData(param.id).subscribe((data) => {
@@ -91,10 +94,19 @@ export class HomeScreenComponent implements OnInit {
 
     responsive: [
       {
+        breakpoint: 1500,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: false,
+          dots: false,
+        },
+      },
+      {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToScroll: 1,
           infinite: false,
           dots: false,
         },

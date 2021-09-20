@@ -11,7 +11,7 @@ import {
 } from 'src/app/models/api-data.model';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { DialogBoxComponent } from '../../layout/components/dialog-box/dialog-box.component';
+import { DialogBoxComponent } from '../../../layout/components/dialog-box/dialog-box.component';
 
 @Component({
   selector: 'app-product-detail',
@@ -48,16 +48,13 @@ export class ProductDetailComponent implements OnInit {
       this.selectedProductId = param.id;
       this.apiService.getProductDetail(param.id).subscribe((data) => {
         this.selectedProduct = data;
-        console.log(this.selectedProduct);
       });
 
       this.apiService.getProductComments(param.id).subscribe((data) => {
-        console.log(data);
         this.productComments = data;
       });
 
       this.apiService.getRelatedProducts(param.id).subscribe((data) => {
-        console.log(data);
         this.relatedProducts = data.slice(0, 4);
       });
     });

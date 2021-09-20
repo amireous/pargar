@@ -1,4 +1,4 @@
-@import "../.../../../../../styles.scss";
+@import "../../../../../styles.scss";
 
 .product-detail-container {
   @include flex($direction: column);
@@ -71,8 +71,12 @@
   padding: 24px;
 
   .product-rate {
+    @include flex($justify: flex-start, $align: baseline);
     p {
+      color: $primary-grey-medium;
       font-size: 22px;
+      order: 1;
+      margin-right: $small-margin;
     }
 
     .fa {

@@ -8,7 +8,7 @@ import { Injectable, Injector } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
-import { SpinnerService } from '../modules/layout/loading-spinner/spinner.service';
+import { SpinnerService } from '../modules/layout/components/loading-spinner/spinner.service';
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
 

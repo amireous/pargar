@@ -26,11 +26,6 @@ export class EditProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.initial();
-    // this.apiService.getUserProfile().subscribe((data) => {
-    //   console.log(data);
-    //   this.userData = data;
-
-    // });
   }
 
   initial() {
@@ -63,9 +58,6 @@ export class EditProfileComponent implements OnInit {
   onUploadAvatar() {
     this.apiService.uploadUserAvatar(this.selectedFile).subscribe((res) => {
       this.apiService.userAvatar.next(res.data.avatar);
-      // this.subscription = this.apiService.userAvatar.subscribe(
-      //   (data) => (this.userAvatar = data)
-      // );
       this.router.navigate(['/profile']);
     });
   }

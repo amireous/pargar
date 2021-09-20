@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpEvent } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import {
   CategoryItems,
-  CategoryModel,
   CommentModel,
   ParentCat,
   PostComment,
   PostCommentResponse,
-  Product,
   ProductDetails,
   RootObject,
   RootObjectChild,
@@ -16,8 +14,8 @@ import {
 } from '../models/api-data.model';
 import { environment } from 'src/environments/environment';
 import { RootObjectProfile, UserDataPostService } from '../models/user.model';
-import { catchError, tap } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
 import { Router } from '@angular/router';
 import { FeatureProductsObject } from '../models/products-collection.model';
 import { UpdateAvatarData } from '../models/user-profile';
@@ -47,16 +45,6 @@ export class ApiService {
     return this.http
       .get<RootObjectProfile>(`${baseUrl}/profile`)
       .pipe(tap((data) => this.userAvatar.next(data.avatar)));
-  }
-
-  disableScrolling() {
-    let x = window.scrollX;
-    let y = window.scrollY;
-    window.onscroll = () => window.scrollTo(x, y);
-  }
-
-  enableScrolling() {
-    window.onscroll = function () {};
   }
 
   toProfileComponent() {

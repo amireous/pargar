@@ -1,5 +1,5 @@
 <div class="navbar-container">
-  <div class="banner-container" *ngIf="showBanner">
+  <div class="banner-container" *ngIf="showBanner" hidden>
     <div class="banner" *ngIf="showBanner">
       <i class="fas fa-times" (click)="onCloseBanner()"></i>
       <p>
@@ -39,7 +39,7 @@
           <a class="dropdown-login-link" (click)="openDialog()">
             ورود/ثبت نام رایگان
           </a>
-          <a (click)="openDialog()">کد هدیه</a>
+          <a (click)="openDialog()"> ورود کد هدیه </a>
         </div>
       </button>
     </div>
@@ -77,4 +77,53 @@
       <a href="" class="guide">راهنمای پرگار</a>
     </div>
   </nav>
+</div>
+<div class="mobile-navbar">
+  <div class="right-nav-mobile">
+    <i class="fas fa-bars" (click)="toggleSideBar()"></i>
+    <div class="overlay" (click)="onOverlay()" *ngIf="showSideBar"></div>
+    <div class="side-bar" *ngIf="showSideBar">
+      <ul>
+        <li (click)="onCategoryDropDown()">
+          <a class="categories"
+            >دسته&zwnj;بندی&zwnj;ها<i class="fas fa-chevron-down right"></i>
+          </a>
+          <div class="parent-cat-dropdown-menu" *ngIf="showNavCategory">
+            <ul>
+              <li *ngFor="let parent of ParentCategory">
+                <a
+                  [routerLink]="['/parent_cat', parent.id]"
+                  *ngIf="parent.is_visible"
+                  >{{ parent.title }}</a
+                >
+                <div class="childs-menu">
+                  <ul>
+                    <li *ngFor="let child of parent.childs">
+                      <a [routerLink]="['/category', child.id]">{{
+                        child.title
+                      }}</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li><a (click)="openDialog()"> ورود کد هدیه </a></li>
+        <li><a href="">در پرگار درس بدهید</a></li>
+        <li><a href="">درباره پرگار</a></li>
+        <li class="white-btn btn">
+          <a class="dropdown-login-link" (click)="openDialog()">
+            ورود/ثبت نام رایگان
+          </a>
+        </li>
+      </ul>
+    </div>
+    <img src="/assets/images/logo_.png" alt="" class="mobile-logo" />
+  </div>
+</div>
+
+<div class="left-nav">
+  <i class="fas fa-search"></i>
 </div>

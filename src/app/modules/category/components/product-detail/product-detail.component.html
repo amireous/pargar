@@ -24,9 +24,11 @@
       <div class="product-details">
         <div class="product-rate">
           <p>{{ selectedProduct.rank }}</p>
-          <i class="fa fa-star"></i><i class="fa fa-star"></i
-          ><i class="fa fa-star"></i><i class="fa fa-star"></i
-          ><i class="fa fa-star"></i>
+          <i
+            class="fas fa-star"
+            *ngFor="let is of [1, 2, 3, 4, 5]; let i = index"
+            [ngClass]="{ 'green-star': selectedProduct.rank > i }"
+          ></i>
         </div>
         <div class="product-view">
           {{ selectedProduct.total_view }} نفر این دوره را دیده اند
@@ -43,11 +45,11 @@
           <div class="user-detail">
             <h4 class="username">{{ comment.user }}</h4>
             <div class="user-rate">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
+              <i
+                class="fas fa-star"
+                *ngFor="let is of [1, 2, 3, 4, 5]; let i = index"
+                [ngClass]="{ 'green-star': comment.score > i }"
+              ></i>
             </div>
           </div>
           <p class="comment-text">{{ comment.comment_text }}</p>
@@ -112,12 +114,12 @@
                     </div>
 
                     <span class="item-rate">
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i
-                    ></span>
+                      <i
+                        class="fas fa-star"
+                        *ngFor="let is of [1, 2, 3, 4, 5]; let i = index"
+                        [ngClass]="{ 'green-star': item.rank > i }"
+                      ></i>
+                    </span>
                   </div>
                 </div>
               </div>

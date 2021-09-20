@@ -16,13 +16,15 @@ export class ProductsListComponent implements OnInit {
   selectedProduct: FeatureProductsObject | undefined;
   selectedproductParentDetail: RootObjectChild | undefined;
   ngOnInit(): void {
+    this.initial();
+  }
+
+  initial() {
     this.apiService.getFeatureProducts(this.productId).subscribe((data) => {
       this.selectedProduct = data;
       this.findParent();
-      console.log(data);
     });
   }
-
   findParent() {
     this.apiService.getHomeChildCategory().subscribe((data) => {
       this.selectedproductParentDetail = data.find(

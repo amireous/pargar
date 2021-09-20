@@ -29,11 +29,6 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initial();
-
-    // this.apiService.getUserProfile().subscribe((data) => {
-    //    this.userData = data;
-
-    // });
   }
 
   initial() {

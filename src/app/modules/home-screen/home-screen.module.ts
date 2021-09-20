@@ -5,9 +5,9 @@ import { RouterModule } from '@angular/router';
 import { HomeScreenComponent } from './home-screen.component';
 import { HomeScreenRoutingModule } from './home-screen-routing.module';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
-import { NormallComponent } from './normall/normall.component';
-import { SingleItemComponent } from './single-item/single-item.component';
-import { FeaturesItemsComponent } from './feature-items/feature-items.component';
+import { NormallComponent } from './components/normall/normall.component';
+import { SingleItemComponent } from './components/single-item/single-item.component';
+import { FeaturesItemsComponent } from './components/feature-items/feature-items.component';
 
 @NgModule({
   declarations: [

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -13,13 +13,14 @@ import { TokenService } from 'src/app/services/token.service';
   templateUrl: './dialog-box.component.html',
   styleUrls: ['./dialog-box.component.scss'],
 })
-export class DialogBoxComponent implements OnInit {
+export class DialogBoxComponent implements OnInit, OnDestroy {
   currentMode: string = 'loginMode';
   errorMessage: string | undefined;
   codeValidation: boolean = true;
   haveError: boolean = false;
   isGiftMode: boolean = false;
   giftErrorMsg: string | undefined;
+  subscription: Subscription | undefined;
 
   constructor(
     public dialogRef: MatDialogRef<DialogBoxComponent>,
@@ -30,14 +31,15 @@ export class DialogBoxComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authService.isLogged.subscribe((data) => {
+    this.initForms();
+  }
+
+  initial() {
+    this.subscription = this.authService.isLogged.subscribe((data) => {
       if (data) {
         this.currentMode = 'giftMode';
-        console.log(this.currentMode);
       }
     });
-    this.initForms();
-    console.log('test');
   }
 
   userForm: FormGroup = new FormGroup({});
@@ -70,7 +72,6 @@ export class DialogBoxComponent implements OnInit {
       (response) => {
         this.currentMode = 'verifyMode';
         this.haveError = false;
-        console.log(response);
       },
       (errorMsg) => {
         this.errorMessage = errorMsg;
@@ -97,10 +98,6 @@ export class DialogBoxComponent implements OnInit {
         this.tokenService.token = res.token;
         this.getProfileData();
         this.router.navigate(['/']);
-
-        this.apiService.loginStatus.subscribe((data) => {
-          console.log(data);
-        });
       },
       () => {
         this.codeValidation = false;
@@ -122,5 +119,9 @@ export class DialogBoxComponent implements OnInit {
     } else {
       this.giftErrorMsg = 'لطفا فیلد را پر نمایید';
     }
+  }
+
+  ngOnDestroy() {
+    this.subscription?.unsubscribe();
   }
 }

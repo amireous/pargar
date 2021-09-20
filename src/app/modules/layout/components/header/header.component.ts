@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { RootObjectChild } from 'src/app/models/api-data.model';
 import { AuthService } from 'src/app/services/auth.service';
-import { ApiService } from '../../../services/api.service';
-import { DialogBoxComponent } from '../components/dialog-box/dialog-box.component';
+import { ApiService } from '../../../../services/api.service';
+import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 
 @Component({
   selector: 'app-header',
@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   showBanner: boolean = true;
   ParentCategory: RootObjectChild[] = [];
   showNavCategory: boolean = false;
+  showSideBar: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -87,6 +88,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onCategoryDropDown() {
     this.showNavCategory = !this.showNavCategory;
+  }
+
+  toggleSideBar() {
+    this.showSideBar = !this.showSideBar;
+  }
+
+  onOverlay() {
+    this.showSideBar = false;
   }
 
   ngOnDestroy(): void {

@@ -1,4 +1,4 @@
-@import "../../../../styles.scss";
+@import "../../../../../styles.scss";
 
 .feature-several-item {
   margin: $medium-margin 0;
@@ -17,4 +17,10 @@
 
 .feature {
   margin-left: $base-margin;
+}
+
+@media screen and (max-width: 1200px) {
+  .slick-wrapper {
+    width: 100%;
+  }
 }
