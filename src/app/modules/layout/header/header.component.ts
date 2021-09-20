@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   profileValid: boolean = false;
   isLogged: boolean = false;
   subscription: Subscription[] = [];
+  showBanner: boolean = true;
 
   constructor(
     private authService: AuthService,
@@ -75,6 +76,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onProfile() {
     this.apiService.toProfileComponent();
+  }
+
+  onCloseBanner() {
+    this.showBanner = false;
   }
 
   ngOnDestroy(): void {
