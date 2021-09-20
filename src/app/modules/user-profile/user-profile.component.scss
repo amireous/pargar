@@ -5,7 +5,7 @@
   min-height: 10vh;
   height: 100%;
   width: 100%;
-  padding-top: $medium-margin * 2 + 1;
+  padding-top: 100px;
 
   .user-header {
     background-color: $primary-green;
@@ -69,18 +69,10 @@
   line-height: 32px;
 
   text-align: center;
-  // margin: $small-margin;
-  // margin-left: 0px;
-  // margin-right: 0px;
-  // margin-bottom: 16px;
   margin: $small-margin 0 $base-margin;
   border: 1px solid $white-color;
   border-radius: 20px;
   background: $white-color;
-  // padding: 3px;
-  // padding-left: 16px;
-  // padding-right: 16px;
-  // padding-bottom: 3px;
   padding: 3px $base-padding;
 }
 
@@ -94,6 +86,11 @@
     justify-content: space-around;
     max-width: 480px;
     width: 100%;
+
+    li:active,
+    li:focus {
+      border-bottom: 3px solid $white-color;
+    }
 
     a {
       display: inline-block;

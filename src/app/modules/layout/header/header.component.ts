@@ -1,12 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
+import { RootObjectChild } from 'src/app/models/api-data.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { ApiService } from '../../../services/api.service';
-import { TokenService } from '../../../services/token.service';
 import { DialogBoxComponent } from '../components/dialog-box/dialog-box.component';
 
 @Component({
@@ -20,6 +19,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isLogged: boolean = false;
   subscription: Subscription[] = [];
   showBanner: boolean = true;
+  ParentCategory: RootObjectChild[] = [];
+  showNavCategory: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -29,11 +30,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   openDialog(): void {
     let dialogRef = this.dialog.open(DialogBoxComponent, {
-      width: '450px',
-    });
-
-    this.authService.isLogged.subscribe((data) => {
-      console.log(data);
+      panelClass: 'dialog',
     });
   }
 
@@ -43,7 +40,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   initial() {
     this.apiService.getHomeChildCategory().subscribe((data) => {
-      console.log(data);
+      this.ParentCategory = data;
     });
 
     if (this.apiService.isLogged) {
@@ -68,7 +65,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onLogout() {
     this.authService.logout();
     this.subscription.push(
-      this.authService.isLogged.subscribe((status) => {
+      this.authService.isLogged.subscribe(() => {
         this.userAvatar = undefined;
       })
     );
@@ -80,6 +77,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onCloseBanner() {
     this.showBanner = false;
+  }
+
+  @HostListener('window:scroll', ['$event']) onscroll() {
+    if (window.scrollY > 10) {
+      this.showNavCategory = false;
+    }
+  }
+
+  onCategoryDropDown() {
+    this.showNavCategory = !this.showNavCategory;
   }
 
   ngOnDestroy(): void {

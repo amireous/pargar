@@ -174,18 +174,14 @@
   .item-template-title {
     color: $primary-grey-dark;
     font-weight: bold;
-
-    margin: 0px;
     padding-bottom: 0.15rem;
-    font-size: 24px;
-
-    margin: $base-margin + 0.5 0 $small-margin + 2;
+    font-size: $medium-font;
+    margin: $small-margin + 2 0;
   }
 }
 
 .products {
   @include flex($justify: flex-start);
-
   margin: $small-margin - 3;
   position: relative;
   border-radius: 8px;
@@ -238,6 +234,6 @@
   @include flex($justify: space-between, $align: baseline);
   a {
     font-weight: bold;
-    color: #37b34a;
+    color: $primary-green;
   }
 }

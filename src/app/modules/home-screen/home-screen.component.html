@@ -79,7 +79,11 @@
             </h2>
             <a
               [routerLink]="['/module', item.module]"
-              *ngIf="item.module > 130 && item.products.length >= 4"
+              *ngIf="
+                item.row_type === 'normal' &&
+                item.module > 130 &&
+                item.products.length >= 4
+              "
               >مشاهده همه</a
             >
           </div>

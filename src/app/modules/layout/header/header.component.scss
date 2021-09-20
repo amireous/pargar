@@ -45,6 +45,8 @@
   width: 100%;
   height: 100%;
   background-color: $white-color;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: $small-padding;
 }
 
 .left-nav {
@@ -73,6 +75,8 @@
   position: absolute;
   left: -21px;
   z-index: 1;
+  box-shadow: 0px 2px 10px 0px rgb(0 0 0 / 16%),
+    0px 2px 5px 0px rgb(0 0 0 / 26%);
 
   a {
     display: block;
@@ -105,6 +109,7 @@ button:hover .dropdown-menu {
   @include flex();
   order: -1;
   padding-right: $medium-padding + 0.5;
+  position: relative;
 
   & > * {
     margin-right: $base-margin + 0.4;
@@ -262,11 +267,17 @@ button:hover .dropdown-menu {
   align-items: center;
   margin: 0 $base-margin + 4;
 
+  .profile-section {
+    position: relative;
+    order: 1;
+    &:hover .dropdown-menu {
+      display: block;
+    }
+  }
   .user-avatar {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    order: 1;
   }
 
   .dropdown-menu {
@@ -278,8 +289,8 @@ button:hover .dropdown-menu {
       0px 2px 5px 0px rgb(0 0 0 / 26%);
     padding: $small-padding - 4;
     text-align: right;
-    top: 59px;
-    left: 22px;
+    top: 32px;
+    left: -38px;
 
     &::before {
       top: -5px;
@@ -288,10 +299,6 @@ button:hover .dropdown-menu {
     a {
       cursor: pointer;
     }
-  }
-
-  &:hover .dropdown-menu {
-    display: block;
   }
 
   .pluse-btn {
@@ -315,5 +322,53 @@ button:hover .dropdown-menu {
     padding: 2rem;
     height: 200px;
     width: 300px;
+  }
+}
+
+.parent-cat-dropdown-menu {
+  display: block;
+  visibility: visible;
+  box-shadow: 0px 1px 2px 0px #bdbdbd;
+  background: white;
+  position: absolute;
+  top: 80%;
+  right: 150px;
+  z-index: -1;
+  width: 200px;
+  li {
+    position: relative;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 3px;
+    display: block;
+    font-size: 15px;
+    &:hover {
+      background-color: whitesmoke;
+    }
+    &:hover .childs-menu {
+      display: block;
+      width: 250px;
+      opacity: 1;
+      z-index: 100;
+      transition: all 0.2s 1.5s;
+    }
+    a {
+      color: #757575;
+      font-size: $base-font - 1;
+    }
+    .childs-menu {
+      width: 0px;
+      background: whitesmoke;
+      box-shadow: 0px 1px 2px 0px #bdbdbd;
+      opacity: 0;
+      z-index: 10;
+      transition: all 0.2s 0.5s;
+      display: none;
+      overflow: hidden;
+      position: absolute;
+      right: 101%;
+      top: 0;
+    }
   }
 }

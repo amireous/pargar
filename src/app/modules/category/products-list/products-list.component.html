@@ -43,11 +43,11 @@
                 <span> {{ product.total_view }}</span>
               </div>
               <div class="view-rate">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
+                <i
+                  class="fas fa-star"
+                  *ngFor="let is of [1, 2, 3, 4, 5]; let i = index"
+                  [ngClass]="{ 'green-star': product.rank > i }"
+                ></i>
               </div>
             </div>
           </div>

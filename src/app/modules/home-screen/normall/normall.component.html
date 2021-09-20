@@ -46,12 +46,12 @@
                     </div>
 
                     <span class="item-rate">
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i
-                    ></span>
+                      <i
+                        class="fas fa-star"
+                        *ngFor="let is of [1, 2, 3, 4, 5]; let i = index"
+                        [ngClass]="{ 'green-star': product.rank > i }"
+                      ></i>
+                    </span>
                   </div>
                 </div>
               </div>
